@@ -1,24 +1,30 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "my-website",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "My website",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Robin Crönert",
   "dependencies": {
+    "animate.css": "^4.1.1",
     "gatsby": "^2.25.1",
     "gatsby-image": "^2.4.21",
     "gatsby-plugin-manifest": "^2.5.1",
     "gatsby-plugin-offline": "^3.3.1",
     "gatsby-plugin-react-helmet": "^3.3.14",
+    "gatsby-plugin-sass": "^2.4.2",
     "gatsby-plugin-sharp": "^2.7.0",
     "gatsby-source-filesystem": "^2.4.0",
     "gatsby-transformer-sharp": "^2.5.21",
+    "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-helmet": "^6.1.0"
+    "react-helmet": "^6.1.0",
+    "react-lottie-player": "^1.0.2",
+    "typeface-montserrat": "^1.1.13"
   },
   "devDependencies": {
+    "@hot-loader/react-dom": "^17.0.0",
     "prettier": "2.1.2"
   },
   "keywords": [

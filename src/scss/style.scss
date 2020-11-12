@@ -1,0 +1,365 @@
+@import './colors.scss';
+
+// $globalPadding: 3.65vw;
+$globalPadding: 5.5vw;
+$secondPadding: 9vw;
+$regularBold: 400;
+$mediumBold: 500;
+$semiBold: 600;
+$sunSize: 520px;
+
+// @media (min-width: 640px){
+
+// ...
+  
+// }
+  
+// @media (min-width: 768px){
+  
+// ...
+  
+// }
+  
+// @media (min-width: 1024px){
+  
+// ...
+  
+// }
+  
+// @media (min-width: 1200px){
+  
+// ...
+  
+// }
+
+html {
+  font-size: 62.5%;
+  font-family: "montserrat";
+
+  body {
+    margin: 0;
+    padding: 0;
+    color: $mainColor;
+    overflow: auto;
+
+    section {
+      padding: 0 $globalPadding;
+      .section-content {
+        margin: 0 auto;
+      }
+    }
+
+    h1 {
+      margin: 0;
+      padding: 11rem 0 6rem 0;
+      font-size: 8rem;
+      font-weight: $semiBold;
+    }
+
+    h2 {
+      margin: 0;
+      padding: 9rem 0 6rem 0;
+      font-size: 6rem;
+      font-weight: $semiBold;
+    }
+
+    #home {
+      .animate__animated.animate__fadeIn {
+        --animate-duration: 4s;
+      }
+      
+      background: $backgroundColor1;
+      overflow: hidden;
+      &.sunrise {
+        background: $backgroundColor2;
+        transition-property: background;
+        transition-duration: 3s;
+        transition-timing-function: ease;
+      }
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      min-height: 400px;
+      .nav-row {
+        height: 11.367vh;
+        min-height: 100px;
+        // height: 163px;
+        position: absolute;
+        top: 0;
+        width: calc(100% - (2 * #{$globalPadding}));
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .logo {
+          font-size: 3.2rem;
+          font-weight: $mediumBold;
+        }
+        nav {
+          display: flex;
+          font-size: 2.5rem;
+          .links-wrap {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            .page-link {
+              padding-left: 7rem;
+              cursor: pointer;
+              a {
+                color: $mainColor;
+                text-decoration: none;
+              }
+              a:link {
+                text-decoration: none;
+              }
+              a:visited {
+                text-decoration: none;
+              }
+              a:hover {
+                // color: $fourthColor;
+                text-decoration: none;
+              }
+              a:active {
+                text-decoration: none;
+              }
+            }
+          }
+        }
+      }
+      .introduction {
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .hello {
+          font-size: 8rem;
+          font-weight: $semiBold;
+        }
+        .description {
+          font-size: 4.5rem;
+          text-align: center;
+        }
+      }
+      .scroll-lottie {
+        z-index: 1;
+        position: absolute;
+        bottom: 0;
+        height: 150px;
+        /* Responsive height < 399 */
+        @media all and (max-height: 399px) {
+          & {
+            visibility: hidden;;
+          }
+        }
+        /* Responsive width < 1442 */
+        @media all and (max-width: 1442px) {
+          & {
+            height: 110px;
+          }
+        }
+      }
+      .sun {
+        background-color: $sunColor1;
+        height: $sunSize;
+        width: $sunSize;
+        position: absolute;
+        bottom: calc(-#{$sunSize} / 1.5);
+        border-radius: 50%;
+        // cursor: pointer;
+        filter: blur(37px);
+        &.sunrise {
+          bottom: calc(50% - #{$sunSize} / 2);
+          background-color: $sunColor2;
+          transition-duration: 3s;
+          transition-timing-function: ease;
+        }
+      }
+    }
+
+    #about-me {
+      background: $backgroundColor3;
+      position: relative;
+      display: flex;
+      justify-content: center;
+
+      .section-content {
+        max-width: 1335px;
+        padding-bottom: 15rem;
+
+        .introduction {
+
+          display: flex;
+          .photo-container {
+            padding: 32px 10rem 37px 0;
+            flex-basis: 30%;
+            flex-shrink: 0;
+            & > div {
+              border-radius: 10px;
+              box-shadow: 60px 60px 20px #161616;
+            }
+            @media (max-width: 1200px){
+              display: none;
+            }
+          }
+          .description {
+            font-size: 3rem;
+            margin: 0;
+          }
+        }
+
+      }
+      
+    }
+
+    #cards {
+      $cardsBreakPointPx: 1440px; 
+
+      $paddingBottom: 12rem;
+      $cardMargin: 2rem;
+      $cardHeight: 320px;
+      $arrowImgHeight: 210px;
+
+      background: $backgroundColor4;
+      position: relative;
+      
+      .section-content {  
+        max-width: 1335px;
+        padding-bottom: $paddingBottom;
+
+        .arrow-circle {
+          position: absolute;
+          bottom: calc(#{$paddingBottom} + #{$cardMargin} + (#{$cardHeight} / 2) - (#{$arrowImgHeight} / 2));
+          visibility: hidden;
+          border-radius: 50%;
+          border: none;
+          height: $arrowImgHeight;
+          width: $arrowImgHeight;
+          overflow: hidden;
+          cursor: pointer;
+
+          @media (max-width: $cardsBreakPointPx) {
+            visibility: visible;   
+          }
+          &.right {
+            right: $globalPadding;
+          }
+          &:hover {
+            filter: invert(30%) sepia(97%) saturate(1129%) hue-rotate(182deg) brightness(91%) contrast(86%);
+          }
+        }
+
+        h2 {
+          color: $color2;
+        }
+  
+        .cards-container {
+          display: flex;
+          justify-content: space-between;
+          overflow: hidden;
+
+          @media (max-width: $cardsBreakPointPx) {
+            margin: 0 calc(#{$arrowImgHeight} + 4rem);   
+          }
+  
+          .flip-card {
+            width: 220px;
+            height: $cardHeight;
+            margin: $cardMargin;
+            background-color: transparent;
+            perspective: 1000px;
+            position: relative;
+  
+            flex-grow: 1;
+            flex-shrink: 0;
+
+            &:first-child {
+              margin-left: 0;
+            }
+
+            &:last-child {
+              margin-right: 0;
+              padding-right: 0.3rem;
+            }
+  
+            &:hover .flip-card-inner {
+              transform: rotateY(180deg);
+            }
+  
+            .flip-card-inner {
+              width: 100%;
+              height: 100%;
+              position: relative;
+              transition: transform 0.6s;
+              transform-style: preserve-3d;
+  
+              .flip-card-front, .flip-card-back {
+                position: absolute;
+                border-radius: 10px;
+                width: 100%;
+                height: 100%;
+                box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.2);
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+              }
+  
+              .flip-card-front {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: $mainColor;
+                padding: 4rem;
+                box-sizing: border-box;
+  
+                & > div {
+                  width: 100%;
+                }
+              }
+  
+              .flip-card-back {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                background-color: $backgroundColor2;
+                
+                transform: rotateY(180deg);
+                &.blue { background-color: $cardColor1; color: $color2; }
+                &.orange { background-color: $cardColor2; color: $mainColor; }
+                &.darkBlue { background-color: $cardColor3; color: $mainColor; }
+                &.yellow { background-color: $cardColor4; color: $color2; }
+                &.violet { background-color: $cardColor5; color: $mainColor; }
+                h3 {
+                  font-size: 3rem;
+                  font-weight: bold;
+                  position: absolute;
+                  top: 0.5rem;
+                }
+                .xp-div {
+                  display: flex;
+                  flex-direction: column;
+                  line-height: 0.9;
+
+                  .xp {
+                    font-size: 7rem;
+                    font-weight: bold;
+                  }
+                  .years {
+                    font-size: 2.5rem;
+                    font-weight: $semiBold;
+                  }
+                }
+              }
+  
+            }
+  
+          }
+  
+        }
+
+      }
+
+    }
+
+  }
+}
+
