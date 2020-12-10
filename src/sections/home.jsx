@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import constants from "../const/constants"
 import Lottie from 'react-lottie-player';
-import scrollLottieJson from '../assets/lotties/scroll';
+import scrollLottieJson from '../assets/lotties/scroll.json';
 
 const Home = () => {
 
@@ -28,8 +28,8 @@ const Home = () => {
                 </nav>
             </div>
             <div className="introduction animate__animated animate__fadeIn">
-                <span className="hello">Hello, I'm Robin Cronert.</span>
-                <div className="description">I'm a french web developer passionate about UX/UI Design.</div>
+                <span className="hello">{"Hello, I'm Robin Cronert."}</span>
+                <div className="description">{"I'm a french web developer passionate about UX/UI Design."}</div>
             </div>
             <div className='scroll-lottie animate__animated animate__fadeIn'>
                 <Lottie

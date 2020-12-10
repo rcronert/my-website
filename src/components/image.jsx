@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 import { StaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 
@@ -23,7 +24,7 @@ const Image = props => (
               relativePath
               name
               childImageSharp {
-                fluid(maxWidth: 2000) {
+                fluid(maxWidth: 3000, quality: 100) {
                   ...GatsbyImageSharpFluid
                 }
               }
@@ -39,11 +40,15 @@ const Image = props => (
       if (!image) {
         return <div>Picture not found</div>
       }
-      // console.log(image)
       return <Img alt={props.alt} fluid={image.node.childImageSharp.fluid} fadeIn />;
     }}
   />
 
 )
+
+Image.propTypes = {
+  alt: PropTypes.string.isRequired,
+  src: PropTypes.string.isRequired,
+}
 
 export default Image

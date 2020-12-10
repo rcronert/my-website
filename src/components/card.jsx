@@ -1,27 +1,32 @@
 import React from "react"
+import PropTypes from "prop-types"
 import Image from "../components/image"
 
 const Card = props => {
 
-    const className = `flip-card${props.className ?  (' ' + props.className) : ''}`;
+    const className = `flip-card`;
     const className2 = `flip-card-back${props.backColor ?  (' ' + props.backColor) : ''}`;
     
     return (
-        <div class={className}>
-            <div class="flip-card-inner">
+        <div className={className}>
+            <div className="flip-card-inner">
                 <div className="flip-card-front">
                     <Image src={props.img} alt={props.altImg} />
                 </div>
                 <div className={className2}>
                     <h3> {props.backContent.title} </h3>
-                    <div className="xp-div">
-                        <span className="xp"> XP </span>
-                        <span className="years"> {props.backContent.xp} years </span>
-                    </div>
+                    <span className="years">+ {props.backContent.xp} years XP</span>
                 </div>
             </div>
         </div>
     )
+}
+
+Card.propTypes = {
+    backColor: PropTypes.string.isRequired,
+    img: PropTypes.string.isRequired,
+    altImg: PropTypes.string.isRequired,
+    backContent: PropTypes.object.isRequired,
 }
 
 export default Card

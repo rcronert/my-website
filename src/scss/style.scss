@@ -1,49 +1,100 @@
 @import './colors.scss';
 
 // $globalPadding: 3.65vw;
-$globalPadding: 5.5vw;
-$secondPadding: 9vw;
+// $globalPadding: 5.5vw;
+$navBarPadding: 8.5vw;
+$globalPaddingLeftRight: 15vw;
+$sectionPaddingTopBott: 13rem;
+$mawWidthContent: 1400px;
 $regularBold: 400;
 $mediumBold: 500;
 $semiBold: 600;
-$sunSize: 520px;
+$blackBold: 800;
+$sunSize: 490px;
 
-// @media (min-width: 640px){
+// @media (max-width: 479px){ // Mobile-portrait / default breakpoint
+
+// ...
+  
+// }
+
+// @media (min-width: 480px){ // Mobile landscape (and larger)
 
 // ...
   
 // }
   
-// @media (min-width: 768px){
+// @media (min-width: 768px){ // Tablet portrait (and larger)
   
 // ...
   
 // }
   
-// @media (min-width: 1024px){
+// @media (min-width: 992px){ // Tablet landscape (and larger)
   
 // ...
   
 // }
   
-// @media (min-width: 1200px){
+// @media (min-width: 1200px){ // Laptops (and larger)
   
 // ...
   
 // }
 
 html {
+  height: 100%;
+  width: 100%;
   font-size: 62.5%;
   font-family: "montserrat";
 
   body {
+    height: 100%;
+    width: 100%;
     margin: 0;
     padding: 0;
     color: $mainColor;
     overflow: auto;
+    // overflow-x: hidden;
+
+    .track-vertical {
+      right: 2px;
+      bottom: 2px;
+      top: 2px;
+      border-radius: 3px;
+      .thumb-vertical {
+        // background-color: #585252;
+        background-color: #999999;
+        opacity: 0.7;
+        border-radius: 8px;
+      }
+    }
+    
+    // &::-webkit-scrollbar {
+    //   width: 13px;               /* width of the entire scrollbar */
+    // }
+    // &::-webkit-scrollbar-track {
+    //   // display: none;
+    //   // background: 0 0;
+    //   background: inherit;        /* color of the tracking area */
+    // }
+    // &::-webkit-scrollbar-thumb {
+    //   background-color: $backgroundColor3;    /* color of the scroll thumb */
+    //   border-radius: 20px;       /* roundness of the scroll thumb */
+    //   border: 2px solid $mainColor;  /* creates padding around scroll thumb */
+    // }
+
+    #___gatsby {
+      height: 100%;
+      width: 100%;
+      #gatsby-focus-wrapper {
+        height: 100%;
+        width: 100%;
+      }
+    }
 
     section {
-      padding: 0 $globalPadding;
+      padding: $sectionPaddingTopBott $globalPaddingLeftRight;
       .section-content {
         margin: 0 auto;
       }
@@ -51,53 +102,78 @@ html {
 
     h1 {
       margin: 0;
-      padding: 11rem 0 6rem 0;
-      font-size: 8rem;
-      font-weight: $semiBold;
+      // padding-bottom: 5.5rem;
+      padding-bottom: 8rem;
+      // font-size: 5.8rem;
+      font-size: 8.5rem;
+      // font-weight: $semiBold;
+      font-weight: $mediumBold;
+      text-align: center;
     }
 
-    h2 {
-      margin: 0;
-      padding: 9rem 0 6rem 0;
-      font-size: 6rem;
-      font-weight: $semiBold;
+    .header-block {
+      color: $color2;
+      margin-bottom: 10rem;
+      .header {
+        h3 {
+          font-size: 2rem;
+          font-weight: $mediumBold;
+        }
+      }
+      .text {
+        font-size: 3.5rem;
+        font-weight: $semiBold;
+        p {
+          margin: 0;
+        }
+      }
     }
+
+    // h2 {
+    //   margin: 0;
+    //   padding-bottom: 6rem;
+    //   font-size: 7rem;
+    //   font-weight: $mediumBold;
+    //   text-align: center;
+    // }
 
     #home {
+      min-height: 100vh;
+      position: relative;
+      padding: 0 $navBarPadding;
+      background: $backgroundColor1;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      // min-height: 400px;
+
       .animate__animated.animate__fadeIn {
         --animate-duration: 4s;
       }
-      
-      background: $backgroundColor1;
-      overflow: hidden;
       &.sunrise {
         background: $backgroundColor2;
         transition-property: background;
         transition-duration: 3s;
         transition-timing-function: ease;
       }
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      min-height: 400px;
       .nav-row {
-        height: 11.367vh;
+        height: 15.8vh;
         min-height: 100px;
-        // height: 163px;
+        box-sizing: border-box;
         position: absolute;
         top: 0;
-        width: calc(100% - (2 * #{$globalPadding}));
+        width: calc(100% - (2 * #{$navBarPadding}));
         display: flex;
         justify-content: space-between;
         align-items: center;
         .logo {
-          font-size: 3.2rem;
+          font-size: 2.5rem;
           font-weight: $mediumBold;
         }
         nav {
           display: flex;
-          font-size: 2.5rem;
+          font-size: 2.4rem;
           .links-wrap {
             display: flex;
             align-items: center;
@@ -132,11 +208,11 @@ html {
         flex-direction: column;
         align-items: center;
         .hello {
-          font-size: 8rem;
+          font-size: 6.5rem;
           font-weight: $semiBold;
         }
         .description {
-          font-size: 4.5rem;
+          font-size: 3.8rem;
           text-align: center;
         }
       }
@@ -176,34 +252,42 @@ html {
       }
     }
 
-    #about-me {
+    #about {
       background: $backgroundColor3;
       position: relative;
-      display: flex;
-      justify-content: center;
+      // padding-bottom: 15rem;
 
       .section-content {
-        max-width: 1335px;
-        padding-bottom: 15rem;
+        // min-height: 100vh;
+        max-width: $mawWidthContent;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-bottom: 6rem;
 
         .introduction {
-
           display: flex;
+
           .photo-container {
-            padding: 32px 10rem 37px 0;
-            flex-basis: 30%;
+            // padding: 0px 10rem 37px 0;
+            padding-right: 10rem;
+            flex-basis: 25%;
             flex-shrink: 0;
             & > div {
               border-radius: 10px;
               box-shadow: 60px 60px 20px #161616;
             }
-            @media (max-width: 1200px){
+            @media (max-width: 1023px){
               display: none;
             }
           }
           .description {
-            font-size: 3rem;
+            font-size: 2.4rem;
+            font-weight: $mediumBold;
             margin: 0;
+            p:first-child {
+              margin-top: 0;
+            }
           }
         }
 
@@ -211,149 +295,320 @@ html {
       
     }
 
-    #cards {
-      $cardsBreakPointPx: 1440px; 
-
-      $paddingBottom: 12rem;
-      $cardMargin: 2rem;
-      $cardHeight: 320px;
-      $arrowImgHeight: 210px;
-
-      background: $backgroundColor4;
+    #skills {
       position: relative;
+      // $paddingBottom: 7rem;
+      $cardHeight: 320px;
+      $navButtonSize: 9rem;
       
-      .section-content {  
-        max-width: 1335px;
-        padding-bottom: $paddingBottom;
+      background: $backgroundColor4;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      
+      .section-content {
+        position: relative;
+        // min-height: 100vh;
+        width: 100%;
+        max-width: $mawWidthContent;
+        // padding-bottom: $paddingBottom;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        // align-items: center;
 
-        .arrow-circle {
-          position: absolute;
-          bottom: calc(#{$paddingBottom} + #{$cardMargin} + (#{$cardHeight} / 2) - (#{$arrowImgHeight} / 2));
-          visibility: hidden;
-          border-radius: 50%;
-          border: none;
-          height: $arrowImgHeight;
-          width: $arrowImgHeight;
-          overflow: hidden;
-          cursor: pointer;
+        .skills-container {
+          margin-bottom: $sectionPaddingTopBott;
 
-          @media (max-width: $cardsBreakPointPx) {
-            visibility: visible;   
-          }
-          &.right {
-            right: $globalPadding;
-          }
-          &:hover {
-            filter: invert(30%) sepia(97%) saturate(1129%) hue-rotate(182deg) brightness(91%) contrast(86%);
-          }
-        }
-
-        h2 {
-          color: $color2;
-        }
-  
-        .cards-container {
-          display: flex;
-          justify-content: space-between;
-          overflow: hidden;
-
-          @media (max-width: $cardsBreakPointPx) {
-            margin: 0 calc(#{$arrowImgHeight} + 4rem);   
-          }
-  
-          .flip-card {
-            width: 220px;
-            height: $cardHeight;
-            margin: $cardMargin;
-            background-color: transparent;
-            perspective: 1000px;
+          #cards-container {
             position: relative;
+            width: 100%;
   
-            flex-grow: 1;
-            flex-shrink: 0;
-
-            &:first-child {
-              margin-left: 0;
+            &.mobile-viewport {
+              .swiper-container {
+                width: 26rem; // Default/mobile/slide width: 260px
+              }
             }
-
-            &:last-child {
-              margin-right: 0;
-              padding-right: 0.3rem;
+            &.tablet-portrait-viewport {
+              .swiper-container {
+                width: 95%;
+                max-width: 52.3rem; // Slide width: 260px
+              }
             }
-  
-            &:hover .flip-card-inner {
-              transform: rotateY(180deg);
+            &.laptop-viewport {
+              .swiper-container {
+                width: 93%;
+                max-width: 78rem; // Slide width: 260px
+              }
             }
-  
-            .flip-card-inner {
-              width: 100%;
-              height: 100%;
-              position: relative;
-              transition: transform 0.6s;
-              transform-style: preserve-3d;
-  
-              .flip-card-front, .flip-card-back {
-                position: absolute;
-                border-radius: 10px;
+            &.desktop-viewport {
+              .swiper-container {
+                width: 92%;
+                max-width: 104rem; // Slide width: 260px
+              }
+            }
+            &.large-desktop-viewport {
+              .swiper-container {
                 width: 100%;
-                height: 100%;
-                box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.2);
-                -webkit-backface-visibility: hidden;
-                backface-visibility: hidden;
               }
+            }
   
-              .flip-card-front {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                background-color: $mainColor;
-                padding: 4rem;
-                box-sizing: border-box;
-  
-                & > div {
-                  width: 100%;
+            .swiper-container {
+              position: relative;
+              $paddingSwiperContainer: 1rem;
+              // padding-top: $paddingSwiperContainer;
+              padding: $paddingSwiperContainer 0 $paddingSwiperContainer 0;
+              position: static;
+              // width: 100%;
+            
+              .swiper-button-prev, .swiper-button-next {
+                background-color: rgba(255, 255, 255, 0.6);
+                border-radius: 50%;
+                width: $navButtonSize;
+                height: $navButtonSize;
+                box-sizing: content-box;
+                background-repeat: no-repeat;
+                background-size: 13% 50%;
+                background-position: center;
+                bottom: calc(#{$paddingSwiperContainer} + (#{$cardHeight} / 2) - (#{$navButtonSize} / 2));
+                top: auto;
+                &.hidden {
+                  visibility: hidden;
                 }
               }
+    
+              .swiper-button-prev {
+                background-image: url(../assets/svg-icons/arrow-left.svg);
+                left: 0;
+              }
+    
+              .swiper-button-next {
+                background-image: url(../assets/svg-icons/arrow-right.svg);
+                right: 0;
+              }
+    
+              .swiper-button-prev::after, .swiper-button-next::after {
+                display: none;
+              }
+    
+              .swiper-pagination {
+                // bottom: calc(#{$paddingBottom});
+                bottom: -4rem;
   
-              .flip-card-back {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                background-color: $backgroundColor2;
-                
-                transform: rotateY(180deg);
-                &.blue { background-color: $cardColor1; color: $color2; }
-                &.orange { background-color: $cardColor2; color: $mainColor; }
-                &.darkBlue { background-color: $cardColor3; color: $mainColor; }
-                &.yellow { background-color: $cardColor4; color: $color2; }
-                &.violet { background-color: $cardColor5; color: $mainColor; }
-                h3 {
-                  font-size: 3rem;
-                  font-weight: bold;
-                  position: absolute;
-                  top: 0.5rem;
+                .swiper-pagination-bullet {
+                  background-color: $backgroundColor3;
+                  opacity: 0.2;
+                  &.swiper-pagination-bullet-active {
+                    background-color: $backgroundColor3;
+                    opacity: 1;
+                  }
                 }
-                .xp-div {
+              }
+    
+              .swiper-wrapper {
+  
+                .swiper-slide {
                   display: flex;
-                  flex-direction: column;
-                  line-height: 0.9;
-
-                  .xp {
-                    font-size: 7rem;
-                    font-weight: bold;
+                  justify-content: center;
+                  touch-action: none; // Pour enlever le warning (Swip issue 3728)
+      
+                  .flip-card {
+                    height: $cardHeight;
+                    background-color: transparent;
+                    perspective: 1000px;
+                    position: relative;
+                    margin: 0 1.5rem;
+          
+                    flex-grow: 1;
+                    flex-shrink: 0;
+          
+                    &:hover .flip-card-inner {
+                      transform: rotateY(180deg);
+                    }
+          
+                    .flip-card-inner {
+                      width: 100%;
+                      height: 100%;
+                      position: relative;
+                      transition: transform 0.6s;
+                      transform-style: preserve-3d;
+          
+                      .flip-card-front, .flip-card-back {
+                        position: absolute;
+                        border-radius: 10px;
+                        width: 100%;
+                        height: 100%;
+                        // box-shadow: 2px 2px 13px 0 rgba(35, 33, 33, 0.2);
+                        box-shadow: 2px 2px 2px 0 rgba(35, 33, 33, 0.1);
+                        -webkit-backface-visibility: hidden;
+                        backface-visibility: hidden;
+                      }
+          
+                      .flip-card-front {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        background-color: $mainColor;
+                        padding: 4rem;
+                        box-sizing: border-box;
+          
+                        & > div {
+                          width: 100%;
+                        }
+                      }
+          
+                      .flip-card-back {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        background-color: $backgroundColor2;
+                        
+                        transform: rotateY(180deg);
+                        &.blue { background-color: $cardColor1; color: $color2; }
+                        &.orange { background-color: $cardColor2; color: $mainColor; }
+                        &.darkBlue { background-color: $cardColor3; color: $mainColor; }
+                        &.yellow { background-color: $cardColor4; color: $color2; }
+                        &.violet { background-color: $cardColor5; color: $mainColor; }
+                        h3 {
+                          font-size: 3.3rem;
+                          font-weight: bold;
+                          margin: 0;
+                        }
+                        .years {
+                          font-size: 2rem;
+                          font-weight: $mediumBold;
+                        }
+                      }
+          
+                    }
+          
                   }
-                  .years {
-                    font-size: 2.5rem;
-                    font-weight: $semiBold;
-                  }
+                  
                 }
+    
               }
-  
+      
             }
   
           }
+
+        }
+
+        .assuredQuality {
+
+          @keyframes translation {
+            100% {
+              transform: translateX(-200%);  /* position finale à gauche */
+            }
+          }
+
+          .words-container {
+            // align-self: center;
   
+            .word-container {
+              text-align: center;
+              white-space: nowrap;
+              padding: 3rem 0;
+  
+              div {
+                display: inline-block;
+                width: calc(100vw / 3);
+                font-style: italic;
+                font-size: 7rem;
+                font-weight: $blackBold;
+                color: $color2;
+  
+                &.empty {
+                  color: $textColor1;
+                  -webkit-text-stroke: 2px $color2;
+                }
+  
+              }
+              &.first-row {
+                // padding-top: 0;
+                div {
+                  animation: translation 85s infinite linear;
+                  // opacity: 0.625;
+                }
+              }
+              &.second-row {
+                div {
+                  animation: translation 70s infinite linear;
+                  // opacity: 0.750;
+                }
+              }
+              &.third-row {
+                div {
+                  animation: translation 60s infinite linear;
+                  // opacity: 0.875;
+                }
+              }
+              &.fourth-row {
+                // padding-bottom: 0;
+                div {
+                  animation: translation 90s infinite linear;
+                }
+              }            
+            }
+  
+          }
+
+        }
+
+      }
+
+    }
+
+    // #offer {
+    //   // background: $backgroundColor3;
+    //   padding-top: 0;
+    //   background: $backgroundColor4;
+    //   position: relative;
+    //   padding-left: 0;
+    //   padding-right: 0;
+
+      
+
+    //   .section-content {
+    //     // padding-bottom: 7.5rem;
+    //     // min-height: 100vh;
+    //     box-sizing: border-box;
+    //     display: flex;
+    //     flex-direction: column;
+    //     justify-content: center;
+    //     // align-items: center;
+    //     overflow: hidden;
+
+    //     h2 {
+    //       // padding-bottom: 10rem;
+    //       color: $color2;
+    //     }
+
+        
+
+    //   }
+
+    // }
+
+    #outroFooter {
+
+      .section-content {
+
+        h1 {
+          text-align: left;
+          color: $backgroundColor3;
+          font-size: 8rem;
+
+          &:first-child {
+            font-weight: $semiBold;
+            padding-bottom: 0;
+          }
+
+          &:last-child {
+            font-weight: $regularBold;
+          }
+
         }
 
       }

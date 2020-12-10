@@ -4,7 +4,7 @@ import Image from "../components/image"
 const AboutMe = () => {
 
     return (
-        <section id="about-me">
+        <section id="about">
             <div className="section-content">
                 <h1>About me</h1>
                 <div className="introduction">
@@ -13,13 +13,13 @@ const AboutMe = () => {
                     </div>
                     <div className="description">
                         <p>
-                            En tant que développeur Front-End depuis maintenant 5 ans, j'ai eu l'occasion d'intervenir sur des projets variés pour des clients grands comptes tels que Total, Criteo, Canal Plus ou encore le Conseil Régional PACA.
+                            {"As a Front-End developer for 5 years now, I have had the opportunity to work on various projects for key accounts such as Total, Criteo, Canal Plus or the Conseil Régional PACA."}
                         </p>
                         <p>
-                            Passionné par les technologies web, je saurai être force de proposition pour apporter une valeur ajoutée à vos projets.
+                            {"Passionate about web technologies, I will be able to be force of proposal to bring an added value to your projects."}
                         </p>
                         <p>
-                            Ma curiosité me permet d'être informé et à jour sur les nouvelles pratiques et stacks techniques.
+                            {"My curiosity allows me to be informed and up to date on new practices and technical stacks."}
                         </p>
                     </div>
                 </div>
