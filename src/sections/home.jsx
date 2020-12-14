@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import NavBar from "../components/navBar"
 import constants from "../const/constants"
 import Lottie from 'react-lottie-player';
 import scrollLottieJson from '../assets/lotties/scroll.json';
@@ -18,18 +19,10 @@ const Home = () => {
     return (
 
         <section id='home' className={homeSectionCn}>
-            <div className="nav-row">
-                <div className="logo">Robin Crönert</div>
-                <nav>
-                    <div className="links-wrap">
-                        <div className="page-link"><a href="#about">About</a></div>
-                        <div className="page-link"><a href="#contact">Contact</a></div>
-                    </div>
-                </nav>
-            </div>
+            <NavBar />
             <div className="introduction animate__animated animate__fadeIn">
                 <span className="hello">{"Hello, I'm Robin Cronert."}</span>
-                <div className="description">{"I'm a french web developer passionate about UX/UI Design."}</div>
+                <div className="description">{"I'm a french web Developer passionate about UX/UI Design."}</div>
             </div>
             <div className='scroll-lottie animate__animated animate__fadeIn'>
                 <Lottie

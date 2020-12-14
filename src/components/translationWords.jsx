@@ -4,7 +4,7 @@ import PropTypes from "prop-types"
 const TranlationWords = props => {
 
     const words = [];
-    for(let i = 0; i < 6; i++) {
+    for(let i = 0; i < 7; i++) {
         words.push(
             <div key={`key_${i}`} className={`${i%2 == 0 ? '' : ' empty'}`}>{props.text}</div>
         );

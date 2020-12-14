@@ -2,8 +2,10 @@ import React from "react"
 import Home from "../sections/home"
 import AboutMe from "../sections/aboutMe"
 import Skills from "../sections/skills"
+import Contact from "../sections/contact"
 // import Offer from "../sections/offer"
-import CustomScrollbars from "../components/customScrollBar"
+import CustomCursor from "../components/customCursor"
+import CustomScrollbar from "../components/customScrollBar"
 import SEO from "../components/seo"
 // import constants from "../const/constants"
 // import { Link } from "gatsby"
@@ -16,28 +18,19 @@ import "../scss/style.scss"
 const IndexPage = () => {
 
   return (
-    <CustomScrollbars>
-      <div>
+    <>
+      <CustomCursor />
+      <CustomScrollbar>
         <main>
           {/* A voir si on peut gérer avec le scroll ? */}
           <SEO title="Home" />
           <Home />
           <AboutMe />
           <Skills />
-          {/* <Offer /> */}
-          <section id="outroFooter">
-            <div className="section-content">
-              <div className="title">
-                <h1>Have an idea?</h1>
-                <h1>Tell me about it</h1>
-              </div>
-                
-            </div>
-        </section>
+          <Contact />
         </main>
-      </div>
-    </CustomScrollbars >
-
+      </CustomScrollbar>
+    </>
   );
 
 

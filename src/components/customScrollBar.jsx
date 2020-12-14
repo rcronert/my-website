@@ -1,27 +1,18 @@
 import React from "react"
-import { Scrollbars } from 'react-custom-scrollbars';
+import SimpleBar from 'simplebar-react';
+import 'simplebar/dist/simplebar.min.css';
 import PropTypes from "prop-types"
 
-const CustomScrollbars = (props) => {
+const CustomScrollbar = (props) => {
     return (
-        <Scrollbars
-            style={{ width: '100%', height: '100%' }}
-            autoHide
-            autoHideTimeout={2000}
-            autoHideDuration={300}
-            // renderTrackHorizontal={props => <div {...props} className="track-horizontal" />}
-            renderTrackVertical={sbProps => <div style={{...sbProps.style, width: 8}} className="track-vertical" />}
-            // renderThumbHorizontal={props => <div {...props} className="thumb-horizontal" />}
-            renderThumbVertical={sbProps => <div {...sbProps} className="thumb-vertical" />}
-            // renderView={props => <div {...props} className="view" />}
-        >
+        <SimpleBar style={{ height: '100%' }}>
             {props.children}
-        </Scrollbars>
+        </SimpleBar>
     );
 }
 
-CustomScrollbars.propTypes = {
+CustomScrollbar.propTypes = {
     children: PropTypes.object.isRequired,
 }
 
-export default CustomScrollbars
+export default CustomScrollbar

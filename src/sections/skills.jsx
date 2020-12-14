@@ -51,7 +51,11 @@ const Skills = () => {
             <div className="section-content">
 
                 <div className="skills-container">
-                    <HeaderBlock header="Skills" text1="My skills are Front-End web development oriented" text2="Here are the cards I hold" />
+                    <HeaderBlock
+                        header="Skills"
+                        text1="My skills are Front-End web development oriented"
+                        text2="Here are the cards I hold"
+                    />
                     <div id="cards-container">
                         <Swiper
                             updateOnWindowResize
@@ -108,12 +112,16 @@ const Skills = () => {
                 </div>
 
                 <div className="assuredQuality">
-                    <HeaderBlock header="Assured quality" text1="I guarantee the quality of my deliverables" text2="This is how I play my cards" />
+                    <HeaderBlock
+                        header="Assured quality"
+                        text1="I guarantee the quality of my deliverables"
+                        text2="And this is how I play my cards"
+                    />
                     <div className="words-container">
-                        <TranslationWords className='first-row' text="INTUITIVE" />
-                        <TranslationWords className='second-row' text="FAST" />
-                        <TranslationWords className='third-row' text="RESPONSIVE" />
-                        <TranslationWords className='fourth-row' text="CLEAN CODE" />
+                        <TranslationWords className='fast' text="FAST" />
+                        <TranslationWords className='intuitive' text="INTUITIVE" />
+                        <TranslationWords className='responsive' text="RESPONSIVE" />
+                        <TranslationWords className='clean-code' text="CLEAN CODE" />
                     </div>
                 </div>
                 

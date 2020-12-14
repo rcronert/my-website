@@ -13,10 +13,10 @@ const AboutMe = () => {
                     </div>
                     <div className="description">
                         <p>
-                            {"As a Front-End developer for 5 years now, I have had the opportunity to work on various projects for key accounts such as Total, Criteo, Canal Plus or the Conseil Régional PACA."}
+                            {"As a Front-End Developer for 5 years now, I have had the opportunity to work on various projects for key accounts such as Total, Criteo, Canal Plus or the Conseil Régional PACA."}
                         </p>
                         <p>
-                            {"Passionate about web technologies, I will be able to be force of proposal to bring an added value to your projects."}
+                            {"Passionate about web technologies and UX/UI Design, I will be able to be force of proposal to bring an added value to your projects."}
                         </p>
                         <p>
                             {"My curiosity allows me to be informed and up to date on new practices and technical stacks."}
