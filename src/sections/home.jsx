@@ -1,43 +1,79 @@
-import React, { useState } from "react"
+import React, { useEffect } from "react"
+// import classNames from "classnames"
 import NavBar from "../components/navBar"
 import constants from "../const/constants"
-import Lottie from 'react-lottie-player';
-import scrollLottieJson from '../assets/lotties/scroll.json';
+// import Lottie from 'react-lottie-player'
+import lottie from "lottie-web"
+// import { Player } from '@lottiefiles/react-lottie-player';
+import scrollLottieJson from '../assets/lotties/scroll.json'
+import PropTypes from "prop-types"
 
-const Home = () => {
+const Home = ({ adaptCursorColor }) => {
 
-    const sunrises = () => {
-        setSunCn('sun sunrise');
-        setHomeSectionCn('sunrise');
-    }
+    const homeSectionRef = React.useRef();
+    const sunDivRef = React.useRef();
 
-    const [sunCn, setSunCn] = useState('sun');
-    const [homeSectionCn, setHomeSectionCn] = useState('');
+    const triggerMenu = React.useCallback(() => {
+        homeSectionRef.current.classList.toggle("menu-open");
+    }, []);
 
-    setTimeout(sunrises, constants.sunriseDelay);
+    useEffect(() => {
+        setTimeout(
+            () => {
+                homeSectionRef.current.classList.add("sunrise");
+                sunDivRef.current.classList.add("sunrise");
+            },
+            constants.sunriseDelay
+        );
+        setTimeout(() => { adaptCursorColor();}, 6000);
+        lottie.loadAnimation({
+            container: document.querySelector('#home .scroll-lottie'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            animationData: scrollLottieJson,
+        });
+    }, []); // eslint-disable-line
 
     return (
 
-        <section id='home' className={homeSectionCn}>
-            <NavBar />
+        <section id="home" ref={homeSectionRef}>
+            <NavBar triggerMenu={triggerMenu} />
             <div className="introduction animate__animated animate__fadeIn">
-                <span className="hello">{"Hello, I'm Robin Cronert."}</span>
+                <span className="hello">{"Hello, I'm Robin Crönert."}</span>
                 <div className="description">{"I'm a french web Developer passionate about UX/UI Design."}</div>
             </div>
-            <div className='scroll-lottie animate__animated animate__fadeIn'>
+            <div className="scroll-lottie animate__animated animate__fadeIn" />
+            <div ref={sunDivRef} className="sun" />
+            {/* {isMenuOpen &&
+                <div className="menu-backdrop">
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            } */}
+            
+            {/* <div className='scroll-lottie animate__animated animate__fadeIn'>
                 <Lottie
                     loop
                     animationData={scrollLottieJson}
                     play
                     style={{ width: '100%', height: '100%' }}
                 />
-            </div>
-            <div className={sunCn} />
+                <Player
+                    autoplay
+                    loop
+                    src={scrollLottieJson}
+                    // style={{ height: '100%', width: '100%' }}
+                />
+            </div> */}
         </section>
 
     );
 
-
 }
 
-export default Home
+Home.propTypes = {
+    adaptCursorColor: PropTypes.func
+}
+
+export default React.memo(Home)

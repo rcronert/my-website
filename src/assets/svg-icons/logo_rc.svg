@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="102" height="102" viewBox="0 0 102 102">
+  <defs>
+    <clipPath id="clip-iPhone_XR_XS_Max_11_7">
+      <rect width="102" height="102"/>
+    </clipPath>
+  </defs>
+  <g id="iPhone_XR_XS_Max_11_7" data-name="iPhone XR, XS Max, 11 – 7" clip-path="url(#clip-iPhone_XR_XS_Max_11_7)">
+    <g id="Ellipse_8" data-name="Ellipse 8" transform="translate(1 1)" fill="none" stroke="#fff" stroke-width="7">
+      <circle cx="50" cy="50" r="50" stroke="none"/>
+      <circle cx="50" cy="50" r="46.5" fill="none"/>
+    </g>
+    <path id="Path_23" data-name="Path 23" d="M1361.434,81.51,1332.268-69.913,1464.58-96.285,1480.826-21.5,1348.338,5.672,1496.792,54.13" transform="translate(-1309 112)" fill="none"/>
+    <g id="Ellipse_9" data-name="Ellipse 9" transform="translate(24 21)" fill="none" stroke="#fff" stroke-width="7">
+      <circle cx="15" cy="15" r="15" stroke="none"/>
+      <circle cx="15" cy="15" r="11.5" fill="none"/>
+    </g>
+    <line id="Line_1" data-name="Line 1" y2="35" transform="translate(27.6 37.5)" fill="none" stroke="#fff" stroke-width="7"/>
+    <path id="Path_27" data-name="Path 27" d="M-35.891,0s-21.03,7.952-20.846,16.08,21.581,16.432,21.581,16.432" transform="matrix(1, -0.017, 0.017, 1, 108.125, 41.16)" fill="none" stroke="#fff" stroke-width="7"/>
+    <path id="Path_30" data-name="Path 30" d="M-1.028.01A24.32,24.32,0,0,1,5.191,1.954,18.3,18.3,0,0,1,9.539,5.068,8.093,8.093,0,0,1,12.17,11.25" transform="translate(39.5 47.49)" fill="none" stroke="#fff" stroke-width="7"/>
+  </g>
+</svg>

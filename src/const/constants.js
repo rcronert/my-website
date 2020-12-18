@@ -1,5 +1,7 @@
 const constants = {
     sunriseDelay: 3000,
+    rgbWhiteColor: '255, 255, 255',
+    rgbBlackColor: '0, 0, 0',
     mobilePortBpMax: 479, // Mobile-portrait / default breakpoint
     mobileLandBpMin: 480, // Mobile landscape (and larger)
     tabletPortBpMin: 768, // Tablet portrait (and larger)

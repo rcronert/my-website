@@ -10,7 +10,6 @@ $regularBold: 400;
 $mediumBold: 500;
 $semiBold: 600;
 $blackBold: 800;
-$sunSize: 490px;
 
 // $breakpoints: (
   $phonePort: 479px; // Mobile-portrait / default breakpoint
@@ -137,39 +136,66 @@ html {
       .animate__animated.animate__fadeIn {
         --animate-duration: 4s;
       }
-      &.sunrise {
-        background: $backgroundColor2;
-        transition-property: background;
-        transition-duration: 3s;
-        transition-timing-function: ease;
-      }
+
       .nav-row {
         height: 15.8vh;
         min-height: 100px;
         box-sizing: border-box;
-        position: absolute;
+        position: fixed;
         top: 0;
-        width: calc(100% - (2 * #{$navBarPadding}));
+        width: 100%;
+        padding: 0 $navBarPadding;
+        // width: calc(100% - (2 * #{$navBarPadding}));
         display: flex;
         justify-content: space-between;
         align-items: center;
+        z-index: 100;
+        pointer-events: none;
+
+        // mix-blend-mode: difference;
+
+        // @-webkit-keyframes rotate {
+        //   50% {
+        //     -webkit-transform: rotate(360deg);
+        //   }
+        // }
+        // @keyframes rotate {
+        //   50% {
+        //     transform: rotate(360deg);
+        //   }
+        // }
+
         .logo {
-          font-size: 2.5rem;
-          font-weight: $mediumBold;
+          height: 50%;
+          pointer-events: auto;
+          // color: black;
+          // transform-origin: 193px 164px;
+          // -webkit-transform-origin: 50% 50%;
+          // -webkit-animation: rotate 4s cubic-bezier(.49,.05,.32,1.04) infinite alternate;
+          // animation: rotate 4s cubic-bezier(.49,.05,.32,1.04) infinite alternate;
         }
+
         nav {
           display: flex;
           font-size: 2.4rem;
+
+          @include verySmall {
+            display: none;
+          }
+
           .links-wrap {
             display: flex;
             align-items: center;
             height: 100%;
+
             .page-link {
               padding-left: 7rem;
+
               a {
                 color: $mainColor;
+                // color: black;
                 text-decoration: none;
-                // cursor: none;
+                pointer-events: auto;
               }
               a:link {
                 text-decoration: none;
@@ -187,43 +213,70 @@ html {
             }
           }
         }
+
+        .menu-lottie {
+          width: 50px;
+          height: 50px;
+          position: relative;
+          right: -10px;
+
+          display: none; // to remove
+        }
+
       }
+
       .introduction {
         z-index: 1;
         display: flex;
         flex-direction: column;
         align-items: center;
         .hello {
-          @include verySmall {
-            font-size: 5rem;
-          }
           font-size: 6.5rem;
           font-weight: $semiBold;
+
+          @include verySmall {
+            font-size: 3.7rem;
+          }
         }
         .description {
           font-size: 3.8rem;
           text-align: center;
+
+          @include verySmall {
+            font-size: 2.1rem;
+            text-align: start;
+          }
         }
       }
+
       .scroll-lottie {
         z-index: 1;
         position: absolute;
         bottom: 0;
-        height: 150px;
+        height: 11rem;
+        // height: 150px;
+        // width: 180px;
         /* Responsive height < 399 */
-        @media all and (max-height: 399px) {
-          & {
-            visibility: hidden;;
-          }
-        }
-        /* Responsive width < 1442 */
-        @media all and (max-width: 1442px) {
-          & {
-            height: 110px;
-          }
-        }
+        // @media all and (max-height: 399px) {
+        //   & {
+        //     visibility: hidden;;
+        //   }
+        // }
+        // /* Responsive width < 1442 */
+        // @media all and (max-width: 1442px) {
+        //   & {
+        //     height: 110px;
+        //   }
+        // }
       }
+
       .sun {
+        $sunSize: 490px;
+
+        @include verySmall {
+          $sunSize: 300px;
+        }
+
         background-color: $sunColor1;
         height: $sunSize;
         width: $sunSize;
@@ -231,13 +284,101 @@ html {
         bottom: calc(-#{$sunSize} / 1.5);
         border-radius: 50%;
         filter: blur(37px);
+
         &.sunrise {
           bottom: calc(50% - #{$sunSize} / 2);
           background-color: $sunColor2;
+          transition-property: background-color, bottom;
           transition-duration: 3s;
           transition-timing-function: ease;
         }
+          
       }
+
+      .menu-backdrop {
+        // visibility: hidden;
+        opacity: 0;
+        z-index: 98;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        a {
+          color: $mainColor;
+          text-decoration: none;
+          font-size: 4rem;
+          padding: 15px 0;
+        }
+        a:link {
+          text-decoration: none;
+        }
+        a:visited {
+          text-decoration: none;
+        }
+        a:hover {
+          // color: $fourthColor;
+          text-decoration: none;
+        }
+        a:active {
+          text-decoration: none;
+        }
+      }
+
+      &.sunrise {
+        background: $backgroundColor2;
+        transition: background 3s ease;
+      }
+
+      &.menu-open {
+
+        .introduction {
+          // visibility: hidden;
+          // opacity: 0;      
+          span {
+            transition: opacity 1s ease;
+            opacity: 0;
+          }
+          div {
+            transition: opacity 1s ease;
+            opacity: 0;
+          }
+        }
+  
+        .scroll-lottie {
+          // visibility: hidden;
+          svg {
+            transition: opacity 1s ease;
+            opacity: 0;
+          }
+        }
+  
+        .sun {
+            // visibility: hidden;
+            transition: opacity 1s ease;
+            opacity: 0;
+            &.sunrise {
+              transition: opacity 1s ease;
+              opacity: 0;
+            }
+        }
+  
+        .menu-backdrop {
+          // TOTO
+          // visibility: visible;
+          transition: opacity 2s ease;
+          opacity: 1;
+          // transition: height 2s ease;
+          // height: 100%;
+
+          // transform: .7s cubic-bezier(.19,1,.22,1) .3s;
+        }
+
+      }
+
     }
 
     #about {
@@ -246,7 +387,7 @@ html {
       // padding-bottom: 15rem;
 
       .section-content {
-        height: calc(100vh - 2 * #{$sectionPaddingTopBott});
+        // height: calc(100vh - 2 * #{$sectionPaddingTopBott});
         max-width: $mawWidthContent;
         display: flex;
         flex-direction: column;
@@ -443,7 +584,8 @@ html {
                         box-sizing: border-box;
           
                         & > div {
-                          width: 100%;
+                          // width: 100%;
+                          width: 75%;
                         }
                       }
           
@@ -559,6 +701,7 @@ html {
     #contact {
       background-color: $backgroundColor3;
       position: relative;
+      padding-bottom: 40px;
 
       .section-content {
         max-width: $mawWidthContent;

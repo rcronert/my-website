@@ -1,16 +1,52 @@
 import React from "react"
-// import PropTypes from "prop-types"
+import PropTypes from "prop-types"
+
+const positionStart = -20;
+const innerCursorSize = 8;
+const outerCursorSize = 20;
+const outerCursorBackgroundOpacity = 0.4;
+const outerScale = 3;
+const innerScale = 0.7;
 
 const isMobile = () => {
     const ua = navigator.userAgent;
     return /Android|Mobi/i.test(ua);
 };
 
+const styles = {
+    cursorInner: {
+        position: 'fixed',
+        top: positionStart,
+        left: positionStart,
+        borderRadius: '50%',
+        width: innerCursorSize,
+        height: innerCursorSize,
+        transition: 'background-color 0.3s ease-in-out, transform 0.25s ease-in-out',
+        // transition: 'transform 0.25s ease-in-out',
+        zIndex: 1000,
+        pointerEvents: 'none',
+        visibility: typeof navigator !== 'undefined' && isMobile() ? 'hidden' : 'visible'
+    },
+    cursorOuter: {
+        position: 'fixed',
+        top: positionStart,
+        left: positionStart,
+        borderRadius: '50%',
+        width: outerCursorSize,
+        height: outerCursorSize,
+        transition: 'background-color 0.3s ease-in-out, transform 0.15s ease-in-out',
+        // transition: 'transform 0.15s ease-in-out',
+        zIndex: 1000,
+        pointerEvents: 'none',
+        visibility: typeof navigator !== 'undefined' && isMobile() ? 'hidden' : 'visible'
+    }
+};
+
 function useEventListener(eventName, handler, element = document) {
     const savedHandler = React.useRef();
 
     React.useEffect(() => {
-        savedHandler.current = handler
+        savedHandler.current = handler;
     }, [handler]);
 
     React.useEffect(() => {
@@ -27,35 +63,36 @@ function useEventListener(eventName, handler, element = document) {
     }, [eventName, element]);
 }
 
-const CustomCursor = ({ color = '255, 255, 255', outerAlpha = 1, innerSize = 8, outerSize = 20, outerScale = 5, innerScale = 0.7 }) => {
-
+const CustomCursor = ({ adaptCursorColor, cursorColor /*outerAlpha = 1, innerSize = 8, outerSize = 20, outerScale = 5, innerScale = 0.7*/ }) => {
+    
     const cursorOuterRef = React.useRef();
     const cursorInnerRef = React.useRef();
     const requestRef = React.useRef();
-    const previousTimeRef = React.useRef();
-    const [coords, setCoords] = React.useState({ x: 0, y: 0 });
+    // const previousTimeRef = React.useRef();
+    const [coords, setCoords] = React.useState({ x: positionStart, y: positionStart });
     const [isVisible, setIsVisible] = React.useState(true);
     const [isActive, setIsActive] = React.useState(false);
     const [isActiveClickable, setIsActiveClickable] = React.useState(false);
-    let endX = React.useRef(0);
-    let endY = React.useRef(0);
+    let endX = React.useRef(positionStart);
+    let endY = React.useRef(positionStart);
 
     const onMouseMove = React.useCallback(({ clientX, clientY }) => {
+        adaptCursorColor();
         setCoords({ x: clientX, y: clientY });
-        cursorInnerRef.current.style.top = clientY + 'px';
-        cursorInnerRef.current.style.left = clientX + 'px';
+        cursorInnerRef.current.style.top = (clientY - innerCursorSize / 2) + 'px';
+        cursorInnerRef.current.style.left = (clientX - innerCursorSize / 2) + 'px';
         endX.current = clientX;
         endY.current = clientY;
-    }, []);
+    }, []); // eslint-disable-line
 
-    const animateOuterCursor = React.useCallback((time) => {
-        if (previousTimeRef.current !== undefined) {
+    const animateOuterCursor = React.useCallback((/*time*/) => {
+        // if (previousTimeRef.current !== undefined) {
             coords.x += (endX.current - coords.x) / 8;
             coords.y += (endY.current - coords.y) / 8;
-            cursorOuterRef.current.style.top = coords.y + 'px';
-            cursorOuterRef.current.style.left = coords.x + 'px';
-        }
-        previousTimeRef.current = time;
+            cursorOuterRef.current.style.top = (coords.y - outerCursorSize / 2) + 'px';
+            cursorOuterRef.current.style.left = (coords.x - outerCursorSize / 2) + 'px';
+        // }
+        // previousTimeRef.current = time;
         requestRef.current = requestAnimationFrame(animateOuterCursor);
     }, [requestRef]); // eslint-disable-line
 
@@ -74,34 +111,39 @@ const CustomCursor = ({ color = '255, 255, 255', outerAlpha = 1, innerSize = 8, 
 
     React.useEffect(() => {
         if (isActive) {
-            cursorInnerRef.current.style.transform = `translate(-50%, -50%) scale(${innerScale})`;
-            cursorOuterRef.current.style.transform = `translate(-50%, -50%) scale(${outerScale})`;
+            cursorInnerRef.current.style.transform = `scale(${innerScale})`;
+            cursorOuterRef.current.style.transform = `scale(${outerScale})`;
+            cursorOuterRef.current.style.border = `1px solid`;
+            cursorOuterRef.current.style.backgroundColor = `transparent`;
         } else {
-            cursorInnerRef.current.style.transform = 'translate(-50%, -50%) scale(1)';
-            cursorOuterRef.current.style.transform = 'translate(-50%, -50%) scale(1)';
+            cursorInnerRef.current.style.transform = 'scale(1)';
+            cursorOuterRef.current.style.transform = 'scale(1)';
+            cursorOuterRef.current.style.border = `none`;
+            cursorOuterRef.current.style.backgroundColor = `rgba(${cursorColor}, ${outerCursorBackgroundOpacity})`;
         }
-    }, [innerScale, outerScale, isActive]);
+    }, [isActive, cursorColor]);
 
     React.useEffect(() => {
         if (isActiveClickable) {
-            cursorInnerRef.current.style.transform = `translate(-50%, -50%) scale(${innerScale * 1.2})`;
-            cursorOuterRef.current.style.transform = `translate(-50%, -50%) scale(${outerScale * 1.4})`;
+            cursorInnerRef.current.style.transform = `scale(${innerScale * 1.2})`;
+            cursorOuterRef.current.style.transform = `scale(${outerScale * 1.4})`;
         }
-    }, [innerScale, outerScale, isActiveClickable]);
+    }, [isActiveClickable]);
 
     React.useEffect(() => {
         if (isVisible) {
-            cursorInnerRef.current.style.transform = `translate(-50%, -50%) scale(1)`;
-            cursorOuterRef.current.style.transform = `translate(-50%, -50%) scale(1)`;
+            cursorInnerRef.current.style.transform = `scale(1)`;
+            cursorOuterRef.current.style.transform = `scale(1)`;
         } else {
-            cursorInnerRef.current.style.transform = `translate(-50%, -50%) scale(0)`;
-            cursorOuterRef.current.style.transform = `translate(-50%, -50%) scale(0)`;
+            cursorInnerRef.current.style.transform = `scale(0)`;
+            cursorOuterRef.current.style.transform = `scale(0)`;
         }
     }, [isVisible]);
 
     React.useEffect(() => {
         const clickables = document.querySelectorAll(
-            'a, input[type="submit"], input[type="image"], label[for], select, button, .link'
+            // 'a, input[type="submit"], input[type="image"], label[for], select, button, .link, *[class^="swiper-button"]'
+            'a, button, .link, *[class^="swiper-button"]'
         );
         clickables.forEach((el) => {
             el.style.cursor = 'none';
@@ -148,168 +190,19 @@ const CustomCursor = ({ color = '255, 255, 255', outerAlpha = 1, innerSize = 8, 
         }
     }, [isActive]);
 
-    const styles = {
-        cursorInner: {
-            position: 'fixed',
-            borderRadius: '50%',
-            width: innerSize,
-            height: innerSize,
-            pointerEvents: 'none',
-            mixBlendMode: 'difference',
-            backgroundColor: `rgba(${color}, 1)`,
-            // transition: 'opacity 0.15s ease-in-out, transform 0.25s ease-in-out',
-            transition: 'transform 0.25s ease-in-out',
-            zIndex: 1000,
-            visibility: typeof navigator !== 'undefined' && isMobile() ? 'hidden' : 'visible' 
-        },
-        cursorOuter: {
-            position: 'fixed',
-            borderRadius: '50%',
-            pointerEvents: 'none',
-            width: outerSize,
-            height: outerSize,
-            mixBlendMode: 'difference',
-            backgroundColor: `rgba(${color}, ${outerAlpha})`,
-            // transition: 'opacity 0.15s ease-in-out, transform 0.15s ease-in-out',
-            transition: 'transform 0.15s ease-in-out',
-            zIndex: 1000,
-            visibility: typeof navigator !== 'undefined' && isMobile() ? 'hidden' : 'visible' 
-        }
-    };
-
     return (
         <React.Fragment>
-            <div ref={cursorOuterRef} style={styles.cursorOuter} />
-            <div ref={cursorInnerRef} style={styles.cursorInner} />
+            <div ref={cursorOuterRef} style={{...styles.cursorOuter, backgroundColor: `rgba(${cursorColor}, ${outerCursorBackgroundOpacity})`}} />
+            <div ref={cursorInnerRef} style={{...styles.cursorInner, backgroundColor: `rgb(${cursorColor})`}} />
         </React.Fragment>
     );
 
 }
 
-export default CustomCursor
-
-
-
-
-// const isMobile = () => {
-//     const ua = navigator.userAgent;
-//     return /Android|Mobi/i.test(ua);
-// };
-
-// // let mousePosition = { x: -100, y: -100 };
-// // let circlePosition = { x: -100, y: -100 };
-
-// // const mouseCursor = React.createRef();
-
-
-// const CustomCursor = () => {
-
-//     const customCursor = React.useRef();
-//     const endX = React.useRef(0);
-//     const endY = React.useRef(0);
-//     let animationFrame = React.useRef(undefined);
-
-//     // const [position, setPosition] = useState({ x: 0, y: 0 });
-//     // const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
-//     const [customCursorPosition, setCustomCursorPosition] = useState({ x: -100, y: -100 });
-
-//     const [hidden, setHidden] = useState(false);
-//     const [clicked, setClicked] = useState(false);
-//     const [linkHovered, setLinkHovered] = useState(false);
-
-//     console.log('render')
-
-//     const onMouseMove = React.useCallback(({ clientX, clientY }) => {
-//         endX.current = clientX
-//         endY.current = clientY
-//     }, []);
-
-//     const animateCursor = () => {
-//         console.log('animateCursor')
-//         console.log(endX)
-//         console.log(endY)
-//         const diffX = endX.current - customCursorPosition.x;
-//         const diffY = endY.current - customCursorPosition.y;
-//         setCustomCursorPosition({ x: customCursorPosition.x + diffX / 10, y: customCursorPosition.y + diffY / 10 });
-//         // console.log(customCursorPosition)
-//         customCursor.current.style.left = `${customCursorPosition.x + diffX / 10}px`;
-//         customCursor.current.style.top = `${customCursorPosition.y + diffY / 10}px`;
-//         animationFrame = window.requestAnimationFrame(animateCursor);
-//         // console.log(customCursor.current)
-//         // style={{
-//         //     left: `${position.x}px`,
-//         //     top: `${position.y}px`,
-//         // }}
-//     }
-
-//     const onMouseLeave = () => {
-//         setHidden(true);
-//     };
-
-//     const onMouseEnter = () => {
-//         setHidden(false);
-//     };
-
-//     const onMouseDown = () => {
-//         setClicked(true);
-//     };
-
-//     const onMouseUp = () => {
-//         setClicked(false);
-//     };
-
-//     const addEventListeners = () => {
-//         document.addEventListener("mousemove", onMouseMove);
-//         document.addEventListener("mouseenter", onMouseEnter);
-//         document.addEventListener("mouseleave", onMouseLeave);
-//         document.addEventListener("mousedown", onMouseDown);
-//         document.addEventListener("mouseup", onMouseUp);
-//     }
-
-//     const cleanAll = () => {
-//         document.removeEventListener("mousemove", onMouseMove);
-//         document.removeEventListener("mouseenter", onMouseEnter);
-//         document.removeEventListener("mouseleave", onMouseLeave);
-//         document.removeEventListener("mousedown", onMouseDown);
-//         document.removeEventListener("mouseup", onMouseUp);
-//         window.cancelAnimationFrame(animationFrame);
-//     }
-
-//     const handleLinkHoverEvents = () => {
-//         document.querySelectorAll("a").forEach(el => {
-//             el.addEventListener("mouseover", () => setLinkHovered(true));
-//             el.addEventListener("mouseout", () => setLinkHovered(false));
-//         });
-//     };
-
-//     const cursorClasses = classNames(
-//         'custom-cursor',
-//         {
-//             'hidden': hidden,
-//             'clicked': clicked,
-//             'link-hovered': linkHovered
-//         }
-//     );
-
-//     useEffect(() => {
-//         addEventListeners();
-//         handleLinkHoverEvents();
-//         animateCursor();
-//         return () => cleanAll();
-//         // eslint-disable-next-line react-hooks/exhaustive-deps
-//     }, [customCursorPosition]);
-
-//     if (typeof navigator !== 'undefined' && isMobile()) return null;
-//     return (
-//         <div
-//             className={cursorClasses}
-//             ref={customCursor}
-//         // style={{
-//         //     left: `${position.x}px`,
-//         //     top: `${position.y}px`,
-//         // }}
-//         />
-//     )
-// }
+CustomCursor.propTypes = {
+    cursorColor: PropTypes.string.isRequired,
+    adaptCursorColor: PropTypes.func,
+}
 
 // export default CustomCursor
+export default React.memo(CustomCursor)
