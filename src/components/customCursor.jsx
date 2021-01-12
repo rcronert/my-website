@@ -63,8 +63,7 @@ function useEventListener(eventName, handler, element = document) {
     }, [eventName, element]);
 }
 
-const CustomCursor = ({ adaptCursorColor, cursorColor /*outerAlpha = 1, innerSize = 8, outerSize = 20, outerScale = 5, innerScale = 0.7*/ }) => {
-    
+const CustomCursor = ({ adaptCursorColor, cursorColor }) => {
     const cursorOuterRef = React.useRef();
     const cursorInnerRef = React.useRef();
     const requestRef = React.useRef();
@@ -113,7 +112,7 @@ const CustomCursor = ({ adaptCursorColor, cursorColor /*outerAlpha = 1, innerSiz
         if (isActive) {
             cursorInnerRef.current.style.transform = `scale(${innerScale})`;
             cursorOuterRef.current.style.transform = `scale(${outerScale})`;
-            cursorOuterRef.current.style.border = `1px solid`;
+            cursorOuterRef.current.style.border = `1px solid rgb(${cursorColor})`;
             cursorOuterRef.current.style.backgroundColor = `transparent`;
         } else {
             cursorInnerRef.current.style.transform = 'scale(1)';
@@ -192,8 +191,8 @@ const CustomCursor = ({ adaptCursorColor, cursorColor /*outerAlpha = 1, innerSiz
 
     return (
         <React.Fragment>
-            <div ref={cursorOuterRef} style={{...styles.cursorOuter, backgroundColor: `rgba(${cursorColor}, ${outerCursorBackgroundOpacity})`}} />
-            <div ref={cursorInnerRef} style={{...styles.cursorInner, backgroundColor: `rgb(${cursorColor})`}} />
+            <div className="outer-cursor" ref={cursorOuterRef} style={{...styles.cursorOuter, backgroundColor: `rgba(${cursorColor}, ${outerCursorBackgroundOpacity})`}} />
+            <div className="inner-cursor" ref={cursorInnerRef} style={{...styles.cursorInner, backgroundColor: `rgb(${cursorColor})`}} />
         </React.Fragment>
     );
 
