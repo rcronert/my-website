@@ -1,23 +1,11 @@
 @import './colors.scss';
 
-// $globalPadding: 3.65vw;
-// $globalPadding: 5.5vw;
-$animateFadeInDuration: 3s;
-$navBarPadding: 8.5vw;
-$globalPaddingLeftRight: 15vw;
-$sectionPaddingTopBott: 13rem;
-$mawWidthContent: 1400px;
-$regularBold: 400;
-$mediumBold: 500;
-$semiBold: 600;
-$blackBold: 800;
-
 // $breakpoints: (
-  $phonePort: 479px; // Mobile-portrait / default breakpoint
-  $tablet: 480px; // Mobile landscape (and larger)
-  $tabetPort: 768px; // Tablet portrait (and larger)
-  $tabetLand: 992px; // Tablet landscape (and larger)
-  $laptop: 1200px; // Laptops (and larger)
+$phonePort: 479px; // Mobile-portrait / default breakpoint
+$tablet: 480px; // Mobile landscape (and larger)
+$tabetPort: 768px; // Tablet portrait (and larger)
+$tabetLand: 992px; // Tablet landscape (and larger)
+$laptop: 1200px; // Laptops (and larger)
 // );
 
 @mixin verySmall {
@@ -61,6 +49,23 @@ html {
   // width: 100%;
   font-size: 62.5%;
   font-family: "montserrat";
+
+
+  $globalPaddingLeftRight: 15vw;
+  $sectionPaddingTopBott: 13rem;
+  @include verySmall {
+    $globalPaddingLeftRight: 15vw;
+    $sectionPaddingTopBott: 7rem;
+  }
+
+  $animateFadeInDuration: 3s;
+  $navBarPadding: 8.5vw;
+
+  $mawWidthContent: 1400px;
+  $regularBold: 400;
+  $mediumBold: 500;
+  $semiBold: 600;
+  $blackBold: 800;
 
   body {
     height: 100%;
@@ -114,6 +119,12 @@ html {
       font-size: 8.5rem;
       font-weight: $mediumBold;
       text-align: center;
+
+      @include verySmall {
+        font-size: 4rem;
+        font-weight: $semiBold;
+        padding-bottom: 4rem;
+      }
     }
 
     .header-block {
@@ -130,6 +141,20 @@ html {
         font-weight: $semiBold;
         p {
           margin: 0;
+        }
+      }
+
+      @include verySmall {
+        margin-bottom: 4.5rem;
+        .header {
+          h3 {
+            font-size: 1.8rem;
+            font-weight: $mediumBold;
+          }
+        }
+        .text {
+          font-size: 2.5rem;
+          font-weight: $semiBold;
         }
       }
     }
@@ -408,21 +433,24 @@ html {
     #about {
       background: $backgroundColor3;
       position: relative;
-      // padding-bottom: 15rem;
 
       .section-content {
-        // height: calc(100vh - 2 * #{$sectionPaddingTopBott});
+        height: calc(100vh - 2 * #{$sectionPaddingTopBott});
         max-width: $mawWidthContent;
         display: flex;
         flex-direction: column;
         justify-content: center;
         padding-bottom: 6rem;
 
+        @include verySmall {
+          align-items: flex-start;
+          padding-bottom: 0;
+        }
+
         .introduction {
           display: flex;
 
           .photo-container {
-            // padding: 0px 10rem 37px 0;
             padding-right: 10rem;
             flex-basis: 25%;
             flex-shrink: 0;
@@ -441,6 +469,10 @@ html {
             margin: 0;
             p:first-child {
               margin-top: 0;
+            }
+
+            @include verySmall {
+              font-size: 1.7rem;
             }
           }
         }
@@ -550,6 +582,10 @@ html {
               .swiper-pagination {
                 // bottom: calc(#{$paddingBottom});
                 bottom: -4rem;
+
+                @include verySmall {
+                  bottom: -2rem;
+                }
   
                 .swiper-pagination-bullet {
                   background-color: $backgroundColor3;
@@ -668,11 +704,21 @@ html {
 
           .words-container {
             // overflow: hidden;
-  
+
+            @include verySmall {
+              .word-container:first-child {
+                padding-top: 0;
+              }
+            }
+            
             .word-container {
               text-align: center;
               white-space: nowrap;
               padding: 3rem 0;
+
+              @include verySmall {
+                padding: 1rem 0;
+              }
   
               div {
                 display: inline-block;
@@ -682,6 +728,11 @@ html {
                 font-weight: $blackBold;
                 color: $color2;
                 transform: translateX(-200%);
+
+                @include verySmall {
+                  font-size: 3.2rem;
+                  width: calc(100vw / 1.2);
+                }
   
                 &.empty {
                   // color: $textColor1;
@@ -691,15 +742,21 @@ html {
   
               }
 
-              &.intuitive {
-                div {
-                  animation: translation2 85s infinite linear;                  
-                }
-              }
               &.fast {
                 div {
                   width: calc(100vw / 4);
+                  @include verySmall {
+                    width: calc(100vw / 2);
+                  }
                   animation: translation2 70s infinite linear;
+                }
+              }
+              &.intuitive {
+                div {
+                  @include verySmall {
+                    width: calc(100vw / 1.4);
+                  }
+                  animation: translation2 85s infinite linear;                                                               
                 }
               }
               &.responsive {
@@ -747,6 +804,19 @@ html {
               font-weight: $regularBold;
               font-size: 5.5rem;
             }
+
+            @include verySmall {
+              text-align: center;
+              &:first-child {
+                font-weight: $semiBold;
+                font-size: 1.8rem;
+              }
+    
+              &:last-child {
+                font-size: 2.2rem;
+                padding-bottom: 3rem;
+              }
+            }
   
           }
 
@@ -777,16 +847,51 @@ html {
             }
           }
 
+          @include verySmall {
+            flex-direction: column;
+
+            .mail {
+              text-align: center;
+              margin-bottom: 1rem;
+
+              a {
+                font-size: 1.4rem;
+              }
+              p {
+                font-size: 1.2rem;
+              }
+            }
+  
+            .social-networks {
+              a {
+                font-size: 1.4rem;
+              }
+            }
+
+          }
+
         }
 
         .footer {
           display: flex;
           justify-content: center;
+
           span {
             margin-top: 6rem;
             font-size: 1.5rem;
             font-weight: $mediumBold;
           }
+        }
+
+        @include verySmall {
+          .footer {
+  
+            span {
+              margin-top: 3.5rem;
+              font-size: 1.1rem;
+            }
+          }
+
         }
 
       }
