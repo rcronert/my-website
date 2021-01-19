@@ -107,26 +107,6 @@ const Skills = () => {
                                     backContent={{ title: "Adobe XD", xp: "3" }}
                                 />
                             </SwiperSlide>
-                            {/* <SwiperSlide>
-                                <Card img="adobe_xd.png" altImg="Adobe XD logo" backColor="violet"
-                                    backContent={{ title: "Adobe XD", xp: "3" }}
-                                />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <Card img="adobe_xd.png" altImg="Adobe XD logo" backColor="violet"
-                                    backContent={{ title: "Adobe XD", xp: "3" }}
-                                />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <Card img="adobe_xd.png" altImg="Adobe XD logo" backColor="violet"
-                                    backContent={{ title: "Adobe XD", xp: "3" }}
-                                />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <Card img="adobe_xd.png" altImg="Adobe XD logo" backColor="violet"
-                                    backContent={{ title: "Adobe XD", xp: "3" }}
-                                />
-                            </SwiperSlide> */}
                         </Swiper>
                     </div>
                 </div>

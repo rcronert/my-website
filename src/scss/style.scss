@@ -6,6 +6,7 @@ $phoneLand: 480px; // Mobile landscape (and larger)
 $tabetPort: 768px; // Tablet portrait (and larger)
 $tabetLand: 992px; // Tablet landscape (and larger)
 $laptop: 1200px; // Laptops (and larger)
+$desktop: 1600px; // Desktops (and larger)
 // );
 
 @mixin phonePort {
@@ -23,36 +24,21 @@ $laptop: 1200px; // Laptops (and larger)
     @content;
   }
 }
-
-// @media (max-width: 479px){ // Mobile-portrait / default breakpoint
-
-// ...
-  
-// }
-
-// @media (min-width: 480px){ // Mobile landscape (and larger)
-
-// ...
-  
-// }
-  
-// @media (min-width: 768px){ // Tablet portrait (and larger)
-  
-// ...
-  
-// }
-  
-// @media (min-width: 992px){ // Tablet landscape (and larger)
-  
-// ...
-  
-// }
-  
-// @media (min-width: 1200px){ // Laptops (and larger)
-  
-// ...
-  
-// }
+@mixin tabletLandAndLarger {
+  @media (min-width: #{$tabetLand}) {
+    @content;
+  }
+}
+@mixin laptopsAndLarger {
+  @media (min-width: #{$laptop}) {
+    @content;
+  }
+}
+@mixin desktopsAndLarger {
+  @media (min-width: #{$desktop}) {
+    @content;
+  }
+}
 
 html {
   height: 100%;
@@ -60,20 +46,26 @@ html {
   font-size: 62.5%;
   font-family: "montserrat";
 
+  // Mobile port default
   $globalPaddingLeftRight: 15vw;
-  $sectionPaddingTopBott: 13rem;
+  // $sectionPaddingTopBott: 7rem;
+  --sectionPaddingTopBott: 7rem;
 
-  @include phonePort {
-    $globalPaddingLeftRight: 15vw;
-    $sectionPaddingTopBott: 7rem;
-  }
   @include phoneLandAndLarger {
-    $globalPaddingLeftRight: 15vw;
-    $sectionPaddingTopBott: 8rem;
+    // $sectionPaddingTopBott: 8rem;
+    --sectionPaddingTopBott: 8rem;
   }
   @include tabletPortAndLarger {
-    $globalPaddingLeftRight: 15vw;
-    $sectionPaddingTopBott: 10rem;
+    // $sectionPaddingTopBott: 10rem;
+    --sectionPaddingTopBott: 10rem;
+  }
+  @include tabletLandAndLarger {
+    // $sectionPaddingTopBott: 12rem;
+    --sectionPaddingTopBott: 12rem;
+  }
+  @include laptopsAndLarger {
+    // $sectionPaddingTopBott: 13rem;
+    --sectionPaddingTopBott: 13rem;
   }
 
   $animateFadeInDuration: 3s;
@@ -117,9 +109,7 @@ html {
     // SCROLL BAR
     .simplebar-track {
       &.simplebar-vertical {
-        @include phonePort {
-          width: 0.8rem;
-        }
+        width: 0.8rem;
         @include phoneLandAndLarger {
           width: 1.1rem;
         }
@@ -127,8 +117,8 @@ html {
     }
 
     section {
-      padding: $sectionPaddingTopBott $globalPaddingLeftRight;
-
+      // padding: $sectionPaddingTopBott $globalPaddingLeftRight;
+      padding: var(--sectionPaddingTopBott) $globalPaddingLeftRight;
       .section-content {
         margin: 0 auto;
       }
@@ -136,16 +126,11 @@ html {
 
     h1 {
       margin: 0;
-      font-size: 8.5rem;
-      font-weight: $mediumBold;
-      padding-bottom: 8rem;
       text-align: center;
+      font-size: 4rem;
+      font-weight: $semiBold;
+      padding-bottom: 4rem;
 
-      @include phonePort {
-        font-size: 4rem;
-        font-weight: $semiBold;
-        padding-bottom: 4rem;
-      }
       @include phoneLandAndLarger {
         font-size: 4.5rem;
         font-weight: $semiBold;
@@ -155,6 +140,14 @@ html {
         font-size: 6rem;
         font-weight: $mediumBold;
         padding-bottom: 6rem;
+      }
+      @include tabletLandAndLarger {
+        font-size: 7rem;
+        padding-bottom: 7rem;
+      }
+      @include laptopsAndLarger {
+        font-size: 8.5rem;
+        padding-bottom: 8rem;
       }
     }
 
@@ -178,20 +171,23 @@ html {
 
       @include phonePort {
         margin-bottom: 4.5rem;
-
         .header {
           h3 {
             font-size: 1.8rem;
             margin-bottom: 1rem;
+            font-weight: $mediumBold;
           }
         }
         .text {
           font-size: 2.5rem;
+          font-weight: $semiBold;
+          p {
+            margin: 0;
+          }
         }
       }
       @include phoneLandAndLarger {
         margin-bottom: 5.5rem;
-
         .header {
           h3 {
             font-size: 2rem;
@@ -204,15 +200,30 @@ html {
       }
       @include tabletPortAndLarger {
         margin-bottom: 8rem;
-
         .header {
           h3 {
-            font-size: 2rem;
             margin-bottom: 1.2rem;
           }
         }
         .text {
           font-size: 3rem;
+        }
+      }
+      @include tabletLandAndLarger {
+        margin-bottom: 9rem;
+        .header {
+          h3 {
+            margin-bottom: 1.5rem;
+          }
+        }
+        .text {
+          font-size: 3.3rem;
+        }
+      }
+      @include laptopsAndLarger {
+        margin-bottom: 10rem;
+        .text {
+          font-size: 3.5rem;
         }
       }
     }
@@ -221,7 +232,6 @@ html {
       height: 15.8vh;
       min-height: 100px;
       box-sizing: border-box;
-      // position: fixed;
       top: 0;
       left: 0;
       width: 100%;
@@ -231,12 +241,9 @@ html {
       justify-content: space-between;
       align-items: center;
       z-index: 100;
-      // pointer-events: none;
-
-      // @include phonePort {
       position: absolute;
       pointer-events: auto;
-      // }
+      
       @include tabletPortAndLarger {
         position: fixed;
         pointer-events: none;
@@ -269,15 +276,17 @@ html {
       }
 
       nav {
-        // display: flex;
-        font-size: 2.4rem;
-
-        // @include phonePort {
         display: none;
-        // }
+
         @include tabletPortAndLarger {
           display: flex;
           font-size: 2.1rem;
+        }
+        @include tabletLandAndLarger {
+          font-size: 2.2rem;
+        }
+        @include laptopsAndLarger {
+          font-size: 2.4rem;
         }
 
         .links-wrap {
@@ -434,13 +443,9 @@ html {
         flex-direction: column;
         
         .hello {
-          font-size: 6.5rem;
           font-weight: $semiBold;
-          // align-items: center;
+          font-size: 3.7rem;
 
-          @include phonePort {
-            font-size: 3.7rem;
-          }
           @include phoneLandAndLarger {
             font-size: 4rem;
           }
@@ -448,15 +453,16 @@ html {
             font-size: 4.5rem;
             text-align: center;
           }
+          @include tabletLandAndLarger {
+            font-size: 5.5rem;
+          }
+          @include laptopsAndLarger {
+            font-size: 6.5rem;
+          }
         }
         .description {
-          font-size: 3.8rem;
-          // text-align: center;
-
-          @include phonePort {
-            font-size: 2.1rem;
-            text-align: start;
-          }
+          font-size: 2.1rem;
+          text-align: start;
           @include phoneLandAndLarger {
             font-size: 2.5rem;
             text-align: start;
@@ -464,6 +470,12 @@ html {
           @include tabletPortAndLarger {
             font-size: 2.8rem;
             text-align: center;
+          }
+          @include tabletLandAndLarger {
+            font-size: 3.1rem;
+          }
+          @include laptopsAndLarger {
+            font-size: 3.8rem;
           }
         }
       }
@@ -473,45 +485,36 @@ html {
         position: absolute;
         bottom: 0;
         height: 11rem;
-        // height: 150px;
-        // width: 180px;
-        /* Responsive height < 399 */
-        // @media all and (max-height: 399px) {
-        //   & {
-        //     visibility: hidden;;
-        //   }
-        // }
-        // /* Responsive width < 1442 */
-        // @media all and (max-width: 1442px) {
-        //   & {
-        //     height: 110px;
-        //   }
-        // }
       }
 
       .sun {
-        $sunSize: 490px;
+        --sunSize: 300px;
 
-        @include phonePort {
-          $sunSize: 300px;
-        }
         @include phoneLandAndLarger {
-          $sunSize: 320px;
+          --sunSize: 320px;
         }
         @include tabletPortAndLarger {
-          $sunSize: 380px;
+          --sunSize: 380px;
+        }
+        @include tabletLandAndLarger {
+          --sunSize: 420px;
+        }
+        @include laptopsAndLarger {
+          --sunSize: 490px;
         }
 
         background-color: $sunColor1;
-        height: $sunSize;
-        width: $sunSize;
+        height: var(--sunSize);
+        width: var(--sunSize);
         position: absolute;
-        bottom: calc(-#{$sunSize} / 1.5);
+        // bottom: calc(-#{$sunSize} / 1.5);
+        bottom: calc(-1 * var(--sunSize) / 1.5);
         border-radius: 50%;
         filter: blur(37px);
 
         &.sunrise {
-          bottom: calc(50% - #{$sunSize} / 2);
+          // bottom: calc(50% - #{$sunSize} / 2);
+          bottom: calc(50% - 1 * var(--sunSize) / 2);
           background-color: $sunColor2;
           transition-property: background-color, bottom;
           transition-duration: 3s;
@@ -540,23 +543,16 @@ html {
         align-items: flex-start;
         padding-bottom: 0;
 
-        @include phonePort {
-          align-items: flex-start;
-          padding-bottom: 0;
-        }
-        @include phoneLandAndLarger {
-          align-items: flex-start;
-          padding-bottom: 0;
-        }
         @include tabletPortAndLarger {
           align-items: center;
-          padding-bottom: 6rem;
+          padding-bottom: 2rem;
         }
 
         .introduction {
           display: flex;
 
           .photo-container {
+            display: none;
             padding-right: 10rem;
             flex-basis: 25%;
             flex-shrink: 0;
@@ -565,12 +561,12 @@ html {
               // box-shadow: 60px 60px 20px #161616, 60px 60px 0 1px white;
               box-shadow: 60px 60px 3px #161616, 60px 60px 0 1px white;
             }
-            @media (max-width: 1023px){
-              display: none;
+            @include tabletLandAndLarger {
+              display: block;
             }
           }
           .description {
-            font-size: 2.4rem;
+            font-size: 1.7rem;
             font-weight: $mediumBold;
             margin: 0;
 
@@ -578,14 +574,17 @@ html {
               margin-top: 0;
             }
 
-            @include phonePort {
-              font-size: 1.7rem;
-            }
             @include phoneLandAndLarger {
               font-size: 2rem;
             }
             @include tabletPortAndLarger {
               font-size: 2.2rem;
+            }
+            @include tabletLandAndLarger {
+              font-size: 2.3rem;
+            }
+            @include laptopsAndLarger {
+              font-size: 2.4rem;
             }
           }
         }
@@ -595,18 +594,16 @@ html {
     }
 
     #skills {
-      position: relative;
-      // $paddingBottom: 7rem;
-      $cardHeight: 320px;
+      --cardHeight: 260px;
 
-      @include phoneLandAndLarger {
-        $cardHeight: 260px;
-      }
       @include tabletPortAndLarger {
-        $cardHeight: 320px;
+        // $cardHeight: 320px;
+        --cardHeight: 320px;
       }
 
       $navButtonSize: 9rem;
+
+      position: relative;
       background: $backgroundColor4;
       display: flex;
       align-items: center;
@@ -623,7 +620,8 @@ html {
         // align-items: center;
 
         .skills-container {
-          margin-bottom: $sectionPaddingTopBott;
+          // margin-bottom: $sectionPaddingTopBott;
+          margin-bottom: var(--sectionPaddingTopBott);
 
           #cards-container {
             position: relative;
@@ -631,7 +629,13 @@ html {
   
             &.mobile-viewport {
               .swiper-container {
-                width: 26rem; // Default/mobile/slide width: 260px
+                width: 21rem; // Default/mobile/slide width: 260px
+                @media (max-width: 300px) {
+                  width: 19rem;
+                }
+                @include phoneLandAndLarger {
+                  width: 26rem;
+                }
               }
             }
             &.tablet-portrait-viewport {
@@ -677,7 +681,8 @@ html {
                 background-repeat: no-repeat;
                 background-size: 13% 50%;
                 background-position: center;
-                bottom: calc(#{$paddingSwiperContainer} + (#{$cardHeight} / 2) - (#{$navButtonSize} / 2));
+                // bottom: calc(#{$paddingSwiperContainer} + (#{$cardHeight} / 2) - (#{$navButtonSize} / 2));
+                bottom: calc(#{$paddingSwiperContainer} + (var(--cardHeight) / 2) - (#{$navButtonSize} / 2));
                 top: auto;
                 &.hidden {
                   visibility: hidden;
@@ -699,14 +704,8 @@ html {
               }
     
               .swiper-pagination {
-                // bottom: calc(#{$paddingBottom});
-
-                // @include phonePort {
                 bottom: -2rem;
-                // }
-                @include phoneLandAndLarger {
-                  bottom: -2rem;
-                }
+
                 @include tabletPortAndLarger {
                   bottom: -4rem;
                 }
@@ -729,14 +728,16 @@ html {
                   touch-action: none; // Pour enlever le warning (Swip issue 3728)
       
                   .flip-card {
-                    height: $cardHeight;
+                    // height: $cardHeight;
+                    height: var(--cardHeight);
                     background-color: transparent;
                     perspective: 1000px;
                     position: relative;
                     margin: 0 1.5rem;
           
                     flex-grow: 1;
-                    flex-shrink: 0;
+                    // flex-shrink: 0;
+                    flex-shrink: 1;
           
                     &:hover .flip-card-inner {
                       transform: rotateY(180deg);
@@ -788,12 +789,18 @@ html {
                         &.yellow { background-color: $cardColor4; color: $color2; }
                         &.violet { background-color: $cardColor5; color: $mainColor; }
                         h3 {
-                          font-size: 3.3rem;
+                          font-size: 2.7rem;
+                          @include phoneLandAndLarger {
+                            font-size: 3.3rem;
+                          }
                           font-weight: bold;
                           margin: 0;
                         }
                         .years {
-                          font-size: 2rem;
+                          font-size: 1.7rem;
+                          @include phoneLandAndLarger {
+                            font-size: 2rem;
+                          }
                           font-weight: $mediumBold;
                         }
                       }
@@ -814,7 +821,7 @@ html {
 
         .assuredQuality {
 
-          @keyframes translation2 {
+          @keyframes translation {
             100% {
               transform: translateX(-400%);
             }
@@ -823,38 +830,34 @@ html {
           .words-container {
             // overflow: hidden;
 
-            .word-container:first-child {
-              padding-top: 0;
-            }
+            // .word-container:first-child {
+            //   padding-top: 0;
+            // }
             
             .word-container {
               text-align: center;
               white-space: nowrap;
-              padding: 3rem 0;
+              padding: 1rem 0;
 
-              @include phonePort {
-                padding: 1rem 0;
-              }
               @include phoneLandAndLarger {
                 padding: 0.8rem 0;
               }
               @include tabletPortAndLarger {
                 padding: 2.3rem 0;
               }
+              @include laptopsAndLarger {
+                padding: 3rem 0;
+              }
   
               div {
-                display: inline-block;
-                width: calc(100vw / 3);
+                display: inline-block;  
                 font-style: italic;
-                font-size: 7rem;
                 font-weight: $blackBold;
                 color: $color2;
                 transform: translateX(-200%);
+                font-size: 3.2rem;
+                width: calc(100vw / 1.2);
 
-                @include phonePort {
-                  font-size: 3.2rem;
-                  width: calc(100vw / 1.2);
-                }
                 @include phoneLandAndLarger {
                   font-size: 3.4rem;
                   width: calc(100vw / 2);
@@ -862,6 +865,16 @@ html {
                 @include tabletPortAndLarger {
                   font-size: 5rem;
                   width: calc(100vw / 2);
+                }
+                @include tabletLandAndLarger {
+                  font-size: 5.5rem;
+                }
+                @include laptopsAndLarger {
+                  font-size: 7rem;
+                  width: calc(100vw / 2.2);
+                }
+                @include desktopsAndLarger {
+                  width: calc(100vw / 3);
                 }
   
                 &.empty {
@@ -874,38 +887,43 @@ html {
 
               &.fast {
                 div {
-                  width: calc(100vw / 4);
-                  @include phonePort {
-                    width: calc(100vw / 2);
-                  }
-                  @include tabletPortAndLarger {
+                  width: calc(100vw / 2);
+                  @include phoneLandAndLarger {
                     width: calc(100vw / 3.5);
                   }
-                  animation: translation2 70s infinite linear;
-                  // animation: translation2 5s infinite linear;
+                  @include laptopsAndLarger {
+                    width: calc(100vw / 4);
+                  }
+                  @include desktopsAndLarger {
+                    width: calc(100vw / 5);
+                  }
+                  animation: translation 70s infinite linear;
+                  // animation: translation 5s infinite linear;
                 }
               }
               &.intuitive {
                 div {
-                  @include phonePort {
-                    width: calc(100vw / 1.4);
-                  }
+                  width: calc(100vw / 1.4);
                   @include phoneLandAndLarger {
                     width: calc(100vw / 2.5);
                   }
-                  animation: translation2 85s infinite linear;                                                                                                                              
-                  // animation: translation2 5s infinite linear;                                                                                                                              
+                  @include desktopsAndLarger {
+                    width: calc(100vw / 3.5);
+                  }
+                  animation: translation 85s infinite linear;                                                                                                                              
+                  // animation: translation 5s infinite linear;                                                                                                                             
                 }
               }
               &.responsive {
                 div {
-                  animation: translation2 60s infinite linear;
-                  // animation: translation2 5s infinite linear;
+                  animation: translation 60s infinite linear;
+                  // animation: translation 5s infinite linear;
                 }
               }
               &.clean-code {
                 div {
-                  animation: translation2 90s infinite linear;
+                  animation: translation 90s infinite linear;
+                  // animation: translation 5s infinite linear;
                 }
               }
 
@@ -930,50 +948,55 @@ html {
         .title {
 
           h1 {
-            // text-align: left;
             color: $mainColor;
-  
+            text-align: center;
+
             &:first-child {
-              // font-weight: $mediumBold;
+              font-weight: $semiBold;
+              font-size: 1.8rem;
               padding-bottom: 0;
-              font-size: 6rem;
             }
             &:last-child {
               font-weight: $regularBold;
-              font-size: 5.5rem;
+              font-size: 2.2rem;
+              padding-bottom: 3rem;
             }
 
-            @include phonePort {
-              text-align: center;
-
-              &:first-child {
-                font-weight: $semiBold;
-                font-size: 1.8rem;
-              }
-              &:last-child {
-                font-size: 2.2rem;
-                padding-bottom: 3rem;
-              }
-            }
             @include phoneLandAndLarger {
               text-align: left;
-
               &:first-child {
                 font-weight: $mediumBold;
-                font-size: 3.5rem;
+                font-size: 3rem;
               }
               &:last-child {
-                font-size: 3rem;
+                font-size: 3.3rem;
                 padding-bottom: 3.5rem;
               }
             }
             @include tabletPortAndLarger {
               &:first-child {
-                font-size: 4.3rem;
+                font-size: 3.7rem;
               }
               &:last-child {
-                font-size: 3.7rem;
+                font-size: 4.3rem;
                 padding-bottom: 4rem;
+              }
+            }
+            @include tabletLandAndLarger {
+              &:first-child {
+                font-size: 4.8rem;
+              }
+              &:last-child {
+                font-size: 5.5rem;
+                padding-bottom: 8rem;
+              }
+            }
+            @include laptopsAndLarger {
+              &:first-child {
+                font-size: 5.3rem;
+              }
+              &:last-child {
+                font-size: 6rem;
               }
             }
   
@@ -985,47 +1008,35 @@ html {
           display: flex;
           justify-content: space-between;
           align-items: center;
+          flex-direction: column;
 
           .mail {
+            text-align: center;
+            margin-bottom: 1rem;
             a {
               color: $textColor1;
               font-weight: $mediumBold;
-              font-size: 3rem;
+              font-size: 1.4rem;
             }
             p {
               margin-top: 0.8rem;
               color: $mainColor;
-              font-size: 2rem;
+              font-size: 1.2rem;
             }
           }
 
           .social-networks {
             a {
               color: $textColor1;
-              font-size: 3rem;
+              font-size: 1.4rem;
             }
           }
 
-          @include phonePort {
-            flex-direction: column;
-            .mail {
-              text-align: center;
-              margin-bottom: 1rem;
-              a {
-                font-size: 1.4rem;
-              }
-              p {
-                font-size: 1.2rem;
-              }
-            } 
-            .social-networks {
-              a {
-                font-size: 1.4rem;
-              }
-            }
-          }
           @include phoneLandAndLarger {
+            flex-direction: row;
             .mail {
+              text-align: left;
+              margin-bottom: 0;
               a {
                 font-size: 1.8rem;
               }
@@ -1054,6 +1065,36 @@ html {
               }
             }
           }
+          @include tabletLandAndLarger {
+            .mail {
+              a {
+                font-size: 2.8rem;
+              }
+              p {
+                font-size: 1.9rem;
+              }
+            }
+            .social-networks {
+              a {
+                font-size: 2.8rem;
+              }
+            }
+          }
+          @include laptopsAndLarger {
+            .mail {
+              a {
+                font-size: 3rem;
+              }
+              p {
+                font-size: 2rem;
+              }
+            }
+            .social-networks {
+              a {
+                font-size: 3rem;
+              }
+            }
+          }
 
         }
 
@@ -1062,17 +1103,11 @@ html {
           justify-content: center;
 
           span {
-            margin-top: 6rem;
-            font-size: 1.5rem;
+            margin-top: 3.5rem;
+            font-size: 1rem;
             font-weight: $mediumBold;
           }
 
-          @include phonePort {
-            span {
-              margin-top: 3.5rem;
-              font-size: 1.1rem;
-            }
-          }
           @include phoneLandAndLarger {
             span {
               margin-top: 3.5rem;
@@ -1085,6 +1120,13 @@ html {
               font-size: 1.4rem;
             }
           }
+          @include tabletLandAndLarger {
+            span {
+              margin-top: 6.5rem;
+              font-size: 1.5rem;
+            }
+          }
+
         }
 
       }
