@@ -1,14 +1,15 @@
 import React from "react"
 import SwiperCore, { Navigation, Pagination } from "swiper"
 import { Swiper, SwiperSlide } from 'swiper/react'
-import Card from "../components/card"
-import HeaderBlock from "../components/headerBlock"
-import TranslationWords from "../components/translationWords"
-import constants from "../const/constants"
+import Card from "../../components/card"
+import HeaderBlock from "../../components/headerBlock"
+import TranslationWords from "../../components/translationWords"
+import constants from "../../const/constants"
 
 import 'swiper/swiper.scss'
 import 'swiper/components/navigation/navigation.scss'
 import 'swiper/components/pagination/pagination.scss'
+import "animate.css/animate.min.css"
 
 SwiperCore.use([Navigation, Pagination]);
 
@@ -47,7 +48,9 @@ const Skills = () => {
     }
 
     return (
-        <section id="skills">
+
+        <div id="skills" data-scroll data-scroll-id="skills">
+
             <div className="section-content">
 
                 <div className="skills-container">
@@ -55,8 +58,9 @@ const Skills = () => {
                         header="Skills"
                         text1="My skills are Front-End web development oriented"
                         text2="Here are the cards I hold"
+                        className="hidden"
                     />
-                    <div id="cards-container">
+                    <div id="cards-container" data-scroll data-scroll-speed="1">
                         <Swiper
                             updateOnWindowResize
                             navigation
@@ -116,18 +120,20 @@ const Skills = () => {
                         header="Assured quality"
                         text1="I guarantee the quality of my deliverables"
                         text2="And this is how I play my cards"
+                        className="hidden"
                     />
-                    <div className="words-container">
-                        <TranslationWords className='fast' text="FAST" />
-                        <TranslationWords className='intuitive' text="INTUITIVE" />
-                        <TranslationWords className='responsive' text="RESPONSIVE" />
-                        <TranslationWords className='clean-code' text="CLEAN CODE" />
+                    <div className="words-container" data-scroll data-scroll-speed="1">
+                        <TranslationWords className='fast' text="FAST" rowNumber={1} />
+                        <TranslationWords className='intuitive' text="INTUITIVE" rowNumber={2} />
+                        <TranslationWords className='responsive' text="RESPONSIVE" rowNumber={3} />
+                        <TranslationWords className='clean-code' text="CLEAN CODE" rowNumber={4} />
                     </div>
                 </div>
-                
+
             </div>
 
-        </section>
+        </div>
+
     );
 
 }

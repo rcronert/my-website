@@ -6,7 +6,7 @@
 
 // You can delete this file if you're not using it
 
-exports.onCreateWebpackConfig = ({ getConfig, stage }) => {
+exports.onCreateWebpackConfig = ({ getConfig, stage, loaders, actions }) => {
     const config = getConfig()
     if (stage.startsWith('develop') && config.resolve) {
         config.resolve.alias = {

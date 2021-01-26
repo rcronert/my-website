@@ -1,5 +1,6 @@
 const constants = {
-    sunriseDelay: 3000,
+    sunriseDelay: 2000,
+    sunriseDuration: 2000,
     rgbWhiteColor: '255, 255, 255',
     rgbBlackColor: '35, 33, 33',
     mobilePortBpMax: 479, // Mobile-portrait / default breakpoint
@@ -10,6 +11,7 @@ const constants = {
     desktopBpMin: 1600, // Desktops (and larger)
     largeDesktopBpMin: 1850, // Large Desktops (and larger)
     menuLinks: {
+        home: "home",
         about: "about",
         contact: "contact"
     }

@@ -19,11 +19,11 @@ const Contact = () => {
                     </div>
                 </div>
                 <div className="footer">
-                    <span>Developed with ♡ by myself</span>
-                    {/* <span>Developed with 🤍 by myself</span> */}
+                    <span>Designed and developed with ♡ by myself</span>
                 </div>
             </div>
         </section>
+
     );
 
 }

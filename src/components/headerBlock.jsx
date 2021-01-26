@@ -1,9 +1,15 @@
 import React from "react"
 import PropTypes from "prop-types"
+import classNames from "classnames"
 
 const HeaderBlock = props => {
+    const headerBlockClassName = classNames(
+        "header-block",
+        { [`${props.className}`]: props.className !== undefined }
+    );
+
     return (
-        <div className="header-block">
+        <div className={headerBlockClassName}>
             <div className="header">
                 <h3>{props.header}</h3>
             </div>
@@ -23,7 +29,7 @@ HeaderBlock.propTypes = {
     header: PropTypes.string.isRequired,
     text1: PropTypes.string.isRequired,
     text2: PropTypes.string.isRequired,
-    // className: PropTypes.string.isRequired,
+    className: PropTypes.string,
 }
 
 export default HeaderBlock

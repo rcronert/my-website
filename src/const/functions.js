@@ -39,7 +39,23 @@ const functions = {
         else {
             return 'dark';
         }
-    }
+    },
+
+    setLightNavBarColor: (navBarRef) => {
+        if (navBarRef && navBarRef.current.classList.contains("dark")) {
+            navBarRef.current.classList.remove("dark");
+        }
+    },
+
+    setDarkNavBarColor: (navBarRef) => {
+        if (navBarRef && navBarRef.current) {
+            navBarRef.current.classList.add("dark");
+        }
+    },
+
+    isDarkNavBarColor: (navBarRef) => {
+        return navBarRef.current.classList.contains("dark");
+    },
 
 }
 

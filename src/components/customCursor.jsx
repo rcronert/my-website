@@ -139,11 +139,12 @@ const CustomCursor = ({ adaptCursorColor, cursorColor }) => {
         }
     }, [isVisible]);
 
-    React.useEffect(() => {
+    const attachClickableEvents = React.useCallback(() => {
         const clickables = document.querySelectorAll(
             // 'a, input[type="submit"], input[type="image"], label[for], select, button, .link, *[class^="swiper-button"]'
-            'a, button, .link, *[class^="swiper-button"]'
+            'a, button, .link, *[class^="swiper-button"], .logo, .c-scrollbar_thumb'
         );
+
         clickables.forEach((el) => {
             el.style.cursor = 'none';
 
@@ -164,7 +165,7 @@ const CustomCursor = ({ adaptCursorColor, cursorColor }) => {
                 setIsActive(false);
                 setIsActiveClickable(false);
             });
-        })
+        });
 
         return () => {
             clickables.forEach((el) => {
@@ -187,7 +188,15 @@ const CustomCursor = ({ adaptCursorColor, cursorColor }) => {
                 });
             })
         }
-    }, [isActive]);
+    }, []); // eslint-disable-line
+
+    React.useEffect(() => {
+        setTimeout(() => attachClickableEvents(), 0); // wait until scrollbar loaded
+    }, []); // eslint-disable-line
+
+    React.useEffect(() => {
+        attachClickableEvents();
+    }, [isActive]); // eslint-disable-line
 
     return (
         <React.Fragment>
