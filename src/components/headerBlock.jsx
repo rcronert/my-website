@@ -28,7 +28,7 @@ const HeaderBlock = props => {
 HeaderBlock.propTypes = {
     header: PropTypes.string.isRequired,
     text1: PropTypes.string.isRequired,
-    text2: PropTypes.string.isRequired,
+    text2: PropTypes.string,
     className: PropTypes.string,
 }
 

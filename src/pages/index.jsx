@@ -2,6 +2,7 @@ import React from "react"
 import locomotiveScroll from "locomotive-scroll"
 import Home from "../sections/home"
 import About from "../sections/about"
+// import Clients from "../sections/subSections/clients"
 // import AboutMe from "../sections/aboutMe"
 // import Skills from "../sections/skills"
 import Contact from "../sections/contact"
@@ -89,7 +90,7 @@ const IndexPage = () => {
           }
         }
 
-        // To handle colors (backgrounds, navbar etc) for section AboutMe
+        // To handle colors (backgrounds, navbar etc) for section #About
         if (scrollEvent.currentElements.aboutMe) {
           let threshold = 0.9;
           if (window.matchMedia("(min-width: 768px)").matches) {

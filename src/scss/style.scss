@@ -54,18 +54,22 @@ html {
   @include phoneLandAndLarger {
     // $sectionPaddingTopBott: 8rem;
     --sectionPaddingTopBott: 8rem;
+    --paddingBottomH1: 4.5rem;
   }
   @include tabletPortAndLarger {
     // $sectionPaddingTopBott: 10rem;
     --sectionPaddingTopBott: 10rem;
+    --paddingBottomH1: 6rem;
   }
   @include tabletLandAndLarger {
     // $sectionPaddingTopBott: 12rem;
     --sectionPaddingTopBott: 12rem;
+    --paddingBottomH1: 7rem;
   }
   @include laptopsAndLarger {
     // $sectionPaddingTopBott: 13rem;
     --sectionPaddingTopBott: 13rem;
+    --paddingBottomH1: 8rem;
   }
 
   $sunriseDuration: 2s;
@@ -108,21 +112,6 @@ html {
       }
     }
 
-    // SCROLL BAR
-    // .simplebar-content-wrapper {
-    //   // scroll-behavior: smooth;
-    // }
-
-    // .simplebar-track {
-    //   &.simplebar-vertical {
-    //     width: 0.8rem;
-    //     @include phoneLandAndLarger {
-    //       width: 1.1rem;
-    //       // width: 3rem;
-    //     }
-    //   }
-    // }
-
     .c-scrollbar {
       z-index: 99;
       .c-scrollbar_thumb {
@@ -139,6 +128,7 @@ html {
       padding: var(--sectionPaddingTopBott) var(--globalPaddingLeftRight);
       .section-content {
         margin: 0 auto;
+        max-width: $mawWidthContent;
       }
     }
 
@@ -147,26 +137,23 @@ html {
       text-align: left;
       font-size: 4rem;
       font-weight: $semiBold;
-      padding-bottom: 4rem;
+      padding-bottom: var(--paddingBottomH1);
 
       @include phoneLandAndLarger {
         font-size: 4.5rem;
         font-weight: $semiBold;
-        padding-bottom: 4.5rem;
       }
       @include tabletPortAndLarger {
         font-size: 6rem;
         font-weight: $mediumBold;
-        padding-bottom: 6rem;
       }
       @include tabletLandAndLarger {
         font-size: 7rem;
-        padding-bottom: 7rem;
       }
       @include laptopsAndLarger {
         font-size: 8.5rem;
-        padding-bottom: 8rem;
       }
+
     }
 
     .header-block {
@@ -564,7 +551,6 @@ html {
         transition: background 0.5s ease;
         background: $backgroundColor3;
         // background: $backgroundColor4;
-
         .animate__animated.animate__fadeIn {
           --animate-duration: 2s;
         }
@@ -583,7 +569,7 @@ html {
 
           .section-content {
             // height: calc(100vh - 2 * #{$sectionPaddingTopBott});
-            max-width: $mawWidthContent;
+            // max-width: $mawWidthContent;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -602,6 +588,7 @@ html {
               display: flex;
     
               .photo-container {
+                position: relative;
                 display: none;
                 // overflow: hidden;
                 padding-right: 10rem;
@@ -630,16 +617,17 @@ html {
                   }
                 }
 
-                // .img-box {
-                //   position: relative;
-                //   z-index: -1;
-                //   width: 100%;
-                //   background-color: #161616;
-                //   border-radius: 10px;
-                //   border: solid 1px white;
-                //   left: 30px;
-                //   filter: blur(1px);
-                // }
+                .img-box {
+                  position: absolute;
+                  z-index: -1;
+                  width: 100%;
+                  // background-color: #161616;
+                  border-radius: 10px;
+                  border: solid 2px $mainColor;
+                  top: 45px;
+                  left: 30px;
+                  // filter: blur(1px);
+                }
 
               }
               .description {
@@ -697,7 +685,7 @@ html {
             position: relative;
             // min-height: 100vh;
             width: 100%;
-            max-width: $mawWidthContent;
+            // max-width: $mawWidthContent;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -912,6 +900,12 @@ html {
             }
     
             .assuredQuality {
+
+              margin-bottom: calc(var(--sectionPaddingTopBott) * 1);
+
+              @include tabletPortAndLarger {
+                margin-bottom: calc(var(--sectionPaddingTopBott) * 1.2);
+              }
     
               @keyframes translation {
                 100% {
@@ -1030,6 +1024,7 @@ html {
         &.skills-in-view {
           transition: background 2s ease;
           background: $backgroundColor4;
+          // background: linear-gradient(141deg, $backgroundColor4 50%, $backgroundColor1 21%, #2cb5e8 75%);
 
           #skills {
             .section-content {
@@ -1045,7 +1040,7 @@ html {
             
                         .flip-card-inner {
                           .flip-card-front {
-                            transition: background 1s ease;
+                            transition: background 2s ease;
                             background-color: $mainColor;
                             border: none;
               
@@ -1062,12 +1057,78 @@ html {
               }
             }
           }
-          //  .skills-container #cards-container .swiper-container .swiper-wrapper .swiper-slide .flip-card .flip-card-inner .flip-card-front 
+        }
 
-          // .flip-card {
+        #clients {
+          position: relative;
+          padding-bottom: 6rem;
+          box-sizing: border-box;
+
+          .section-content {
             
-            
-          // }
+            .grid {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              width: 100%;
+
+              .row {
+                width: 80%;
+
+                .box {
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  height: 150px;
+                  width: 100%;
+                  border: 2px $color2 solid;
+                  margin-top: -2px;
+
+                  & > div {
+                    width: 50%;
+                  }
+                }
+              }
+
+              @include phoneLandAndLarger {
+                .row {
+                  .box {
+                    & > div {
+                      width: 30%;
+                    }
+                  }
+                }
+              }
+
+              @include tabletPortAndLarger {
+                flex-direction: row;
+                .row {
+                  .box {
+                    height: 250px;
+                    & > div {
+                      width: 40%;
+                    }
+                  }
+                  &:first-child {
+                    margin-right: 2px;
+                  }
+                }
+              }
+
+              @include laptopsAndLarger {
+                .row {
+                  .box {
+                    height: 300px;
+                    & > div {
+                      width: 30%;
+                    }
+                  }
+                }
+              }
+
+            }
+          }
         }
 
       }
@@ -1090,7 +1151,7 @@ html {
           flex-direction: column;
           justify-content: space-between;
           height: 100%;
-          max-width: $mawWidthContent;
+          // max-width: $mawWidthContent;
   
           .title {
   

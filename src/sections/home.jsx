@@ -50,8 +50,10 @@ const Home = ({ adaptCursorColor, display }) => {
     return (
         <section id="home" ref={homeSectionRef} /*data-scroll-section*/>
             <div className="introduction animate__animated animate__fadeIn">
-                <span className="hello">{"Hello, I'm Robin Crönert."}</span>
-                <div className="description">{"I'm a french web Developer passionate about UX/UI Design."}</div>
+                <span className="hello">{"Hello, I am Robin Crönert"}</span>
+                {/* <span className="hello">{"Hello, I am Robin Crönert."}</span> */}
+                {/* <div className="description">{"A french web Developer passionate about UX/UI Design."}</div> */}
+                <div className="description">{"And I hope you will enjoy scrolling 🙂"}</div>
             </div>
             <div className="scroll-lottie animate__animated animate__fadeIn animate__delay-3s" />
             <div ref={sunDivRef} className="sun" />

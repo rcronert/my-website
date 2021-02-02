@@ -56,8 +56,9 @@ const Skills = () => {
                 <div className="skills-container">
                     <HeaderBlock
                         header="Skills"
-                        text1="My skills are Front-End web development oriented"
-                        text2="Here are the cards I hold"
+                        text1="Front-End web development oriented skills."
+                        // text2="Here are the cards I hold"
+                        text2="Here are some cards I hold"
                         className="hidden"
                     />
                     <div id="cards-container" data-scroll data-scroll-speed="1">
@@ -117,8 +118,9 @@ const Skills = () => {
 
                 <div className="assuredQuality">
                     <HeaderBlock
-                        header="Assured quality"
-                        text1="I guarantee the quality of my deliverables"
+                        header="Guaranteed quality"
+                        // text1="I guarantee the quality of my deliverables"
+                        text1="I commit myself to the quality of my deliverables"
                         text2="And this is how I play my cards"
                         className="hidden"
                     />

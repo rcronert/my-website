@@ -25,7 +25,7 @@ const styles = {
         // transition: 'transform 0.25s ease-in-out',
         zIndex: 1000,
         pointerEvents: 'none',
-        visibility: typeof navigator !== 'undefined' && isMobile() ? 'hidden' : 'visible'
+        // visibility: typeof navigator !== 'undefined' && isMobile() ? 'hidden' : 'visible'
     },
     cursorOuter: {
         position: 'fixed',
@@ -38,7 +38,7 @@ const styles = {
         // transition: 'transform 0.15s ease-in-out',
         zIndex: 1000,
         pointerEvents: 'none',
-        visibility: typeof navigator !== 'undefined' && isMobile() ? 'hidden' : 'visible'
+        // visibility: typeof navigator !== 'undefined' && isMobile() ? 'hidden' : 'visible'
     }
 };
 
@@ -72,8 +72,13 @@ const CustomCursor = ({ adaptCursorColor, cursorColor }) => {
     const [isVisible, setIsVisible] = React.useState(true);
     const [isActive, setIsActive] = React.useState(false);
     const [isActiveClickable, setIsActiveClickable] = React.useState(false);
+    const [visibilityProp, setVisibility] = React.useState(typeof navigator !== 'undefined' && isMobile() ? 'hidden' : 'visible');
     let endX = React.useRef(positionStart);
     let endY = React.useRef(positionStart);
+
+    React.useEffect(() => {
+        window.addEventListener('resize', () => setVisibility(typeof navigator !== 'undefined' && isMobile() ? 'hidden' : 'visible'));
+    }, []);
 
     const onMouseMove = React.useCallback(({ clientX, clientY }) => {
         adaptCursorColor();
@@ -200,8 +205,12 @@ const CustomCursor = ({ adaptCursorColor, cursorColor }) => {
 
     return (
         <React.Fragment>
-            <div className="outer-cursor" ref={cursorOuterRef} style={{...styles.cursorOuter, backgroundColor: `rgba(${cursorColor}, ${outerCursorBackgroundOpacity})`}} />
-            <div className="inner-cursor" ref={cursorInnerRef} style={{...styles.cursorInner, backgroundColor: `rgb(${cursorColor})`}} />
+            <div className="outer-cursor" ref={cursorOuterRef}
+                style={{...styles.cursorOuter, visibility: visibilityProp, backgroundColor: `rgba(${cursorColor}, ${outerCursorBackgroundOpacity})`}}
+            />
+            <div className="inner-cursor" ref={cursorInnerRef}
+                style={{...styles.cursorInner, visibility: visibilityProp, backgroundColor: `rgb(${cursorColor})`}}
+            />
         </React.Fragment>
     );
 

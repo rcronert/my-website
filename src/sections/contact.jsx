@@ -12,7 +12,7 @@ const Contact = () => {
                 <div className="contact-me">
                     <div className="mail">
                         <a href="mailto:robin.cronert@gmail.com">robin.cronert@gmail.com</a>
-                        <p>I am based in Paris</p>
+                        <p>Located in Paris</p>
                     </div>
                     <div className="social-networks">
                         <a href="https://www.linkedin.com/in/robin-crönert" rel="noreferrer" target="_blank">Linkedin</a>
