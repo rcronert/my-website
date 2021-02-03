@@ -1,17 +1,17 @@
 import React from "react"
 // import classNames from "classnames"
 // import NavBar from "../components/navBar"
-import constants from "../const/constants"
+// import constants from "../const/constants"
 // import Lottie from 'react-lottie-player'
 import lottie from "lottie-web"
 // import { Player } from '@lottiefiles/react-lottie-player';
 import scrollLottieJson from "../assets/lotties/scroll.json"
 import PropTypes from "prop-types"
 
-const Home = ({ adaptCursorColor, display }) => {
+const Home = ({ /*adaptCursorColor,*/ display }) => {
 
     const homeSectionRef = React.useRef();
-    const sunDivRef = React.useRef();
+    // const sunDivRef = React.useRef();
 
     React.useEffect(() => {
         if (display === false) {
@@ -24,20 +24,20 @@ const Home = ({ adaptCursorColor, display }) => {
     }, [display]);
 
     React.useEffect(() => {
-        setTimeout(
-            () => {
-                homeSectionRef.current.classList.add("sunrise");
-                sunDivRef.current.classList.add("sunrise");
-            },
-            constants.sunriseDelay
-        );
-        setTimeout(
-            () => {
-                adaptCursorColor();
-                // homeSectionRef.current.classList.add("sunrise-over");
-            }, 
-            constants.sunriseDelay + constants.sunriseDuration
-        );
+        // setTimeout(
+        //     () => {
+        //         homeSectionRef.current.classList.add("backgroundChanged");
+        //         // sunDivRef.current.classList.add("sunrise");
+        //     },
+        //     constants.backgroundChangeDelay
+        // );
+        // setTimeout(
+        //     () => {
+        //         adaptCursorColor();
+        //         // homeSectionRef.current.classList.add("sunrise-over");
+        //     }, 
+        //     constants.backgroundChangeDelay + constants.backgroundChangeDuration
+        // );
         lottie.loadAnimation({
             container: document.querySelector('#home .scroll-lottie'),
             renderer: 'svg',
@@ -49,14 +49,21 @@ const Home = ({ adaptCursorColor, display }) => {
 
     return (
         <section id="home" ref={homeSectionRef} /*data-scroll-section*/>
-            <div className="introduction animate__animated animate__fadeIn">
-                <span className="hello">{"Hello, I am Robin Crönert"}</span>
-                {/* <span className="hello">{"Hello, I am Robin Crönert."}</span> */}
-                {/* <div className="description">{"A french web Developer passionate about UX/UI Design."}</div> */}
-                <div className="description">{"And I hope you will enjoy scrolling 🙂"}</div>
+            <div className="background-anim">
+                <div className="cube"></div>
+                <div className="cube"></div>
+                <div className="cube"></div>
+                <div className="cube"></div>
+                <div className="cube"></div>
             </div>
-            <div className="scroll-lottie animate__animated animate__fadeIn animate__delay-3s" />
-            <div ref={sunDivRef} className="sun" />
+            <div className="introduction animate__animated animate__fadeIn">
+                <div className="title">
+                    <span className="text1">Creative </span>
+                    <span className="text2">Developer</span>
+                </div>
+            </div>
+            <div className="scroll-lottie animate__animated animate__fadeIn" /*"animate__delay-2s"*/ />
+            {/* <div ref={sunDivRef} className="sun" /> */}
         </section>
     );
 

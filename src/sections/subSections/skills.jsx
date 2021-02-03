@@ -125,10 +125,10 @@ const Skills = () => {
                         className="hidden"
                     />
                     <div className="words-container" data-scroll data-scroll-speed="1">
-                        <TranslationWords className='fast' text="FAST" rowNumber={1} />
-                        <TranslationWords className='intuitive' text="INTUITIVE" rowNumber={2} />
-                        <TranslationWords className='responsive' text="RESPONSIVE" rowNumber={3} />
-                        <TranslationWords className='clean-code' text="CLEAN CODE" rowNumber={4} />
+                        <TranslationWords className='fast' text="Fast" rowNumber={1} />
+                        <TranslationWords className='intuitive' text="Intuitive" rowNumber={2} />
+                        <TranslationWords className='responsive' text="Responsive" rowNumber={3} />
+                        <TranslationWords className='clean-code' text="Clean Code" rowNumber={4} />
                     </div>
                 </div>
 

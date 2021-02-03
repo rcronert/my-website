@@ -1,6 +1,6 @@
 const constants = {
-    sunriseDelay: 2000,
-    sunriseDuration: 2000,
+    backgroundChangeDelay: 2000,
+    backgroundChangeDuration: 2000,
     rgbWhiteColor: '255, 255, 255',
     rgbBlackColor: '35, 33, 33',
     mobilePortBpMax: 479, // Mobile-portrait / default breakpoint

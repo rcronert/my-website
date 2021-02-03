@@ -69,13 +69,15 @@ const IndexPage = () => {
   React.useEffect(() => {
 
     let localDisplayHome = true;
-    const navBarBorderDistance = 30;
+    let navBarBorderDistance = 0;
     let colorChangedWhenEntered = false;
     let colorChangedWhenLeft = true;
 
     if (locoScroll) {
 
       locoScroll.on("scroll", (scrollEvent) => {
+
+        navBarBorderDistance = navBarRef.current.clientHeight / 2;
 
         // To handle Hide of Home section (to let appear contact section)
         if (scrollEvent.scroll.y > window.innerHeight) { // If we scrolled more than Home section height (viewport height)
@@ -102,28 +104,46 @@ const IndexPage = () => {
               aboutSection.classList.add("skills-in-view");
               functions.setDarkNavBarColor(navBarRef);
 
+              // console.log(scrollEvent)
+              // const y = 1 + (scrollEvent.scroll.y) / 150
+              // const [r, g, b] = [red/y, green/y, blue/y].map(Math.round)
+              
+              // aboutSection.style.backgroundColor = `rgb(${r}, ${g}, ${b})`
+
+              // To make titles appear
               const headerBlocks = document.querySelectorAll('#skills .header-block');
               if (headerBlocks) {
                 headerBlocks.forEach(element => {
                   element.classList.remove("hidden");
-                  const classesList = ["animate__animated", "animate__fadeIn"];
-                  element.classList.add(...classesList);
+                  // const classesList = ["animate__animated", "animate__fadeIn"];
+                  // element.classList.add(...classesList);
                 });
               }
             }
-          } else {
+          } else { // If we are before the skills section
             const aboutSection = document.querySelector('#about');
             if (aboutSection) {
               if (aboutSection.classList.contains("skills-in-view")) {
                 aboutSection.classList.remove("skills-in-view");
                 functions.setLightNavBarColor(navBarRef);
+              } else {
+                // To handle navbar color changes for #home section
+                if (scrollEvent.scroll.y > window.innerHeight - navBarBorderDistance) { // If we scrolled more than Home section height (viewport height) - navbar border distance
+                  if (functions.isDarkNavBarColor(navBarRef)) {
+                    functions.setLightNavBarColor(navBarRef);
+                  }
+                } else {
+                  if (!functions.isDarkNavBarColor(navBarRef)) {
+                    functions.setDarkNavBarColor(navBarRef);
+                  }
+                }
               }
             }
           }
         }
 
         // Handling of navbar color for #contact section
-        if (locoScroll.el.clientHeight - window.innerHeight - navBarBorderDistance // Total scroll height - home section - 10px
+        if (locoScroll.el.clientHeight - window.innerHeight - navBarBorderDistance // Total scroll height - home section - nav bar border distance
           <= scrollEvent.scroll.y // scroll position
           && scrollEvent.scroll.y
           <= locoScroll.el.clientHeight - window.innerHeight

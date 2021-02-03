@@ -1,5 +1,5 @@
 import React from "react"
-import Logo from "../assets/svg-icons/logo_rc.svg"
+// import Logo from "../assets/svg-icons/logo_rc.svg"
 import lottie from "lottie-web"
 import menuLottieJson from "../assets/lotties/burger-menu.json"
 import constants from "../const/constants"
@@ -118,10 +118,13 @@ const NavBar = ({ scrollInstance, navBarRef }) => {
 
     return (
         <>
-            <div className="nav-bar" ref={navBarRef}>
-                <img onClick={() => onLinkClick(constants.menuLinks.home)}
+            <div className="nav-bar dark" ref={navBarRef}>
+                {/* <img onClick={() => onLinkClick(constants.menuLinks.home)}
                     className="logo animate__animated animate__fadeIn" src={Logo} alt="Left arrow icon"
-                />
+                /> */}
+                <div className="logo animate__animated animate__fadeIn"
+                    onClick={() => onLinkClick(constants.menuLinks.home)}
+                >Robin Crönert</div>
                 <nav>
                     <div className="links-wrap">
                         <div className="page-link animate__animated animate__fadeIn">

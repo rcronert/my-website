@@ -50,6 +50,7 @@ html {
   --globalPaddingLeftRight: 15vw;
   // $sectionPaddingTopBott: 7rem;
   --sectionPaddingTopBott: 7rem;
+  --paddingBottomH1: 3rem;
 
   @include phoneLandAndLarger {
     // $sectionPaddingTopBott: 8rem;
@@ -72,15 +73,19 @@ html {
     --paddingBottomH1: 8rem;
   }
 
-  $sunriseDuration: 2s;
+  // $sunriseDuration: 2s;
   $animateFadeInDuration: 2s;
-  $navBarPadding: 8.5vw;
+  $animateFadeInRightLeftDuration: 1.5s;
+  // $navBarPadding: 8.5vw;
+  $navBarPadding: 7vw;
 
   $mawWidthContent: 1400px;
   $regularBold: 400;
   $mediumBold: 500;
   $semiBold: 600;
   $blackBold: 800;
+
+  $generalBorderRadius: 0px;
 
   body {
     height: 100%;
@@ -231,6 +236,8 @@ html {
 
     .nav-bar {
       height: 15.8vh;
+      // height: 17vh;
+      // height: 10rem;
       min-height: 100px;
       box-sizing: border-box;
       top: 0;
@@ -255,27 +262,51 @@ html {
       }
 
       .logo {
-        height: 50%;
-        filter: invert(100%) sepia(3%) saturate(7434%) hue-rotate(39deg) brightness(116%) contrast(102%);
         display: none;
+        font-size: 1.7rem;
+
         @include tabletPortAndLarger {
           display: block;
           pointer-events: auto;
+          font-size: 1.9rem;
+        }
+        @include tabletLandAndLarger {
+          font-size: 2rem;
+        }
+        @include laptopsAndLarger {
+          font-size: 2.1rem;
+          // font-size: 3rem;
         }
       }
+
+      // .logo {
+      //   height: 50%;
+      //   filter: invert(100%) sepia(3%) saturate(7434%) hue-rotate(39deg) brightness(116%) contrast(102%);
+      //   display: none;
+      //   @include tabletPortAndLarger {
+      //     display: block;
+      //     pointer-events: auto;
+      //   }
+      // }
 
       nav {
         display: none;
 
         @include tabletPortAndLarger {
           display: flex;
-          font-size: 2.1rem;
+          // font-size: 2.1rem;
+          font-size: 1.9rem;
         }
         @include tabletLandAndLarger {
-          font-size: 2.2rem;
+          // font-size: 2.2rem;
+          font-size: 2rem;
         }
         @include laptopsAndLarger {
-          font-size: 2.4rem;
+          // font-size: 2.4rem;
+          font-size: 2.1rem;
+        }
+        @include desktopsAndLarger {
+          font-size: 2.2rem;
         }
 
         .links-wrap {
@@ -284,10 +315,24 @@ html {
           height: 100%;
 
           .page-link {
-            padding-left: 7rem;
+            // padding-left: 7rem;
+            
+            @include tabletPortAndLarger {
+              padding-left: 5rem;
+            }
+            @include tabletLandAndLarger {
+              padding-left: 6rem;
+            }
+            @include laptopsAndLarger {
+              padding-left: 7rem;
+            }
+            @include desktopsAndLarger {
+              padding-left: 8rem;
+            }
 
             a {
               color: $mainColor;
+              // color: $color2;
               // color: black;
               text-decoration: none;
               pointer-events: auto;
@@ -323,7 +368,9 @@ html {
 
       &.dark {
         .logo {
-          filter: invert(6%) sepia(3%) saturate(1512%) hue-rotate(314deg) brightness(102%) contrast(84%);
+          // filter: invert(6%) sepia(3%) saturate(1512%) hue-rotate(314deg) brightness(102%) contrast(84%);
+          color: $color2;
+          font-weight: $mediumBold;
         }
         nav {  
           .links-wrap {
@@ -372,9 +419,9 @@ html {
         background-color: $mainColor;
         .menu-link {
           a {
-            // color: $color2;
-            color: $mainColor;
-            -webkit-text-stroke: 1px $color2;
+            color: $color2;
+            // color: $mainColor;
+            // -webkit-text-stroke: 1px $color2;
             font-weight: $mediumBold;
           }
         }
@@ -382,16 +429,16 @@ html {
 
       .menu-link {
         // font-size: 4rem;
-        font-style: italic;
+        // font-style: italic;
         font-size: 5rem;
         font-weight: $mediumBold;
         margin-bottom: 2rem;
         width: 0;
 
         a {
-          // color: $mainColor;
-          color: $color2;
-          -webkit-text-stroke: 1px $mainColor;
+          color: $mainColor;
+          // color: $color2;
+          // -webkit-text-stroke: 1px $mainColor;
           text-decoration: none;
           pointer-events: auto;
         }
@@ -422,915 +469,979 @@ html {
     //   position: fixed;
     //   width: 100%;
 
-      #home {
-        min-height: 100vh;
-        width: 100%;
-        z-index: 1;
-        // width: calc(100vw - 2 * var(--globalPaddingLeftRight));
-        box-sizing: border-box;
-        // position: relative;
-        position: fixed;
-        top: 0;
-        // pointer-events: none;
-        padding: 0 $navBarPadding;
-        background: $backgroundColor1;
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        // min-height: 400px;
+    #home {
+      min-height: 100vh;
+      width: 100%;
+      z-index: 1;
+      // width: calc(100vw - 2 * var(--globalPaddingLeftRight));
+      box-sizing: border-box;
+      // position: relative;
+      position: fixed;
+      top: 0;
+      // pointer-events: none;
+      // padding: 0 $navBarPadding;
+      padding: 0 0;
+      // background: $backgroundColor1;
+      background: $mainColor;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      // min-height: 400px;
 
-        flex-direction: column;
+      flex-direction: column;
 
-        .animate__animated.animate__fadeIn {
-          --animate-duration: #{$animateFadeInDuration};
+      .animate__animated.animate__fadeIn {
+        --animate-duration: #{$animateFadeInDuration};
+      }
+
+      @keyframes gradient {
+        0% {
+          background-position: 0% 50%;
         }
-  
-        .introduction {
-          z-index: 1;
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      @keyframes cube {
+        from {
+          transform: scale(0) rotate(0deg) translate(-50%, -50%);
+          opacity: 1;
+        }
+        to {
+          transform: scale(20) rotate(960deg) translate(-50%, -50%);
+          opacity: 0;
+        }
+      }
+
+      .background-anim {
+        background: linear-gradient(132deg, $mainColor, $backgroundColor4, $backgroundColor1);
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
+        position: relative;
+        height: 100vh;
+        width: 100%;
+        overflow: hidden;
+
+        .cube {
+          position: absolute;
+          top: 80vh;
+          left: 45vw;
+          width: 1rem;
+          height: 1rem;
+          // border: solid 1px #D7D4E4;
+          border: solid 1px $mainColor;
+          transform-origin: top left;
+          transform: scale(0) rotate(0deg) translate(-50%, -50%);
+          animation: cube 12s ease-in forwards infinite;
+        }
+        .cube:nth-child(2n) {
+          // border-color: #FFF;
+          border-color: $backgroundColor3;
+        }
+        .cube:nth-child(2) {
+          animation-delay: 2s;
+          left: 25vw;
+          top: 40vh;
+        }
+        .cube:nth-child(3) {
+          animation-delay: 4s;
+          left: 75vw;
+          top: 50vh;
+        }
+        .cube:nth-child(4) {
+          animation-delay: 6s;
+          left: 90vw;
+          top: 10vh;
+        }
+        .cube:nth-child(5) {
+          animation-delay: 8s;
+          left: 10vw;
+          top: 85vh;
+        }
+        .cube:nth-child(6) {
+          animation-delay: 10s;
+          left: 50vw;
+          top: 10vh;
+        }
+      }
+
+      .introduction {
+        position: absolute;
+        z-index: 1;
+        display: flex;
+        // flex-direction: column;
+        // width: 100%;
+        
+        padding: 0 9vw;
+
+        .title {
+          text-align: right;
+          font-size: 5rem;
+          .text1 {
+            color: $color2;        
+          }
+          .text2 {
+            font-weight: $semiBold;
+            color: transparent;
+            -webkit-text-stroke: 1px $color2;
+          }
+        }
+
+        @include phoneLandAndLarger {
+          .title {
+            font-size: 7rem;
+          }
+        }
+        @include tabletPortAndLarger {
+          .title {
+            text-align: center;
+            font-size: 9rem;
+          }
+        }
+        @include tabletLandAndLarger {
+          .title {
+            font-size: 10rem;
+          }
+        }
+        @include laptopsAndLarger {
+          .title {
+            font-size: 11rem;
+          }
+        }
+        @include desktopsAndLarger {
+          .title {
+            font-size: 12rem;
+          }
+        }
+
+      }
+
+      .scroll-lottie {
+        z-index: 1;
+        position: absolute;
+        bottom: 0;
+        height: 11rem;
+        // filter: invert(100%) sepia(3%) saturate(7434%) hue-rotate(39deg) brightness(116%) contrast(102%);
+        filter: invert(8%) sepia(16%) saturate(182%) hue-rotate(314deg) brightness(97%) contrast(88%);
+
+        @include tabletPortAndLarger {
+          height: 13rem;
+        }
+      }
+
+      &.hidden {
+        visibility: hidden;
+      }
+
+    }
+
+    #about {
+      transition: background 0.5s ease;
+      background: $backgroundColor3;
+      // background: $backgroundColor4;
+      // .animate__animated.animate__fadeIn {
+      //   --animate-duration: 2s;
+      // }
+
+      position: relative;
+      z-index: 1;
+      margin-top: 100vh;
+      margin-bottom: 100vh;
+
+      #about-me {
+        margin-top: 2rem;
+        padding-bottom: calc(var(--sectionPaddingTopBott) * 1);
+
+        @include tabletPortAndLarger {
+          padding-bottom: calc(var(--sectionPaddingTopBott) * 2);
+        }
+
+        .section-content {
+          // height: calc(100vh - 2 * #{$sectionPaddingTopBott});
+          // max-width: $mawWidthContent;
           display: flex;
           flex-direction: column;
-          
-          .hello {
-            font-weight: $semiBold;
-            font-size: 3.7rem;
+          justify-content: center;
+          align-items: flex-start;
+          padding-bottom: 0;
   
-            @include phoneLandAndLarger {
-              font-size: 4rem;
-            }
-            @include tabletPortAndLarger {
-              font-size: 4.5rem;
-              text-align: center;
-            }
-            @include tabletLandAndLarger {
-              font-size: 5.5rem;
-            }
-            @include laptopsAndLarger {
-              font-size: 6.5rem;
-            }
-          }
-          .description {
-            font-size: 2.1rem;
-            text-align: start;
-            @include phoneLandAndLarger {
-              font-size: 2.5rem;
-              text-align: start;
-            }
-            @include tabletPortAndLarger {
-              font-size: 2.8rem;
-              text-align: center;
-            }
-            @include tabletLandAndLarger {
-              font-size: 3.1rem;
-            }
-            @include laptopsAndLarger {
-              font-size: 3.8rem;
-            }
-          }
-        }
-  
-        .scroll-lottie {
-          z-index: 1;
-          position: absolute;
-          bottom: 0;
-          height: 11rem;
-
           @include tabletPortAndLarger {
-            height: 13rem;
-          }
-        }
-  
-        .sun {
-          --sunSize: 300px;
-  
-          @include phoneLandAndLarger {
-            --sunSize: 320px;
-          }
-          @include tabletPortAndLarger {
-            --sunSize: 380px;
+            align-items: center;
+            padding-bottom: 2rem;
           }
           @include tabletLandAndLarger {
-            --sunSize: 420px;
-          }
-          @include laptopsAndLarger {
-            --sunSize: 490px;
+            padding-bottom: 6rem;
           }
   
-          background-color: $sunColor1;
-          height: var(--sunSize);
-          width: var(--sunSize);
-          position: absolute;
-          // bottom: calc(-#{$sunSize} / 1.5);
-          bottom: calc(-1 * var(--sunSize) / 1.5);
-          border-radius: 50%;
-          filter: blur(37px);
-  
-          &.sunrise {
-            // bottom: calc(50% - #{$sunSize} / 2);
-            bottom: calc(50% - 1 * var(--sunSize) / 2);
-            background-color: $sunColor2;
-            transition-property: background-color, bottom;
-            transition-duration: $sunriseDuration;
-            transition-timing-function: ease;
-          }
-            
-        }
-
-        &.hidden {
-          visibility: hidden;
-        }
-  
-        &.sunrise {
-          background: $backgroundColor2;
-          transition: background $sunriseDuration ease;
-        }
-  
-      }
-  
-      #about {
-        transition: background 0.5s ease;
-        background: $backgroundColor3;
-        // background: $backgroundColor4;
-        .animate__animated.animate__fadeIn {
-          --animate-duration: 2s;
-        }
-
-        position: relative;
-        z-index: 1;
-        margin-top: 100vh;
-        margin-bottom: 100vh;
-
-        #about-me {
-          padding-bottom: calc(var(--sectionPaddingTopBott) * 1);
-
-          @include tabletPortAndLarger {
-            padding-bottom: calc(var(--sectionPaddingTopBott) * 2);
-          }
-
-          .section-content {
-            // height: calc(100vh - 2 * #{$sectionPaddingTopBott});
-            // max-width: $mawWidthContent;
+          .introduction {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-            padding-bottom: 0;
-    
-            @include tabletPortAndLarger {
-              align-items: center;
-              padding-bottom: 2rem;
-            }
-            @include tabletLandAndLarger {
-              padding-bottom: 6rem;
-            }
-    
-            .introduction {
-              display: flex;
-    
-              .photo-container {
-                position: relative;
-                display: none;
-                // overflow: hidden;
-                padding-right: 10rem;
-                flex-basis: 25%;
-                flex-shrink: 0;
-                padding-top: 1rem;
+  
+            .photo-container {
+              position: relative;
+              display: none;
+              // overflow: hidden;
+              padding-right: 10rem;
+              flex-basis: 25%;
+              flex-shrink: 0;
+              // padding-top: 1rem;
 
-                @include tabletLandAndLarger {
-                  display: block;
-                  
-                }
-
-                .img-wrapper-move {
-                  position: relative;
-                  overflow: hidden;
-                  border-radius: 10px;
-
-                  .img-wrapper {
-                    position: relative;
-
-                    & > div {
-                      border-radius: 10px;
-                      // box-shadow: 60px 60px 3px #161616, 60px 60px 0 1px white;
-                    }
-
-                  }
-                }
-
-                .img-box {
-                  position: absolute;
-                  z-index: -1;
-                  width: 100%;
-                  // background-color: #161616;
-                  border-radius: 10px;
-                  border: solid 2px $mainColor;
-                  top: 45px;
-                  left: 30px;
-                  // filter: blur(1px);
-                }
-
+              @include tabletLandAndLarger {
+                display: block;
+                
               }
-              .description {
-                font-size: 1.7rem;
-                font-weight: $mediumBold;
-                margin: 0;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-    
-                // p:first-child {
-                //   margin-top: 0;
+
+              // .img-wrapper-move {
+              //   position: relative;
+              //   overflow: hidden;
+              //   border-radius: $generalBorderRadius;
+
+                .img-wrapper {
+                  position: relative;
+
+                  & > div {
+                    border-radius: $generalBorderRadius;
+                    // box-shadow: 60px 60px 3px #161616, 60px 60px 0 1px white;
+                  }
+
                 // }
-
-                p {
-                  margin-top: 0;
-                }
-    
-                @include phoneLandAndLarger {
-                  font-size: 2rem;
-                }
-                @include tabletPortAndLarger {
-                  font-size: 2.2rem;
-                }
-                @include tabletLandAndLarger {
-                  font-size: 2.3rem;
-                }
-                @include laptopsAndLarger {
-                  font-size: 2.4rem;
-                }
               }
-            }
-    
-          }
-          
-        }
 
-        #skills {
-
-          --cardHeight: 260px;
-  
-          @include tabletPortAndLarger {
-            // $cardHeight: 320px;
-            --cardHeight: 320px;
-          }
-    
-          $navButtonSize: 9rem;
-    
-          position: relative;
-          z-index: 1;
-          display: flex;
-          align-items: center;
-          
-          .section-content {
-            position: relative;
-            // min-height: 100vh;
-            width: 100%;
-            // max-width: $mawWidthContent;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-    
-            .skills-container {
-              margin-bottom: calc(var(--sectionPaddingTopBott) * 1.1);
-
-              @include tabletPortAndLarger {
-                margin-bottom: calc(var(--sectionPaddingTopBott) * 1.3);
-              }
-    
-              #cards-container {
-                position: relative;
+              .img-box {
+                position: absolute;
+                z-index: -1;
                 width: 100%;
-      
-                &.mobile-viewport {
-                  .swiper-container {
-                    width: 21rem; // Default/mobile/slide width: 260px
-                    @media (max-width: 300px) {
-                      width: 19rem;
-                    }
-                    @include phoneLandAndLarger {
-                      width: 26rem;
-                    }
-                  }
-                }
-                &.tablet-portrait-viewport {
-                  .swiper-container {
-                    width: 95%;
-                    max-width: 52.3rem; // Slide width: 260px
-                  }
-                }
-                &.laptop-viewport {
-                  .swiper-container {
-                    width: 93%;
-                    max-width: 78rem; // Slide width: 260px
-                  }
-                }
-                &.desktop-viewport {
-                  .swiper-container {
-                    width: 92%;
-                    max-width: 104rem; // Slide width: 260px
-                  }
-                }
-                &.large-desktop-viewport {
-                  .swiper-container {
-                    width: 100%;
-                  }
-                }
-      
-                .swiper-container {
-                  position: relative;
-                  $paddingSwiperContainer: 1rem;
-                  // padding-top: $paddingSwiperContainer;
-                  padding: $paddingSwiperContainer 0 $paddingSwiperContainer 0;
-                  position: static;
-                  // width: 100%;
-                
-                  .swiper-button-prev, .swiper-button-next {
-                    // background-color: rgba(255, 255, 255, 0.6);
-                    background-color: transparent;
-                    border-radius: 50%;
-                    border: 2px solid $backgroundColor3;
-                    width: $navButtonSize;
-                    height: $navButtonSize;
-                    box-sizing: content-box;
-                    background-repeat: no-repeat;
-                    background-size: 13% 50%;
-                    background-position: center;
-                    // bottom: calc(#{$paddingSwiperContainer} + (#{$cardHeight} / 2) - (#{$navButtonSize} / 2));
-                    bottom: calc(#{$paddingSwiperContainer} + (var(--cardHeight) / 2) - (#{$navButtonSize} / 2));
-                    top: auto;
-                    &.hidden {
-                      visibility: hidden;
-                    }
-                  }
-        
-                  .swiper-button-prev {
-                    background-image: url(../assets/svg-icons/arrow-left.svg);
-                    left: 0;
-                  }
-        
-                  .swiper-button-next {
-                    background-image: url(../assets/svg-icons/arrow-right.svg);
-                    right: 0;
-                  }
-        
-                  .swiper-button-prev::after, .swiper-button-next::after {
-                    display: none;
-                  }
-        
-                  .swiper-pagination {
-                    bottom: -2rem;
-    
-                    @include tabletPortAndLarger {
-                      bottom: -4rem;
-                    }
-      
-                    .swiper-pagination-bullet {
-                      background-color: $backgroundColor3;
-                      opacity: 0.2;
-                      &.swiper-pagination-bullet-active {
-                        background-color: $backgroundColor3;
-                        opacity: 1;
-                      }
-                    }
-                  }
-        
-                  .swiper-wrapper {
-      
-                    .swiper-slide {
-                      display: flex;
-                      justify-content: center;
-                      touch-action: none; // Pour enlever le warning (Swip issue 3728)
-          
-                      .flip-card {
-                        // height: $cardHeight;
-                        height: var(--cardHeight);
-                        background-color: transparent;
-                        perspective: 1000px;
-                        position: relative;
-                        margin: 0 1.5rem;
-              
-                        flex-grow: 1;
-                        // flex-shrink: 0;
-                        flex-shrink: 1;
-              
-                        // &:hover .flip-card-inner {
-                        //   transform: rotateY(180deg);
-                        // }
-              
-                        .flip-card-inner {
-                          width: 100%;
-                          height: 100%;
-                          position: relative;
-                          transition: transform 0.6s;
-                          transform-style: preserve-3d;
-              
-                          .flip-card-front, .flip-card-back {
-                            position: absolute;
-                            border-radius: 10px;
-                            width: 100%;
-                            height: 100%;
-                            // box-shadow: 2px 2px 13px 0 rgba(35, 33, 33, 0.2);
-                            box-shadow: 2px 2px 2px 0 rgba(35, 33, 33, 0.1);
-                            -webkit-backface-visibility: hidden;
-                            backface-visibility: hidden;
-                          }
-              
-                          .flip-card-front {
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            // background-color: $mainColor;
-                            background-color: $backgroundColor3;
-                            border: 2px solid $mainColor;
-                            padding: 4rem;
-                            box-sizing: border-box;
-
-                            transition: background 1s ease;
-              
-                            & > div {
-                              // visibility: hidden;
-                              transition: opacity 1s ease;
-                              opacity: 0;
-                              width: 85%;
-                            }
-                          }
-              
-                          .flip-card-back {
-                            display: flex;
-                            flex-direction: column;
-                            justify-content: center;
-                            align-items: center;
-                            background-color: $backgroundColor2;
-                            
-                            transform: rotateY(180deg);
-                            &.blue { background-color: $cardColor1; color: $color2; }
-                            &.orange { background-color: $cardColor2; color: $mainColor; }
-                            &.darkBlue { background-color: $cardColor3; color: $mainColor; }
-                            &.yellow { background-color: $cardColor4; color: $color2; }
-                            &.violet { background-color: $cardColor5; color: $mainColor; }
-                            h3 {
-                              font-size: 2.7rem;
-                              @include phoneLandAndLarger {
-                                font-size: 3.3rem;
-                              }
-                              font-weight: bold;
-                              margin: 0;
-                            }
-                            .years {
-                              font-size: 1.7rem;
-                              @include phoneLandAndLarger {
-                                font-size: 2rem;
-                              }
-                              font-weight: $mediumBold;
-                            }
-                          }
-              
-                        }
-              
-                      }
-                      
-                    }
-        
-                  }
-          
-                }
-      
+                // background-color: #161616;
+                border-radius: $generalBorderRadius;
+                border: solid 2px $mainColor;
+                top: 40px;
+                left: 30px;
+                // filter: blur(1px);
               }
-    
+
             }
-    
-            .assuredQuality {
-
-              margin-bottom: calc(var(--sectionPaddingTopBott) * 1);
-
-              @include tabletPortAndLarger {
-                margin-bottom: calc(var(--sectionPaddingTopBott) * 1.2);
-              }
-    
-              @keyframes translation {
-                100% {
-                  transform: translateX(-400%);
-                }
-              }
-    
-              .words-container {
-                
-                .word-container {
-                  text-align: center;
-                  white-space: nowrap;
-                  padding: 3rem 0;
-    
-                  @include phoneLandAndLarger {
-                    padding: 2rem 0;
-                  }
-                  @include tabletPortAndLarger {
-                    padding: 3rem 0;
-                  }
-                  @include laptopsAndLarger {
-                    padding: 5rem 0;
-                  }
-      
-                  div {
-                    display: inline-block;  
-                    font-style: italic;
-                    font-weight: $blackBold;
-                    color: $color2;
-                    transform: translateX(-200%);
-                    font-size: 3.2rem;
-                    width: calc(100vw / 1.2);
-    
-                    @include phoneLandAndLarger {
-                      font-size: 3.4rem;
-                      width: calc(100vw / 2);
-                    }
-                    @include tabletPortAndLarger {
-                      font-size: 5rem;
-                      width: calc(100vw / 2);
-                    }
-                    @include tabletLandAndLarger {
-                      font-size: 5.5rem;
-                    }
-                    @include laptopsAndLarger {
-                      font-size: 7rem;
-                      width: calc(100vw / 2.2);
-                    }
-                    @include desktopsAndLarger {
-                      width: calc(100vw / 3);
-                    }
-      
-                    &.empty {
-                      // color: $textColor1;
-                      color: $mainColor;
-                      -webkit-text-stroke: 1px $color2;
-                      @include phoneLandAndLarger {
-                        -webkit-text-stroke: 2px $color2;
-                      }
-                    }
-      
-                  }
-    
-                  &.fast {
-                    div {
-                      width: calc(100vw / 2);
-                      @include phoneLandAndLarger {
-                        width: calc(100vw / 3.5);
-                      }
-                      @include laptopsAndLarger {
-                        width: calc(100vw / 4);
-                      }
-                      @include desktopsAndLarger {
-                        width: calc(100vw / 5);
-                      }
-                      animation: translation 70s infinite linear;
-                      // animation: translation 5s infinite linear;
-                    }
-                  }
-                  &.intuitive {
-                    div {
-                      width: calc(100vw / 1.4);
-                      @include phoneLandAndLarger {
-                        width: calc(100vw / 2.5);
-                      }
-                      @include desktopsAndLarger {
-                        width: calc(100vw / 3.5);
-                      }
-                      animation: translation 85s infinite linear;                                                                                                                              
-                      // animation: translation 5s infinite linear;                                                                                                                             
-                    }
-                  }
-                  &.responsive {
-                    div {
-                      animation: translation 60s infinite linear;
-                      // animation: translation 5s infinite linear;
-                    }
-                  }
-                  &.clean-code {
-                    div {
-                      animation: translation 90s infinite linear;
-                      // animation: translation 5s infinite linear;
-                    }
-                  }
-    
-                }
-      
-              }
-    
-            }
-    
-          }
-
-        }
-
-        &.skills-in-view {
-          transition: background 2s ease;
-          background: $backgroundColor4;
-          // background: linear-gradient(141deg, $backgroundColor4 50%, $backgroundColor1 21%, #2cb5e8 75%);
-
-          #skills {
-            .section-content {
-              #cards-container {
-                .swiper-container {
-                  .swiper-wrapper {
-                    .swiper-slide {
-                      .flip-card {
-
-                        &:hover .flip-card-inner {
-                          transform: rotateY(180deg);
-                        }
-            
-                        .flip-card-inner {
-                          .flip-card-front {
-                            transition: background 2s ease;
-                            background-color: $mainColor;
-                            border: none;
-              
-                            & > div {
-                              transition: opacity 1s ease;
-                              opacity: 1;
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-
-        #clients {
-          position: relative;
-          padding-bottom: 6rem;
-          box-sizing: border-box;
-
-          .section-content {
-            
-            .grid {
+            .description {
+              font-size: 1.7rem;
+              font-weight: $mediumBold;
+              margin: 0;
               display: flex;
               flex-direction: column;
               justify-content: center;
-              align-items: center;
-              width: 100%;
-
-              .row {
-                width: 80%;
-
-                .box {
-                  display: flex;
-                  justify-content: center;
-                  align-items: center;
-                  height: 150px;
-                  width: 100%;
-                  border: 2px $color2 solid;
-                  margin-top: -2px;
-
-                  & > div {
-                    width: 50%;
-                  }
-                }
-              }
-
-              @include phoneLandAndLarger {
-                .row {
-                  .box {
-                    & > div {
-                      width: 30%;
-                    }
-                  }
-                }
-              }
-
-              @include tabletPortAndLarger {
-                flex-direction: row;
-                .row {
-                  .box {
-                    height: 250px;
-                    & > div {
-                      width: 40%;
-                    }
-                  }
-                  &:first-child {
-                    margin-right: 2px;
-                  }
-                }
-              }
-
-              @include laptopsAndLarger {
-                .row {
-                  .box {
-                    height: 300px;
-                    & > div {
-                      width: 30%;
-                    }
-                  }
-                }
-              }
-
-            }
-          }
-        }
-
-      }
   
-      #contact {
-        // display: none;
-        background-color: $backgroundColor3;
-        // position: fixed;
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        height: 100vh;
-        box-sizing: border-box;
-        // z-index: -1;
-        // position: relative;
-        padding-bottom: 40px;
-  
-        .section-content {
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          height: 100%;
-          // max-width: $mawWidthContent;
-  
-          .title {
-  
-            h1 {
-              color: $mainColor;
-              text-align: center;
-  
-              &:first-child {
-                font-weight: $semiBold;
-                font-size: 2.8rem;
-                padding-bottom: 0;
-              }
-              &:last-child {
-                font-weight: $regularBold;
-                font-size: 3.5rem;
-                // padding-bottom: 3rem;
+              // p:first-child {
+              //   margin-top: 0;
+              // }
+
+              p {
+                margin-top: 0;
               }
   
               @include phoneLandAndLarger {
-                // text-align: left;
-                &:first-child {
-                  font-size: 4.2rem;
-                }
-                &:last-child {
-                  font-size: 4.8rem;
-                  // padding-bottom: 3.5rem;
-                }
+                font-size: 2rem;
               }
               @include tabletPortAndLarger {
-                text-align: left;
-                &:first-child {
-                  font-size: 5rem;
-                }
-                &:last-child {
-                  font-size: 5.8rem;
-                  // padding-bottom: 4rem;
-                }
+                font-size: 2.2rem;
               }
               @include tabletLandAndLarger {
-                &:first-child {
-                  font-weight: $mediumBold;
-                  font-size: 5.7rem;
-                }
-                &:last-child {
-                  font-size: 6.7rem;
-                  // padding-bottom: 8rem;
-                }
+                font-size: 2.3rem;
               }
               @include laptopsAndLarger {
-                &:first-child {
-                  font-size: 6.5rem;
+                font-size: 2.4rem;
+              }
+              @include desktopsAndLarger {
+                font-size: 2.6rem;
+              }
+            }
+          }
+  
+        }
+        
+      }
+
+      #skills {
+
+        --cardHeight: 260px;
+
+        @include tabletPortAndLarger {
+          // $cardHeight: 320px;
+          --cardHeight: 320px;
+        }
+  
+        $navButtonSize: 9rem;
+  
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        
+        .section-content {
+          position: relative;
+          // min-height: 100vh;
+          width: 100%;
+          // max-width: $mawWidthContent;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+  
+          .skills-container {
+            margin-bottom: calc(var(--sectionPaddingTopBott) * 1.1);
+
+            @include tabletPortAndLarger {
+              margin-bottom: calc(var(--sectionPaddingTopBott) * 1.3);
+            }
+  
+            #cards-container {
+              position: relative;
+              width: 100%;
+    
+              &.mobile-viewport {
+                .swiper-container {
+                  width: 21rem; // Default/mobile/slide width: 260px
+                  @media (max-width: 300px) {
+                    width: 19rem;
+                  }
+                  @include phoneLandAndLarger {
+                    width: 26rem;
+                  }
                 }
-                &:last-child {
-                  font-size: 7.3rem;
+              }
+              &.tablet-portrait-viewport {
+                .swiper-container {
+                  width: 95%;
+                  max-width: 52.3rem; // Slide width: 260px
                 }
+              }
+              &.laptop-viewport {
+                .swiper-container {
+                  width: 93%;
+                  max-width: 78rem; // Slide width: 260px
+                }
+              }
+              &.desktop-viewport {
+                .swiper-container {
+                  width: 92%;
+                  max-width: 104rem; // Slide width: 260px
+                }
+              }
+              &.large-desktop-viewport {
+                .swiper-container {
+                  width: 100%;
+                }
+              }
+    
+              .swiper-container {
+                position: relative;
+                $paddingSwiperContainer: 1rem;
+                // padding-top: $paddingSwiperContainer;
+                padding: $paddingSwiperContainer 0 $paddingSwiperContainer 0;
+                position: static;
+                // width: 100%;
+              
+                .swiper-button-prev, .swiper-button-next {
+                  // background-color: rgba(255, 255, 255, 0.6);
+                  background-color: transparent;
+                  border-radius: 50%;
+                  border: 2px solid $backgroundColor3;
+                  width: $navButtonSize;
+                  height: $navButtonSize;
+                  box-sizing: content-box;
+                  background-repeat: no-repeat;
+                  background-size: 13% 50%;
+                  background-position: center;
+                  // bottom: calc(#{$paddingSwiperContainer} + (#{$cardHeight} / 2) - (#{$navButtonSize} / 2));
+                  bottom: calc(#{$paddingSwiperContainer} + (var(--cardHeight) / 2) - (#{$navButtonSize} / 2));
+                  top: auto;
+                  visibility: hidden;
+                  &.hidden {
+                    visibility: hidden;
+                  }
+                }
+      
+                .swiper-button-prev {
+                  background-image: url(../assets/svg-icons/arrow-left.svg);
+                  left: 0;
+                }
+      
+                .swiper-button-next {
+                  background-image: url(../assets/svg-icons/arrow-right.svg);
+                  right: 0;
+                }
+      
+                .swiper-button-prev::after, .swiper-button-next::after {
+                  display: none;
+                }
+      
+                .swiper-pagination {
+                  bottom: -2rem;
+  
+                  @include tabletPortAndLarger {
+                    bottom: -4rem;
+                  }
+    
+                  .swiper-pagination-bullet {
+                    background-color: $backgroundColor3;
+                    opacity: 0.2;
+                    &.swiper-pagination-bullet-active {
+                      background-color: $backgroundColor3;
+                      opacity: 1;
+                    }
+                  }
+                }
+      
+                .swiper-wrapper {
+    
+                  .swiper-slide {
+                    display: flex;
+                    justify-content: center;
+                    touch-action: none; // Pour enlever le warning (Swip issue 3728)
+        
+                    .flip-card {
+                      // height: $cardHeight;
+                      height: var(--cardHeight);
+                      background-color: transparent;
+                      perspective: 1000px;
+                      position: relative;
+                      margin: 0 1.5rem;
+            
+                      flex-grow: 1;
+                      // flex-shrink: 0;
+                      flex-shrink: 1;
+            
+                      // &:hover .flip-card-inner {
+                      //   transform: rotateY(180deg);
+                      // }
+            
+                      .flip-card-inner {
+                        width: 100%;
+                        height: 100%;
+                        position: relative;
+                        transition: transform 0.6s;
+                        transform-style: preserve-3d;
+            
+                        .flip-card-front, .flip-card-back {
+                          position: absolute;
+                          border-radius: $generalBorderRadius;
+                          width: 100%;
+                          height: 100%;
+                          // box-shadow: 2px 2px 13px 0 rgba(35, 33, 33, 0.2);
+                          box-shadow: 2px 2px 2px 0 rgba(35, 33, 33, 0.1);
+                          -webkit-backface-visibility: hidden;
+                          backface-visibility: hidden;
+                        }
+            
+                        .flip-card-front {
+                          display: flex;
+                          justify-content: center;
+                          align-items: center;
+                          // background-color: $mainColor;
+                          background-color: $backgroundColor3;
+                          border: 2px solid $mainColor;
+                          padding: 4rem;
+                          box-sizing: border-box;
+
+                          transition: background 1s ease;
+            
+                          & > div {
+                            // visibility: hidden;
+                            transition: opacity 1s ease;
+                            opacity: 0;
+                            width: 85%;
+                          }
+                        }
+            
+                        .flip-card-back {
+                          display: flex;
+                          flex-direction: column;
+                          justify-content: center;
+                          align-items: center;
+                          background-color: $backgroundColor2;
+                          
+                          transform: rotateY(180deg);
+                          &.blue { background-color: $cardColor1; color: $color2; }
+                          &.orange { background-color: $cardColor2; color: $mainColor; }
+                          &.darkBlue { background-color: $cardColor3; color: $mainColor; }
+                          &.yellow { background-color: $cardColor4; color: $color2; }
+                          &.violet { background-color: $cardColor5; color: $mainColor; }
+                          h3 {
+                            font-size: 2.7rem;
+                            @include phoneLandAndLarger {
+                              font-size: 3.3rem;
+                            }
+                            font-weight: bold;
+                            margin: 0;
+                          }
+                          .years {
+                            font-size: 1.7rem;
+                            @include phoneLandAndLarger {
+                              font-size: 2rem;
+                            }
+                            font-weight: $mediumBold;
+                          }
+                        }
+            
+                      }
+            
+                    }
+                    
+                  }
+      
+                }
+        
               }
     
             }
   
           }
   
-          .contact-me {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-direction: column;
-  
-            .mail {
-              text-align: center;
-              margin-bottom: 1rem;
-              a {
-                color: $textColor1;
-                font-weight: $mediumBold;
-                font-size: 1.8rem;
-              }
-              p {
-                margin-top: 0.8rem;
-                color: $mainColor;
-                font-size: 1.6rem;
-              }
-            }
-  
-            .social-networks {
-              a {
-                color: $textColor1;
-                font-size: 1.8rem;
-              }
-            }
-  
-            @include phoneLandAndLarger {
-              // flex-direction: row;
-              .mail {
-                // text-align: left;
-                margin-bottom: 3rem;
-                a {
-                  font-size: 2.6rem;
-                }
-                p {
-                  font-size: 2rem;
-                }
-              }
-              .social-networks {
-                a {
-                  font-size: 2.6rem;
-                }
-              }
-            }
+          .assuredQuality {
+
+            margin-bottom: calc(var(--sectionPaddingTopBott) * 1);
+
             @include tabletPortAndLarger {
-              flex-direction: row;
-              .mail {
-                text-align: left;
-                margin-bottom: 0;
-                a {
-                  font-size: 2.6rem;
-                }
-                p {
-                  font-size: 2.1rem;
-                  margin-bottom: 0;
-                }
-              }
-              .social-networks {
-                a {
-                  font-size: 2.6rem;
-                }
+              margin-bottom: calc(var(--sectionPaddingTopBott) * 1.2);
+            }
+  
+            @keyframes translation {
+              100% {
+                transform: translateX(-400%);
               }
             }
-            @include tabletLandAndLarger {
-              .mail {
-                a {
+  
+            .words-container {
+              
+              .word-container {
+                text-align: center;
+                white-space: nowrap;
+                padding: 3rem 0;
+
+                &:last-child {
+                  padding-bottom: 0;
+                }
+  
+                @include phoneLandAndLarger {
+                  padding: 2rem 0;
+                }
+                @include tabletPortAndLarger {
+                  padding: 3rem 0;
+                }
+                @include laptopsAndLarger {
+                  padding: 5rem 0;
+                }
+    
+                div {
+                  display: inline-block;  
+                  // font-style: italic;
+                  // font-weight: $blackBold;
+                  font-weight: $semiBold;
+                  color: $color2;
+                  transform: translateX(-200%);
                   font-size: 3.2rem;
+                  width: calc(100vw / 1.2);
+                  text-transform: uppercase;
+  
+                  @include phoneLandAndLarger {
+                    font-size: 3.4rem;
+                    width: calc(100vw / 2);
+                  }
+                  @include tabletPortAndLarger {
+                    font-size: 5rem;
+                    width: calc(100vw / 2);
+                  }
+                  @include tabletLandAndLarger {
+                    font-size: 5.5rem;
+                  }
+                  @include laptopsAndLarger {
+                    font-size: 7rem;
+                    width: calc(100vw / 2.2);
+                  }
+                  @include desktopsAndLarger {
+                    width: calc(100vw / 3);
+                  }
+    
+                  &.empty {
+                    // color: $textColor1;
+                    color: $mainColor;
+                    -webkit-text-stroke: 1px $color2;
+                    @include phoneLandAndLarger {
+                      // -webkit-text-stroke: 2px $color2;
+                    }
+                  }
+    
                 }
-                p {
-                  font-size: 2.2rem;
+  
+                &.fast {
+                  div {
+                    width: calc(100vw / 2);
+                    @include phoneLandAndLarger {
+                      width: calc(100vw / 3.5);
+                    }
+                    @include laptopsAndLarger {
+                      width: calc(100vw / 4);
+                    }
+                    @include desktopsAndLarger {
+                      width: calc(100vw / 5);
+                    }
+                    animation: translation 70s infinite linear;
+                    // animation: translation 5s infinite linear;
+                  }
                 }
-              }
-              .social-networks {
-                a {
-                  font-size: 3.2rem;
+                &.intuitive {
+                  div {
+                    width: calc(100vw / 1.4);
+                    @include phoneLandAndLarger {
+                      width: calc(100vw / 2.5);
+                    }
+                    @include desktopsAndLarger {
+                      width: calc(100vw / 3.5);
+                    }
+                    animation: translation 85s infinite linear;                                                                                                                              
+                    // animation: translation 5s infinite linear;                                                                                                                             
+                  }
                 }
-              }
-            }
+                &.responsive {
+                  div {
+                    animation: translation 60s infinite linear;
+                    // animation: translation 5s infinite linear;
+                  }
+                }
+                &.clean-code {
+                  div {
+                    animation: translation 90s infinite linear;
+                    // animation: translation 5s infinite linear;
+                  }
+                }
   
-          }
-  
-          .footer {
-            display: flex;
-            justify-content: center;
-  
-            span {
-              text-align: center;
-              // margin-top: 3rem;
-              font-size: 1.3rem;
-              font-weight: $mediumBold;
-            }
-  
-            @include phoneLandAndLarger {
-              span {
-                // margin-top: 3.5rem;
-                font-size: 1.7rem;
               }
-            }
-            @include tabletPortAndLarger {
-              span {
-                // margin-top: 5.5rem;
-                font-size: 1.8rem;
-              }
-            }
-            @include tabletLandAndLarger {
-              span {
-                // margin-top: 6.5rem;
-                font-size: 2rem;
-              }
+    
             }
   
           }
   
         }
-  
+
       }
+
+      &.skills-in-view {
+        // transition: background 2s ease;
+        transition: background 1s ease;
+        background: $backgroundColor4;
+        // background: linear-gradient(141deg, $backgroundColor4 50%, $backgroundColor1 21%, #2cb5e8 75%);
+
+        #skills {
+          .section-content {
+            #cards-container {
+              .swiper-container {
+                .swiper-button-prev, .swiper-button-next {
+                  visibility: visible;
+                }
+                .swiper-wrapper {
+                  .swiper-slide {
+                    .flip-card {
+
+                      &:hover .flip-card-inner {
+                        transform: rotateY(180deg);
+                      }
+          
+                      .flip-card-inner {
+                        .flip-card-front {
+                          // transition: background 2s ease;
+                          transition: background 1s ease;
+                          background-color: $mainColor;
+                          border: none;
+            
+                          & > div {
+                            // transition: opacity 1s ease;
+                            opacity: 1;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      #clients {
+        position: relative;
+        padding-bottom: 6rem;
+        box-sizing: border-box;
+
+        .section-content {
+          
+          .grid {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+
+            .row {
+              width: 80%;
+
+              .box {
+                background-color: $mainColor;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 150px;
+                width: 100%;
+                border: 1px $textColor1 solid;
+
+                & > div {
+                  width: 50%;
+                }
+              }
+            }
+
+            @include phoneLandAndLarger {
+              .row {
+                .box {
+                  & > div {
+                    width: 30%;
+                  }
+                }
+              }
+            }
+
+            @include tabletPortAndLarger {
+              flex-direction: row;
+              .row {
+                .box {
+                  height: 250px;
+                  & > div {
+                    width: 40%;
+                  }
+                }
+                &:first-child {
+                  margin-right: 2px;
+                }
+              }
+            }
+
+            @include laptopsAndLarger {
+              .row {
+                .box {
+                  height: 300px;
+                  & > div {
+                    width: 30%;
+                  }
+                }
+              }
+            }
+
+          }
+        }
+      }
+
+    }
+
+    #contact {
+      // display: none;
+      background-color: $backgroundColor3;
+      // position: fixed;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      height: 100vh;
+      box-sizing: border-box;
+      // z-index: -1;
+      // position: relative;
+      padding-bottom: 40px;
+
+      .section-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        // max-width: $mawWidthContent;
+
+        .title {
+
+          h1 {
+            color: $mainColor;
+            text-align: center;
+
+            &:first-child {
+              font-weight: $semiBold;
+              font-size: 2.8rem;
+              padding-bottom: 0;
+            }
+            &:last-child {
+              font-weight: $regularBold;
+              font-size: 3.5rem;
+              // color: transparent;
+              // -webkit-text-stroke: 1px $mainColor;
+              // padding-bottom: 3rem;
+            }
+
+            @include phoneLandAndLarger {
+              // text-align: left;
+              &:first-child {
+                font-size: 4.2rem;
+              }
+              &:last-child {
+                font-size: 4.8rem;
+                // padding-bottom: 3.5rem;
+              }
+            }
+            @include tabletPortAndLarger {
+              text-align: left;
+              &:first-child {
+                font-size: 5rem;
+              }
+              &:last-child {
+                font-size: 5.8rem;
+                // padding-bottom: 4rem;
+              }
+            }
+            @include tabletLandAndLarger {
+              &:first-child {
+                font-weight: $mediumBold;
+                font-size: 5.7rem;
+              }
+              &:last-child {
+                font-size: 6.7rem;
+                // padding-bottom: 8rem;
+              }
+            }
+            @include laptopsAndLarger {
+              &:first-child {
+                font-size: 6.5rem;
+              }
+              &:last-child {
+                font-size: 7.3rem;
+              }
+            }
+  
+          }
+
+        }
+
+        .contact-me {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-direction: column;
+
+          .mail {
+            text-align: center;
+            margin-bottom: 1rem;
+            a {
+              color: $textColor1;
+              font-weight: $mediumBold;
+              font-size: 1.8rem;
+            }
+            p {
+              margin-top: 0.8rem;
+              color: $mainColor;
+              font-size: 1.6rem;
+            }
+          }
+
+          .social-networks {
+            a {
+              color: $textColor1;
+              font-size: 1.8rem;
+            }
+          }
+
+          @include phoneLandAndLarger {
+            // flex-direction: row;
+            .mail {
+              // text-align: left;
+              margin-bottom: 3rem;
+              a {
+                font-size: 2.6rem;
+              }
+              p {
+                font-size: 2rem;
+              }
+            }
+            .social-networks {
+              a {
+                font-size: 2.6rem;
+              }
+            }
+          }
+          @include tabletPortAndLarger {
+            flex-direction: row;
+            .mail {
+              text-align: left;
+              margin-bottom: 0;
+              a {
+                font-size: 2.6rem;
+              }
+              p {
+                font-size: 2.1rem;
+                margin-bottom: 0;
+              }
+            }
+            .social-networks {
+              a {
+                font-size: 2.6rem;
+              }
+            }
+          }
+          @include tabletLandAndLarger {
+            .mail {
+              a {
+                font-size: 3.2rem;
+              }
+              p {
+                font-size: 2.2rem;
+              }
+            }
+            .social-networks {
+              a {
+                font-size: 3.2rem;
+              }
+            }
+          }
+
+        }
+
+        .footer {
+          display: flex;
+          justify-content: center;
+
+          span {
+            text-align: center;
+            // margin-top: 3rem;
+            font-size: 1.3rem;
+            font-weight: $mediumBold;
+          }
+
+          @include phoneLandAndLarger {
+            span {
+              // margin-top: 3.5rem;
+              font-size: 1.7rem;
+            }
+          }
+          @include tabletPortAndLarger {
+            span {
+              // margin-top: 5.5rem;
+              font-size: 1.8rem;
+            }
+          }
+          @include tabletLandAndLarger {
+            span {
+              // margin-top: 6.5rem;
+              font-size: 2rem;
+            }
+          }
+
+        }
+
+      }
+
+    }
 
     // }
 
