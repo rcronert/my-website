@@ -13,6 +13,14 @@ const Home = ({ /*adaptCursorColor,*/ display }) => {
     const homeSectionRef = React.useRef();
     // const sunDivRef = React.useRef();
 
+    const getCubes = React.useCallback(() => {
+        let cubes = [];
+        for (let i = 0; i < 6; i++) {
+            cubes.push(<div key={`cube_${i}`} className="cube" />);
+        }
+        return cubes;
+    }, []);
+
     React.useEffect(() => {
         if (display === false) {
             homeSectionRef.current.classList.add("hidden");
@@ -50,19 +58,21 @@ const Home = ({ /*adaptCursorColor,*/ display }) => {
     return (
         <section id="home" ref={homeSectionRef} /*data-scroll-section*/>
             <div className="background-anim">
-                <div className="cube"></div>
-                <div className="cube"></div>
-                <div className="cube"></div>
-                <div className="cube"></div>
-                <div className="cube"></div>
+                {getCubes()}
             </div>
-            <div className="introduction animate__animated animate__fadeIn">
-                <div className="title">
-                    <span className="text1">Creative </span>
-                    <span className="text2">Developer</span>
+            <div className="introduction">
+                <div className="fadeInUp-wrapper">
+                    <div className="hoverFadeInUp animate__animated animate__fadeInUp">
+                        <span className="text1" data-text="Creative">Creative</span>                        
+                    </div>
+                </div>
+                <div className="fadeInUp-wrapper">
+                    <div className="hoverFadeInUp animate__animated animate__fadeInUp animate__delay-2s">
+                        <span className="text2" data-text="Developer">Developer</span>
+                    </div>
                 </div>
             </div>
-            <div className="scroll-lottie animate__animated animate__fadeIn" /*"animate__delay-2s"*/ />
+            <div className="scroll-lottie animate__animated animate__fadeIn animate__delay-2s" />
             {/* <div ref={sunDivRef} className="sun" /> */}
         </section>
     );

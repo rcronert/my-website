@@ -147,7 +147,7 @@ const CustomCursor = ({ adaptCursorColor, cursorColor }) => {
     const attachClickableEvents = React.useCallback(() => {
         const clickables = document.querySelectorAll(
             // 'a, input[type="submit"], input[type="image"], label[for], select, button, .link, *[class^="swiper-button"]'
-            'a, button, .link, *[class^="swiper-button"], .logo, .c-scrollbar_thumb'
+            'a, button, .clickable, *[class^="swiper-button"], .c-scrollbar_thumb'
         );
 
         clickables.forEach((el) => {

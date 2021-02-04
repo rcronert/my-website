@@ -122,16 +122,28 @@ const NavBar = ({ scrollInstance, navBarRef }) => {
                 {/* <img onClick={() => onLinkClick(constants.menuLinks.home)}
                     className="logo animate__animated animate__fadeIn" src={Logo} alt="Left arrow icon"
                 /> */}
-                <div className="logo animate__animated animate__fadeIn"
-                    onClick={() => onLinkClick(constants.menuLinks.home)}
-                >Robin Crönert</div>
+                <div className="fadeInUp-wrapper">
+                    <div className="logo hoverFadeInUp clickable animate__animated animate__fadeInUp animate__delay-2s"
+                        onClick={() => onLinkClick(constants.menuLinks.home)}
+                    >
+                        <span data-text="Robin Crönert">Robin Crönert</span>
+                    </div>
+                </div>
                 <nav>
                     <div className="links-wrap">
-                        <div className="page-link animate__animated animate__fadeIn">
-                            <a onClick={() => onLinkClick(constants.menuLinks.about)}>About</a>
+                        <div className="fadeInUp-wrapper">
+                            <div className="page-link clickable hoverFadeInUp animate__animated animate__fadeInUp animate__delay-2s">
+                                <span data-text="About" onClick={() => onLinkClick(constants.menuLinks.about)}>
+                                    About
+                                </span>
+                            </div>
                         </div>
-                        <div className="page-link animate__animated animate__fadeIn">
-                            <a onClick={() => onLinkClick(constants.menuLinks.contact)}>Contact</a>
+                        <div className="fadeInUp-wrapper">
+                            <div className="page-link clickable hoverFadeInUp animate__animated animate__fadeInUp animate__delay-2s">
+                                <span data-text="Contact" onClick={() => onLinkClick(constants.menuLinks.contact)}>
+                                    Contact
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </nav>

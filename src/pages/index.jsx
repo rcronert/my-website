@@ -95,9 +95,10 @@ const IndexPage = () => {
         // To handle colors (backgrounds, navbar etc) for section #About
         if (scrollEvent.currentElements.aboutMe) {
           let threshold = 0.9;
-          if (window.matchMedia("(min-width: 768px)").matches) {
-            threshold = 0.85;
-          }
+          // if (window.matchMedia("(min-width: 768px)").matches) {
+          //   // threshold = 0.85;
+          //   threshold = 0.99;
+          // }
           if (scrollEvent.currentElements.aboutMe.progress > threshold) {
             const aboutSection = document.querySelector('#about');
             if (aboutSection) {

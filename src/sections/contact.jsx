@@ -11,11 +11,14 @@ const Contact = () => {
                 </div>
                 <div className="contact-me">
                     <div className="mail">
-                        <a href="mailto:robin.cronert@gmail.com">robin.cronert@gmail.com</a>
+                        <div className="underlineEffect-wrapper">
+                            <a href="mailto:robin.cronert@gmail.com">robin.cronert@gmail.com</a>
+                        </div>
                         <p>Based in Paris</p>
                     </div>
                     <div className="social-networks">
                         <a href="https://www.linkedin.com/in/robin-crönert" rel="noreferrer" target="_blank">Linkedin</a>
+                        <a href="https://github.com/rcronert/" rel="noreferrer" target="_blank">GitHub</a>
                     </div>
                 </div>
                 <div className="footer">
