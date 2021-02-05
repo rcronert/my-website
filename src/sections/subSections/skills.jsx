@@ -10,6 +10,7 @@ import 'swiper/swiper.scss'
 import 'swiper/components/navigation/navigation.scss'
 import 'swiper/components/pagination/pagination.scss'
 import "animate.css/animate.min.css"
+import functions from "../../const/functions"
 
 SwiperCore.use([Navigation, Pagination]);
 
@@ -49,11 +50,11 @@ const Skills = () => {
 
     return (
 
-        <div id="skills" data-scroll data-scroll-id="skills">
+        <div id="skills">
 
             <div className="section-content">
 
-                <div className="skills-container">
+                <div className="skills-container" data-scroll data-scroll-id="skills">
                     <HeaderBlock
                         header="Skills"
                         text1="Front-End web development oriented skills."
@@ -66,7 +67,8 @@ const Skills = () => {
                             updateOnWindowResize
                             navigation
                             pagination
-                            simulateTouch={false}
+                            simulateTouch={!(typeof navigator !== 'undefined' && functions.isMobile())}
+                            // simulateTouch={false}
                             onBreakpoint={onBreakPointChange}
                             watchOverflow
                             breakpoints={{
@@ -116,19 +118,19 @@ const Skills = () => {
                     </div>
                 </div>
 
-                <div className="assuredQuality">
+                <div className="assuredQuality" data-scroll data-scroll-id="assuredQuality">
                     <HeaderBlock
                         header="Guaranteed quality"
                         // text1="I guarantee the quality of my deliverables"
-                        text1="I commit myself to the quality of my deliverables"
+                        text1="My commitement is to hand over quality deliverables."
                         text2="And this is how I play my cards"
                         className="hidden"
                     />
-                    <div className="words-container" data-scroll data-scroll-speed="1">
-                        <TranslationWords className='fast' text="Fast" rowNumber={1} />
-                        <TranslationWords className='intuitive' text="Intuitive" rowNumber={2} />
-                        <TranslationWords className='responsive' text="Responsive" rowNumber={3} />
-                        <TranslationWords className='clean-code' text="Clean Code" rowNumber={4} />
+                    <div id="words-container" className="words-container" data-scroll data-scroll-speed="1">
+                        <TranslationWords name={constants.wordsRowNames.first} text="Fast" rowNumber={1} />
+                        <TranslationWords name={constants.wordsRowNames.second} text="Intuitive" rowNumber={2} />
+                        <TranslationWords name={constants.wordsRowNames.third} text="Responsive" rowNumber={3} />
+                        <TranslationWords name={constants.wordsRowNames.fourth} text="Clean Code" rowNumber={4} />
                     </div>
                 </div>
 

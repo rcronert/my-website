@@ -1,5 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
+import functions from "../const/functions";
 
 const positionStart = -20;
 const innerCursorSize = 8;
@@ -7,11 +8,6 @@ const outerCursorSize = 20;
 const outerCursorBackgroundOpacity = 0.4;
 const outerScale = 3;
 const innerScale = 0.7;
-
-const isMobile = () => {
-    const ua = navigator.userAgent;
-    return /Android|Mobi/i.test(ua);
-};
 
 const styles = {
     cursorInner: {
@@ -22,10 +18,9 @@ const styles = {
         width: innerCursorSize,
         height: innerCursorSize,
         transition: 'background-color 0.3s ease-in-out, transform 0.25s ease-in-out',
-        // transition: 'transform 0.25s ease-in-out',
         zIndex: 1000,
         pointerEvents: 'none',
-        // visibility: typeof navigator !== 'undefined' && isMobile() ? 'hidden' : 'visible'
+        // visibility: typeof navigator !== 'undefined' && functions.isMobile() ? 'hidden' : 'visible'
     },
     cursorOuter: {
         position: 'fixed',
@@ -35,10 +30,9 @@ const styles = {
         width: outerCursorSize,
         height: outerCursorSize,
         transition: 'background-color 0.3s ease-in-out, transform 0.15s ease-in-out',
-        // transition: 'transform 0.15s ease-in-out',
         zIndex: 1000,
         pointerEvents: 'none',
-        // visibility: typeof navigator !== 'undefined' && isMobile() ? 'hidden' : 'visible'
+        // visibility: typeof navigator !== 'undefined' && functions.isMobile() ? 'hidden' : 'visible'
     }
 };
 
@@ -72,12 +66,12 @@ const CustomCursor = ({ adaptCursorColor, cursorColor }) => {
     const [isVisible, setIsVisible] = React.useState(true);
     const [isActive, setIsActive] = React.useState(false);
     const [isActiveClickable, setIsActiveClickable] = React.useState(false);
-    const [visibilityProp, setVisibility] = React.useState(typeof navigator !== 'undefined' && isMobile() ? 'hidden' : 'visible');
+    const [visibilityProp, setVisibility] = React.useState(typeof navigator !== 'undefined' && functions.isMobile() ? 'hidden' : 'visible');
     let endX = React.useRef(positionStart);
     let endY = React.useRef(positionStart);
 
     React.useEffect(() => {
-        window.addEventListener('resize', () => setVisibility(typeof navigator !== 'undefined' && isMobile() ? 'hidden' : 'visible'));
+        window.addEventListener('resize', () => setVisibility(typeof navigator !== 'undefined' && functions.isMobile() ? 'hidden' : 'visible'));
     }, []);
 
     const onMouseMove = React.useCallback(({ clientX, clientY }) => {

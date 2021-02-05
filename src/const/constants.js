@@ -14,6 +14,20 @@ const constants = {
         home: "home",
         about: "about",
         contact: "contact"
+    },
+    wordsRowNames: {
+        first: "fast",
+        second: "intuitive",
+        third: "responsive",
+        fourth: "clean-code",
+    },
+    respBreakPoints: {
+        phonePort: 479,
+        phoneLand: 480,
+        tabletPort: 768,
+        tabletLand: 992,
+        laptop: 1200,
+        desktop: 1600
     }
 }
 

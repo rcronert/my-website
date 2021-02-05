@@ -2,21 +2,12 @@ import React from "react"
 import locomotiveScroll from "locomotive-scroll"
 import Home from "../sections/home"
 import About from "../sections/about"
-// import Clients from "../sections/subSections/clients"
-// import AboutMe from "../sections/aboutMe"
-// import Skills from "../sections/skills"
 import Contact from "../sections/contact"
-// import Offer from "../sections/offer"
 import CustomCursor from "../components/customCursor"
-// import CustomScrollbar from "../components/customScrollBar"
 import SEO from "../components/seo"
 import NavBar from "../components/navBar"
 import constants from "../const/constants"
 import functions from "../const/functions"
-// import constants from "../const/constants"
-// import { Link } from "gatsby"
-// import Layout from "../components/layout"
-// import variablesScss from ""
 import "typeface-montserrat"
 import "animate.css/animate.min.css"
 import "locomotive-scroll/dist/locomotive-scroll.css"
@@ -53,6 +44,7 @@ const IndexPage = () => {
       smooth: true,
       inertia: 0.75,
       useKeyboard: true,
+      getDirection: true,
       smartphone: {
         smooth: true
       },
@@ -72,8 +64,38 @@ const IndexPage = () => {
     let navBarBorderDistance = 0;
     let colorChangedWhenEntered = false;
     let colorChangedWhenLeft = true;
+    const homeTitle1 = document.querySelector('#home-title-1');
+    const homeTitle2 = document.querySelector('#home-title-2');
+    const aboutSection = document.querySelector('#about');
+    let lastScrollDirection = "down";
+    const thresholdSkillsInView = 0.9;
+    let thresholdHomeTitles = 0;
+    const clientsGrid = document.querySelector('#clients-grid');
 
     if (locoScroll) {
+
+      const skillWordsContainer = document.querySelectorAll('#words-container > div');
+      const wordsAnimsList = [];
+
+      // To handle #skills word-container animation
+      if (skillWordsContainer) {
+        skillWordsContainer.forEach(parent => {
+          for (let i = 0; i < parent.children.length; i++) {
+            wordsAnimsList.push(
+              parent.children[i].animate(
+                [
+                  { transform: 'translateX(-400%)' }
+                ], {
+                // timing options
+                duration: functions.getAnimWordDuration(parent.getAttribute("name")),
+                iterations: Infinity,
+                easing: "linear"
+              }
+              )
+            );
+          }
+        });
+      }
 
       locoScroll.on("scroll", (scrollEvent) => {
 
@@ -92,42 +114,23 @@ const IndexPage = () => {
           }
         }
 
-        // To handle colors (backgrounds, navbar etc) for section #About
+        // To handle colors (backgrounds, navbar etc) for #HOME ; #AboutMe ; #SKILLS
         if (scrollEvent.currentElements.aboutMe) {
-          let threshold = 0.9;
-          // if (window.matchMedia("(min-width: 768px)").matches) {
-          //   // threshold = 0.85;
-          //   threshold = 0.99;
-          // }
-          if (scrollEvent.currentElements.aboutMe.progress > threshold) {
-            const aboutSection = document.querySelector('#about');
+          if (scrollEvent.currentElements.aboutMe.progress > thresholdSkillsInView) { // We skipped about me section
             if (aboutSection) {
-              aboutSection.classList.add("skills-in-view");
+              functions.setClass(aboutSection, "skills-in-view");
+              functions.setClass(aboutSection, "pink");
               functions.setDarkNavBarColor(navBarRef);
-
-              // console.log(scrollEvent)
-              // const y = 1 + (scrollEvent.scroll.y) / 150
-              // const [r, g, b] = [red/y, green/y, blue/y].map(Math.round)
-              
-              // aboutSection.style.backgroundColor = `rgb(${r}, ${g}, ${b})`
-
-              // To make titles appear
-              const headerBlocks = document.querySelectorAll('#skills .header-block');
-              if (headerBlocks) {
-                headerBlocks.forEach(element => {
-                  element.classList.remove("hidden");
-                  // const classesList = ["animate__animated", "animate__fadeIn"];
-                  // element.classList.add(...classesList);
-                });
-              }
             }
           } else { // If we are before the skills section
             const aboutSection = document.querySelector('#about');
             if (aboutSection) {
               if (aboutSection.classList.contains("skills-in-view")) {
-                aboutSection.classList.remove("skills-in-view");
+                functions.unsetClass(aboutSection, "skills-in-view");
+                functions.unsetClass(aboutSection, "first-background");
                 functions.setLightNavBarColor(navBarRef);
               } else {
+
                 // To handle navbar color changes for #home section
                 if (scrollEvent.scroll.y > window.innerHeight - navBarBorderDistance) { // If we scrolled more than Home section height (viewport height) - navbar border distance
                   if (functions.isDarkNavBarColor(navBarRef)) {
@@ -138,8 +141,53 @@ const IndexPage = () => {
                     functions.setDarkNavBarColor(navBarRef);
                   }
                 }
+
+                // To handle effect on home titles
+                if (homeTitle1 && homeTitle2) {
+                  if (window.matchMedia(`(min-width: ${constants.respBreakPoints.tabletPort}px)`).matches) {
+                    thresholdHomeTitles = 0.07;
+                  } else if (window.matchMedia(`(min-width: ${constants.respBreakPoints.phoneLand}px)`).matches) {
+                    thresholdHomeTitles = 0.08;
+                  } else {
+                    thresholdHomeTitles = 0.12;
+                  }
+                  if (scrollEvent.currentElements.aboutMe.progress > thresholdHomeTitles) {
+                    functions.setClass(homeTitle1, "hiddenEffect");
+                    functions.setClass(homeTitle2, "hiddenEffect");
+                  } else {
+                    functions.unsetClass(homeTitle1, "hiddenEffect");
+                    functions.unsetClass(homeTitle2, "hiddenEffect");
+                  }
+                }
               }
             }
+          }
+        }
+
+        // To handle direction of words translating in section assuredQuality
+        if (scrollEvent.currentElements.assuredQuality && scrollEvent.direction !== lastScrollDirection) {
+          lastScrollDirection = scrollEvent.direction;
+          wordsAnimsList.forEach(anim => {
+            anim.reverse();
+          });
+        }
+
+        // To hande backgrounds color variations between #SKILLS ; #ASSUREDQUALITY ; #CLIENTS
+        if (aboutSection) {
+          if (scrollEvent.currentElements.skills) { // We are still in skills section
+            if (aboutSection.classList.contains("skills-in-view")) {
+              functions.setClass(aboutSection, "first-background");
+              functions.unsetClass(aboutSection, "second-background");
+            }
+          } else if (scrollEvent.currentElements.assuredQuality) { // We are no longer in skills section but in assuredQuality section
+            functions.setClass(aboutSection, "second-background");
+            functions.unsetClass(aboutSection, "first-background");
+            functions.unsetClass(aboutSection, "third-background");
+            functions.unsetClass(clientsGrid, "clients-background");
+          } else if (scrollEvent.currentElements.clients) { // We are no longer in assuredQuality section but in clients section
+            functions.setClass(aboutSection, "third-background");
+            functions.unsetClass(aboutSection, "second-background");
+            functions.setClass(clientsGrid, "clients-background");
           }
         }
 
@@ -163,11 +211,6 @@ const IndexPage = () => {
         }
 
       });
-      // locoScroll.on("call", (callValue ) => {
-      //   console.log(callValue)
-      //   // const aboutSection = document.querySelector('#about');
-      //   // console.log(aboutSection)
-      // });
     }
   }, [locoScroll, navBarRef]);
 
@@ -175,7 +218,6 @@ const IndexPage = () => {
     <>
       <CustomCursor adaptCursorColor={adaptCursorColor} cursorColor={cursorColor} />
       <main data-scroll-container>
-        {/* A voir si on peut gérer avec le scroll ? */}
         <SEO title="Home" />
         <NavBar navBarRef={navBarRef} scrollInstance={locoScroll} />
         <Home adaptCursorColor={adaptCursorColor} display={displayHome} />

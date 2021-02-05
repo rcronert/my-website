@@ -1,5 +1,4 @@
 import React from "react"
-// import Logo from "../assets/svg-icons/logo_rc.svg"
 import lottie from "lottie-web"
 import menuLottieJson from "../assets/lotties/burger-menu.json"
 import constants from "../const/constants"

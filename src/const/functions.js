@@ -1,4 +1,11 @@
+import constants from "./constants";
+
 const functions = {
+
+    isMobile: () => {
+        const ua = navigator.userAgent;
+        return /Android|Mobi/i.test(ua);
+    },
 
     isLightOrDark: (color) => {
         let r, g, b, hsp;
@@ -55,6 +62,42 @@ const functions = {
 
     isDarkNavBarColor: (navBarRef) => {
         return navBarRef.current.classList.contains("dark");
+    },
+
+    hideHomeTitles: (title) => {
+        if (!title.classList.contains("hiddenEffect")) {
+            title.classList.add("hiddenEffect");
+        }
+    },
+
+    revealHomeTitles: (title) => {
+        if (title.classList.contains("hiddenEffect")) {
+            title.classList.remove("hiddenEffect");
+        }
+    },
+
+    getAnimWordDuration: (name) => {
+        if (name === constants.wordsRowNames.first) {
+            return 70000;
+        } else if (name === constants.wordsRowNames.second) {
+            return 85000;
+        } else if (name === constants.wordsRowNames.third) {
+            return 60000;
+        } else if (name === constants.wordsRowNames.fourth) {
+            return 90000;
+        }
+    },
+
+    setClass: (element, style) => {
+        if (!element.classList.contains(style)) {
+            element.classList.add(style);
+        }
+    },
+
+    unsetClass: (element, style) => {
+        if (element.classList.contains(style)) {
+            element.classList.remove(style);
+        }
     },
 
 }

@@ -3,8 +3,8 @@
 // $breakpoints: (
 $phonePort: 479px; // Mobile-portrait / default breakpoint
 $phoneLand: 480px; // Mobile landscape (and larger)
-$tabetPort: 768px; // Tablet portrait (and larger)
-$tabetLand: 992px; // Tablet landscape (and larger)
+$tabletPort: 768px; // Tablet portrait (and larger)
+$tabletLand: 992px; // Tablet landscape (and larger)
 $laptop: 1200px; // Laptops (and larger)
 $desktop: 1600px; // Desktops (and larger)
 // );
@@ -20,12 +20,12 @@ $desktop: 1600px; // Desktops (and larger)
   }
 }
 @mixin tabletPortAndLarger {
-  @media (min-width: #{$tabetPort}) {
+  @media (min-width: #{$tabletPort}) {
     @content;
   }
 }
 @mixin tabletLandAndLarger {
-  @media (min-width: #{$tabetLand}) {
+  @media (min-width: #{$tabletLand}) {
     @content;
   }
 }
@@ -75,7 +75,7 @@ html {
 
   // $sunriseDuration: 2s;
   // $animateFadeInDuration: 1s;
-  $homeDelayBeforeNavItems: 0.8s;
+  // $homeDelayBeforeNavItems: 0.8s;
   $animateFadeInRightLeftDuration: 1.5s;
   // $navBarPadding: 8.5vw;
   $navBarPadding: 7vw;
@@ -109,7 +109,7 @@ html {
 
     // CURSOR
     cursor: none;
-
+    
     @include phonePort {
       .outer-cursor {
         display: none;
@@ -271,11 +271,31 @@ html {
             transform: skewY(0);
             top: 0;
             transform-origin: right bottom;
+            &.overlap-home {
+              color: red;
+            }
           }
           &::after {
             transform: skewY(7deg);
             top: 105%;
             transform-origin: left top;
+          }
+        }
+        &.hiddenEffect {
+          pointer-events: none;
+          span {
+            $transitionEffectDuration: 0.5s;
+            transform: translateY(-105%);
+            transition: transform $transitionEffectDuration cubic-bezier(.19,1,.22,1)
+              ,-webkit-transform $transitionEffectDuration cubic-bezier(.19,1,.22,1)
+              ,-moz-transform $transitionEffectDuration cubic-bezier(.19,1,.22,1)
+              ,-o-transform $transitionEffectDuration cubic-bezier(.19,1,.22,1);
+            &::before {
+              transform: skewY(7deg);
+            }
+            &::after {
+              visibility: hidden;
+            }
           }
         }
         &:hover {
@@ -314,13 +334,13 @@ html {
           border-radius: 5px;
         }
         &::before {
-          background: $textColor1;
+          background: $color4;
           border-radius: 5px;
           transform: scaleX(0);
           transition: $transitionEffect;
         }
         &::after {       
-          background: $textColor1;
+          background: $color4;
           opacity: .4;
           transform: scaleX(1);
         }
@@ -361,7 +381,7 @@ html {
       // }
       .animate__animated.animate__fadeInUp {
         --animate-duration: 1s;
-        --animate-delay: #{$homeDelayBeforeNavItems};
+        --animate-delay: 0.8s;
       }
 
       .logo {
@@ -554,7 +574,7 @@ html {
             color: $color2;
             // color: $mainColor;
             // -webkit-text-stroke: 1px $color2;
-            font-weight: $mediumBold;
+            // font-weight: $mediumBold;
           }
         }
       }
@@ -562,9 +582,10 @@ html {
       .menu-link {
         // font-size: 4rem;
         // font-style: italic;
-        font-size: 5rem;
-        font-weight: $mediumBold;
-        margin-bottom: 2rem;
+        // font-size: 5rem;
+        font-size: 4.5rem;
+        // font-weight: $mediumBold;
+        margin-bottom: 2.3rem;
         width: 0;
 
         a {
@@ -624,8 +645,8 @@ html {
       flex-direction: column;
 
       .animate__animated.animate__fadeIn {
-        --animate-duration: 5s;
-        --animate-delay: #{$homeDelayBeforeNavItems};
+        --animate-duration: 2s;
+        // --animate-delay: #{$homeDelayBeforeNavItems};
       }
       .animate__animated.animate__fadeInUp {
         --animate-duration: 1s;
@@ -657,7 +678,9 @@ html {
 
       .background-anim {
         // $delay: 6s;
+        --generalDelay: 3s;
         background: linear-gradient(132deg, $mainColor, $backgroundColor4, $backgroundColor1);
+        // background: linear-gradient(132deg, $backgroundColor4, $backgroundColor5, $backgroundColor6);
         background-size: 400% 400%;
         animation: gradient 15s ease infinite;
         position: relative;
@@ -667,50 +690,53 @@ html {
 
         .cube {
           position: absolute;
-          top: 80vh;
-          left: 45vw;
-          // width: 1rem;
-          // height: 1rem;
           width: 2rem;
           height: 2rem;
-          border: solid 1px $mainColor;
-          // border-radius: $generalBorderRadius;
+          border: solid 1px $circleColor2;
           border-radius: 5px;
           transform-origin: top left;
           transform: scale(0) rotate(0deg) translate(-50%, -50%);
-          animation: cube 12s ease-in forwards infinite;
+          // transform: scale(20) rotate(960deg) translate(-50%, -50%);
+          animation: cube 15s ease-in forwards infinite;
           filter: blur(2px);
-        }
-        .cube:nth-child(2n) {
-          border-color: $backgroundColor3;
-          // border-color: $backgroundColor2;
-          // border-color: #B5AAAA;
-        }
-        .cube:nth-child(2) {
-          animation-delay: 2s;
-          left: 25vw;
-          top: 40vh;
-        }
-        .cube:nth-child(3) {
-          animation-delay: 4s;
-          left: 75vw;
-          top: 50vh;
-        }
-        .cube:nth-child(4) {
-          animation-delay: 6s;
-          left: 90vw;
-          top: 10vh;
-        }
-        .cube:nth-child(5) {
-          animation-delay: 8s;
-          left: 10vw;
-          top: 85vh;
-        }
-        .cube:nth-child(6) {
-          animation-delay: 10s;
-          left: 50vw;
-          top: 10vh;
-        }
+          
+          &:nth-child(1) {
+            animation-delay: calc(var(--generalDelay) + 8s);
+            border-color: $backgroundColor3;
+            top: 80vh;
+            left: 45vw;
+          }
+          &:nth-child(2) {
+            border-color: $backgroundColor3;
+            animation-delay: calc(var(--generalDelay) + 2s);
+            left: 27vw;
+            top: 30vh;
+          }
+          &:nth-child(3) {
+            // border-color: $mainColor;
+            left: 10vw;
+            top: 85vh;
+            animation-delay: var(--generalDelay);
+          }
+          &:nth-child(4) {
+            // border-color: $mainColor;
+            animation-delay: calc(var(--generalDelay) + 10s);
+            left: 60vw;
+            top: 10vh;
+          }
+          &:nth-child(5) {
+            border-color: $backgroundColor3;
+            animation-delay: calc(var(--generalDelay) + 4s);
+            left: 75vw;
+            top: 70vh;
+          }
+          &:nth-child(6) {
+            border-color: $backgroundColor3;
+            animation-delay: calc(var(--generalDelay) + 6s);
+            left: 90vw;
+            top: 25vh;
+          }
+        }      
       }
 
       .introduction {
@@ -730,14 +756,12 @@ html {
         .text1, .text2 {
           font-size: 5rem;
         }
-
         .text1 {
           // color: transparent;         
           &::before, &::after {
             color: $color2;
           }
         }
-
         .text2 {
           font-weight: $semiBold;
           color: transparent;
@@ -796,7 +820,11 @@ html {
     }
 
     #about {
-      transition: background 0.5s ease;
+
+      $skillsInViewAnimDuration: 1s;
+      $skillsInViewAnimDurationBack: 0.5s;
+
+      transition: background $skillsInViewAnimDurationBack ease;
       background: $backgroundColor3;
       // background: $backgroundColor4;
       // .animate__animated.animate__fadeIn {
@@ -812,7 +840,7 @@ html {
         margin-top: 2rem;
         margin-bottom: calc(var(--sectionPaddingTopBott) * 1.1);
         opacity: 1;
-        transition: opacity 0.5s ease;
+        transition: opacity $skillsInViewAnimDurationBack ease;
 
         @include tabletPortAndLarger {
           margin-bottom: calc(var(--sectionPaddingTopBott) * 1.3);
@@ -852,20 +880,24 @@ html {
                 
               }
 
-              // .img-wrapper-move {
-              //   position: relative;
-              //   overflow: hidden;
-              //   border-radius: $generalBorderRadius;
+              .img-wrapper-move {
+                // position: absolute;
+                position: relative;
+                // top: 0;
+                overflow: hidden;
+                border-radius: $generalBorderRadius;
 
                 .img-wrapper {
                   position: relative;
+                  // overflow: hidden;
+                  // border-radius: $generalBorderRadius;
 
                   & > div {
-                    border-radius: $generalBorderRadius;
-                    // box-shadow: 60px 60px 3px #161616, 60px 60px 0 1px white;
+                    transform: scale(1.2);  
                   }
 
-                // }
+                  
+                }
               }
 
               .img-box {
@@ -1105,11 +1137,11 @@ html {
                           box-sizing: border-box;
 
                           // transition: background 1s ease;
-                          transition: background 0.5s ease;
+                          transition: background $skillsInViewAnimDurationBack ease;
             
                           & > div {
                             // visibility: hidden;
-                            transition: opacity 0.5s ease;
+                            transition: opacity $skillsInViewAnimDurationBack ease;
                             opacity: 0;
                             width: 85%;
                           }
@@ -1120,7 +1152,7 @@ html {
                           flex-direction: column;
                           justify-content: center;
                           align-items: center;
-                          background-color: $backgroundColor2;
+                          // background-color: $backgroundColor2;
                           
                           transform: rotateY(180deg);
                           &.blue { background-color: $cardColor1; color: $color2; }
@@ -1167,9 +1199,15 @@ html {
               margin-bottom: calc(var(--sectionPaddingTopBott) * 1.2);
             }
   
-            @keyframes translation {
+            @keyframes translationDown {
               100% {
                 transform: translateX(-400%);
+              }
+            }
+
+            @keyframes translationUp {
+              100% {
+                transform: translateX(400%);
               }
             }
   
@@ -1179,6 +1217,10 @@ html {
                 text-align: center;
                 white-space: nowrap;
                 padding: 3rem 0;
+
+                &:first-child {
+                  padding-top: 0;
+                }
 
                 &:last-child {
                   padding-bottom: 0;
@@ -1225,7 +1267,7 @@ html {
                   }
     
                   &.empty {
-                    // color: $textColor1;
+                    // color: $color4;
                     color: $mainColor;
                     -webkit-text-stroke: 1px $color2;
                     @include phoneLandAndLarger {
@@ -1234,8 +1276,9 @@ html {
                   }
     
                 }
-  
-                &.fast {
+
+                // FAST
+                &:nth-child(1) {
                   div {
                     width: calc(100vw / 2);
                     @include phoneLandAndLarger {
@@ -1247,11 +1290,11 @@ html {
                     @include desktopsAndLarger {
                       width: calc(100vw / 5);
                     }
-                    animation: translation 70s infinite linear;
-                    // animation: translation 5s infinite linear;
                   }
                 }
-                &.intuitive {
+
+                // INTUITIVE
+                &:nth-child(2) {
                   div {
                     width: calc(100vw / 1.4);
                     @include phoneLandAndLarger {
@@ -1259,21 +1302,7 @@ html {
                     }
                     @include desktopsAndLarger {
                       width: calc(100vw / 3.5);
-                    }
-                    animation: translation 85s infinite linear;                                                                                                                              
-                    // animation: translation 5s infinite linear;                                                                                                                             
-                  }
-                }
-                &.responsive {
-                  div {
-                    animation: translation 60s infinite linear;
-                    // animation: translation 5s infinite linear;
-                  }
-                }
-                &.clean-code {
-                  div {
-                    animation: translation 90s infinite linear;
-                    // animation: translation 5s infinite linear;
+                    }                                                                                                                        
                   }
                 }
   
@@ -1289,13 +1318,24 @@ html {
 
       &.skills-in-view {
         // transition: background 2s ease;
-        transition: background 1s ease;
-        background: $backgroundColor4;
+        transition: background $skillsInViewAnimDuration ease;
+        // background: $backgroundColor4;
+        // background: linear-gradient(360deg, $mainColor, $backgroundColor4, $backgroundColor1);
         // background: linear-gradient(141deg, $backgroundColor4 50%, $backgroundColor1 21%, #2cb5e8 75%);
+
+        &.first-background {
+          background: $backgroundColor4;
+        }
+        &.second-background {
+          background: $backgroundColor5;
+        }
+        &.third-background {
+          background: $backgroundColor6;
+        }
 
         #about-me {
           opacity: 0;
-          transition: opacity 1s ease;
+          transition: opacity $skillsInViewAnimDuration ease;
         }
 
         #skills {
@@ -1320,7 +1360,7 @@ html {
                       .flip-card-inner {
                         .flip-card-front {
                           // transition: background 2s ease;
-                          transition: background 1s ease;
+                          transition: background $skillsInViewAnimDuration ease;
                           background-color: $mainColor;
                           border: none;
             
@@ -1345,13 +1385,15 @@ html {
         box-sizing: border-box;
 
         .section-content {
-          
+          box-sizing: content-box;
           .grid {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             width: 100%;
+            // border: 1px #ddd solid;
+            // box-sizing: content-box;
 
             .row {
               width: 80%;
@@ -1364,10 +1406,20 @@ html {
                 // height: 120px;
                 height: 18vh;
                 width: 100%;
-                border: 1px $textColor1 solid;
+                border: 1px $backgroundColor5 solid;
+                // border: 1px black solid;
+                border-bottom-width: 0 !important;
+                transition: border $skillsInViewAnimDurationBack ease;
 
                 & > div {
                   width: 45%;
+                }
+              }
+              &:last-child {
+                .box {
+                  &:last-child {
+                    border-bottom-width: 1px !important;
+                  }
                 }
               }
             }
@@ -1387,17 +1439,22 @@ html {
             @include tabletPortAndLarger {
               flex-direction: row;
               .row {
+                // box-sizing: content-box;
                 .box {
                   // height: 220px;
                   height: 30vh;
                   min-height: 200px;
                   max-height: 300px;
+                  border-bottom-width: 1px !important;
                   & > div {
                     width: 37%;
                   }
+                  &:first-child {
+                    border-bottom-width: 0 !important;
+                  }
                 }
                 &:first-child {
-                  margin-right: 2px;
+                  // margin-right: 2px;
                 }
               }
             }
@@ -1424,6 +1481,16 @@ html {
                   & > div {
                     width: 25%;
                   }
+                }
+              }
+            }
+
+            &.clients-background {
+              .row {
+                .box {
+                  border: 1px $color3 solid;
+                  transition: border $skillsInViewAnimDuration ease;
+                  // border: 1px black solid;
                 }
               }
             }
@@ -1533,7 +1600,7 @@ html {
             margin-bottom: 1rem;
 
             a {
-              color: $textColor1;
+              color: $color4;
               font-weight: $mediumBold;
               font-size: 1.8rem;
             } 
@@ -1549,7 +1616,7 @@ html {
             flex-direction: column;
             align-items: center;
             a {
-              color: $textColor1;
+              color: $color4;
               font-size: 1.7rem;
               text-decoration: none;
               &:first-child {

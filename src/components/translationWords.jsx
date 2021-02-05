@@ -30,7 +30,7 @@ const TranlationWords = props => {
     }
 
     return (
-        <div className={`word-container${props.className ? (' ' + props.className) : '' }`}
+        <div name={props.name} className={`word-container${props.className ? (' ' + props.className) : '' }`}
             data-scroll data-scroll-direction="horizontal" {...dataScrollProps}
         >
             {words}
@@ -40,8 +40,9 @@ const TranlationWords = props => {
 
 TranlationWords.propTypes = {
     text: PropTypes.string.isRequired,
-    className: PropTypes.string.isRequired,
+    className: PropTypes.string,
     rowNumber: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
     // img: PropTypes.string.isRequired,
     // altImg: PropTypes.string.isRequired,
     // backContent: PropTypes.object.isRequired,
