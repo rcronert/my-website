@@ -42,42 +42,32 @@ $desktop: 1600px; // Desktops (and larger)
 
 html {
   height: 100%;
-  // width: 100%;
   font-size: 62.5%;
   font-family: "montserrat";
 
   // Mobile port default
   --globalPaddingLeftRight: 15vw;
-  // $sectionPaddingTopBott: 7rem;
   --sectionPaddingTopBott: 7rem;
   --paddingBottomH1: 3rem;
 
   @include phoneLandAndLarger {
-    // $sectionPaddingTopBott: 8rem;
     --sectionPaddingTopBott: 8rem;
     --paddingBottomH1: 4.5rem;
   }
   @include tabletPortAndLarger {
-    // $sectionPaddingTopBott: 10rem;
     --sectionPaddingTopBott: 10rem;
     --paddingBottomH1: 6rem;
   }
   @include tabletLandAndLarger {
-    // $sectionPaddingTopBott: 12rem;
     --sectionPaddingTopBott: 12rem;
     --paddingBottomH1: 7rem;
   }
   @include laptopsAndLarger {
-    // $sectionPaddingTopBott: 13rem;
     --sectionPaddingTopBott: 13rem;
     --paddingBottomH1: 8rem;
   }
 
-  // $sunriseDuration: 2s;
-  // $animateFadeInDuration: 1s;
-  // $homeDelayBeforeNavItems: 0.8s;
   $animateFadeInRightLeftDuration: 1.5s;
-  // $navBarPadding: 8.5vw;
   $navBarPadding: 7vw;
 
   $mawWidthContent: 1400px;
@@ -90,20 +80,14 @@ html {
 
   body {
     height: 100%;
-    // width: 100%;
     margin: 0;
     padding: 0;
     color: $mainColor;
-    // overflow: auto;
-    // overflow: hidden;
-    // position: relative;
 
     #___gatsby {
       height: 100%;
-      // width: 100%;
       #gatsby-focus-wrapper {
         height: 100%;
-        // width: 100%;
       }
     }
 
@@ -131,7 +115,6 @@ html {
     }
 
     section {
-      // padding: $sectionPaddingTopBott $globalPaddingLeftRight;
       padding: var(--sectionPaddingTopBott) var(--globalPaddingLeftRight);
       .section-content {
         margin: 0 auto;
@@ -167,29 +150,17 @@ html {
       color: $color2;
       margin-bottom: 10rem;
 
-      // &.hidden {
-      //   // visibility: hidden;
-      //   color: $mainColor;
-      // }
-
       margin-bottom: 4.5rem;
       .header {
         h3 {
-          // font-size: 1.8rem;
           font-size: 2rem;
           margin-bottom: 0.6rem;
-          // font-weight: $mediumBold;
           font-weight: $semiBold;
         }
       }
       .text {
-        // font-size: 2.5rem;
-        // text-align: center;
         font-size: 1.9rem;
-        // line-height: 25px;
-        // font-weight: $semiBold;
         font-weight: $mediumBold;
-        // font-style: italic;
         p {
           margin: 0;
         }
@@ -258,14 +229,10 @@ html {
           transition: $transitionEffect;
           color: transparent !important;
           &::before, &::after {
-            // pointer-events: auto;
             content: attr(data-text);
             position: absolute;
             display: block;
             transition: $transitionEffect;
-            // color: $color2;
-            // box-sizing: border-box;
-            // z-index: -1;
           }
           &::before {
             transform: skewY(0);
@@ -329,7 +296,7 @@ html {
           position: absolute;
           width: 100%;
           height: 2px;
-          bottom: 0px;
+          bottom: -5px;
           left: 0;
           border-radius: 5px;
         }
@@ -355,15 +322,12 @@ html {
 
     .nav-bar {
       height: 15.8vh;
-      // height: 17vh;
-      // height: 10rem;
       min-height: 100px;
       box-sizing: border-box;
       top: 0;
       left: 0;
       width: 100%;
       padding: 0 $navBarPadding;
-      // width: calc(100% - (2 * #{$navBarPadding}));
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -376,9 +340,6 @@ html {
         pointer-events: none;
       }
 
-      // .animate__animated.animate__fadeIn {
-      //   --animate-duration: #{$animateFadeInDuration};
-      // }
       .animate__animated.animate__fadeInUp {
         --animate-duration: 1s;
         --animate-delay: 0.8s;
@@ -414,30 +375,17 @@ html {
         }
       }
 
-      // .logo {
-      //   height: 50%;
-      //   filter: invert(100%) sepia(3%) saturate(7434%) hue-rotate(39deg) brightness(116%) contrast(102%);
-      //   display: none;
-      //   @include tabletPortAndLarger {
-      //     display: block;
-      //     pointer-events: auto;
-      //   }
-      // }
-
       nav {
         display: none;
 
         @include tabletPortAndLarger {
           display: flex;
-          // font-size: 2.1rem;
           font-size: 1.9rem;
         }
         @include tabletLandAndLarger {
-          // font-size: 2.2rem;
           font-size: 2rem;
         }
         @include laptopsAndLarger {
-          // font-size: 2.4rem;
           font-size: 2.1rem;
         }
         @include desktopsAndLarger {
@@ -450,7 +398,6 @@ html {
           height: 100%;
 
           .page-link {
-            // padding-left: 7rem;
             
             @include tabletPortAndLarger {
               padding-left: 5rem;
@@ -466,34 +413,10 @@ html {
             }
 
             span {
-              // color: $mainColor;
-              // pointer-events: auto;
-              // font-weight: $mediumBold;
               &::before, &::after {
                 color: $mainColor;
               }
             }
-
-            // a {
-            //   color: $mainColor;
-            //   // color: $color2;
-            //   // color: black;
-            //   text-decoration: none;
-            //   pointer-events: auto;
-            // }
-            // a:link {
-            //   text-decoration: none;
-            // }
-            // a:visited {
-            //   text-decoration: none;
-            // }
-            // a:hover {
-            //   // color: $fourthColor;
-            //   text-decoration: none;
-            // }
-            // a:active {
-            //   text-decoration: none;
-            // }
           }
         }
       }
@@ -512,9 +435,7 @@ html {
 
       &.dark {
         .logo {
-          // filter: invert(6%) sepia(3%) saturate(1512%) hue-rotate(314deg) brightness(102%) contrast(84%);
           span {
-            // color: $color2;
             font-weight: $mediumBold;
             &::before, &::after {
               color: $color2;
@@ -525,7 +446,6 @@ html {
           .links-wrap {
             .page-link {
               span {
-                // color: $color2;
                 font-weight: $mediumBold;
                 &::before, &::after {
                   color: $color2;
@@ -572,26 +492,17 @@ html {
         .menu-link {
           a {
             color: $color2;
-            // color: $mainColor;
-            // -webkit-text-stroke: 1px $color2;
-            // font-weight: $mediumBold;
           }
         }
       }
 
       .menu-link {
-        // font-size: 4rem;
-        // font-style: italic;
-        // font-size: 5rem;
         font-size: 4.5rem;
-        // font-weight: $mediumBold;
         margin-bottom: 2.3rem;
         width: 0;
 
         a {
           color: $mainColor;
-          // color: $color2;
-          // -webkit-text-stroke: 1px $mainColor;
           text-decoration: none;
           pointer-events: auto;
         }
@@ -611,42 +522,24 @@ html {
 
     }
 
-    // #scroll-sticky-top-ref {
-    //   position: fixed;
-    //   top: 0;
-    //   width: 100vw;
-    //   height: 100vh;
-    // }
-
-    // #sections-container {
-    //   position: fixed;
-    //   width: 100%;
-
     #home {
       min-height: 100vh;
       width: 100%;
       z-index: 1;
-      // width: calc(100vw - 2 * var(--globalPaddingLeftRight));
       box-sizing: border-box;
-      // position: relative;
       position: fixed;
       top: 0;
-      // pointer-events: none;
-      // padding: 0 $navBarPadding;
       padding: 0 0;
-      // background: $backgroundColor1;
       background: $mainColor;
       overflow: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
-      // min-height: 400px;
 
       flex-direction: column;
 
       .animate__animated.animate__fadeIn {
         --animate-duration: 2s;
-        // --animate-delay: #{$homeDelayBeforeNavItems};
       }
       .animate__animated.animate__fadeInUp {
         --animate-duration: 1s;
@@ -665,22 +558,21 @@ html {
         }
       }
 
-      @keyframes cube {
-        from {
-          transform: scale(0) rotate(0deg) translate(-50%, -50%);
-          opacity: 0.7;
-        }
-        to {
-          transform: scale(10) rotate(960deg) translate(-50%, -50%);
-          opacity: 0;
-        }
-      }
+      // @keyframes cube {
+      //   from {
+      //     transform: scale(0) rotate(0deg) translate(-50%, -50%);
+      //     opacity: 0.7;
+      //   }
+      //   to {
+      //     transform: scale(10) rotate(960deg) translate(-50%, -50%);
+      //     opacity: 0;
+      //   }
+      // }
 
       .background-anim {
         // $delay: 6s;
         --generalDelay: 3s;
         background: linear-gradient(132deg, $mainColor, $backgroundColor4, $backgroundColor1);
-        // background: linear-gradient(132deg, $backgroundColor4, $backgroundColor5, $backgroundColor6);
         background-size: 400% 400%;
         animation: gradient 15s ease infinite;
         position: relative;
@@ -688,55 +580,53 @@ html {
         width: 100%;
         overflow: hidden;
 
-        .cube {
-          position: absolute;
-          width: 2rem;
-          height: 2rem;
-          border: solid 1px $circleColor2;
-          border-radius: 5px;
-          transform-origin: top left;
-          transform: scale(0) rotate(0deg) translate(-50%, -50%);
-          // transform: scale(20) rotate(960deg) translate(-50%, -50%);
-          animation: cube 15s ease-in forwards infinite;
-          filter: blur(2px);
+        // .cube {
+        //   position: absolute;
+        //   width: 2rem;
+        //   // height: 3rem;
+        //   height: 2rem;
+        //   border: solid 1px $circleColor2;
+        //   border-radius: 10px;
+        //   transform-origin: top left;
+        //   transform: scale(0) rotate(0deg) translate(-50%, -50%);
+        //   animation: cube 15s ease-in forwards infinite;
+        //   filter: blur(2px);
           
-          &:nth-child(1) {
-            animation-delay: calc(var(--generalDelay) + 8s);
-            border-color: $backgroundColor3;
-            top: 80vh;
-            left: 45vw;
-          }
-          &:nth-child(2) {
-            border-color: $backgroundColor3;
-            animation-delay: calc(var(--generalDelay) + 2s);
-            left: 27vw;
-            top: 30vh;
-          }
-          &:nth-child(3) {
-            // border-color: $mainColor;
-            left: 10vw;
-            top: 85vh;
-            animation-delay: var(--generalDelay);
-          }
-          &:nth-child(4) {
-            // border-color: $mainColor;
-            animation-delay: calc(var(--generalDelay) + 10s);
-            left: 60vw;
-            top: 10vh;
-          }
-          &:nth-child(5) {
-            border-color: $backgroundColor3;
-            animation-delay: calc(var(--generalDelay) + 4s);
-            left: 75vw;
-            top: 70vh;
-          }
-          &:nth-child(6) {
-            border-color: $backgroundColor3;
-            animation-delay: calc(var(--generalDelay) + 6s);
-            left: 90vw;
-            top: 25vh;
-          }
-        }      
+        //   &:nth-child(1) {
+        //     animation-delay: calc(var(--generalDelay) + 8s);
+        //     border-color: $backgroundColor3;
+        //     top: 80vh;
+        //     left: 45vw;
+        //   }
+        //   &:nth-child(2) {
+        //     border-color: $backgroundColor3;
+        //     animation-delay: calc(var(--generalDelay) + 2s);
+        //     left: 27vw;
+        //     top: 30vh;
+        //   }
+        //   &:nth-child(3) {
+        //     left: 10vw;
+        //     top: 85vh;
+        //     animation-delay: var(--generalDelay);
+        //   }
+        //   &:nth-child(4) {
+        //     animation-delay: calc(var(--generalDelay) + 10s);
+        //     left: 60vw;
+        //     top: 10vh;
+        //   }
+        //   &:nth-child(5) {
+        //     border-color: $backgroundColor3;
+        //     animation-delay: calc(var(--generalDelay) + 4s);
+        //     left: 75vw;
+        //     top: 70vh;
+        //   }
+        //   &:nth-child(6) {
+        //     border-color: $backgroundColor3;
+        //     animation-delay: calc(var(--generalDelay) + 6s);
+        //     left: 90vw;
+        //     top: 25vh;
+        //   }
+        // }
       }
 
       .introduction {
@@ -747,17 +637,13 @@ html {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
-        // padding: 0 8vw;
-        // width: 100%;
-        
+        align-items: center; 
         padding: 0 9vw;
 
         .text1, .text2 {
           font-size: 5rem;
         }
-        .text1 {
-          // color: transparent;         
+        .text1 {       
           &::before, &::after {
             color: $color2;
           }
@@ -778,7 +664,6 @@ html {
         }
         @include tabletPortAndLarger {
           .text1, .text2 {
-            // text-align: center;
             font-size: 9rem;
           }
         }
@@ -805,7 +690,6 @@ html {
         position: absolute;
         bottom: 0;
         height: 11rem;
-        // filter: invert(100%) sepia(3%) saturate(7434%) hue-rotate(39deg) brightness(116%) contrast(102%);
         filter: invert(8%) sepia(16%) saturate(182%) hue-rotate(314deg) brightness(97%) contrast(88%);
 
         @include tabletPortAndLarger {
@@ -826,10 +710,6 @@ html {
 
       transition: background $skillsInViewAnimDurationBack ease;
       background: $backgroundColor3;
-      // background: $backgroundColor4;
-      // .animate__animated.animate__fadeIn {
-      //   --animate-duration: 2s;
-      // }
 
       position: relative;
       z-index: 1;
@@ -847,8 +727,6 @@ html {
         }
 
         .section-content {
-          // height: calc(100vh - 2 * #{$sectionPaddingTopBott});
-          // max-width: $mawWidthContent;
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -857,10 +735,8 @@ html {
   
           @include tabletPortAndLarger {
             align-items: center;
-            // padding-bottom: 2rem;
           }
           @include tabletLandAndLarger {
-            // padding-bottom: 6rem;
           }
   
           .introduction {
@@ -869,28 +745,28 @@ html {
             .photo-container {
               position: relative;
               display: none;
-              // overflow: hidden;
               padding-right: 10rem;
               flex-basis: 25%;
               flex-shrink: 0;
-              // padding-top: 1rem;
 
               @include tabletLandAndLarger {
                 display: block;
-                
+                padding-top: 1.6rem;
+              }
+              @include laptopsAndLarger {
+                padding-top: 1.2rem;
+              }
+              @include desktopsAndLarger {
+                align-self: center;
+                padding-top: 0;
               }
 
               .img-wrapper-move {
-                // position: absolute;
                 position: relative;
-                // top: 0;
                 overflow: hidden;
-                border-radius: $generalBorderRadius;
 
                 .img-wrapper {
                   position: relative;
-                  // overflow: hidden;
-                  // border-radius: $generalBorderRadius;
 
                   & > div {
                     transform: scale(1.2);  
@@ -919,14 +795,12 @@ html {
               margin: 0;
               display: flex;
               flex-direction: column;
-              justify-content: center;
-  
-              // p:first-child {
-              //   margin-top: 0;
-              // }
 
               p {
                 margin-top: 0;
+                &:last-child {
+                  margin-bottom: 0;
+                }
               }
   
               @include phoneLandAndLarger {
@@ -942,6 +816,7 @@ html {
                 font-size: 2.4rem;
               }
               @include desktopsAndLarger {
+                justify-content: center;
                 font-size: 2.6rem;
               }
             }
@@ -956,7 +831,6 @@ html {
         --cardHeight: 260px;
 
         @include tabletPortAndLarger {
-          // $cardHeight: 320px;
           --cardHeight: 320px;
         }
   
@@ -969,9 +843,7 @@ html {
         
         .section-content {
           position: relative;
-          // min-height: 100vh;
           width: 100%;
-          // max-width: $mawWidthContent;
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -1029,13 +901,10 @@ html {
               .swiper-container {
                 position: relative;
                 $paddingSwiperContainer: 1rem;
-                // padding-top: $paddingSwiperContainer;
                 padding: $paddingSwiperContainer 0 $paddingSwiperContainer 0;
                 position: static;
-                // width: 100%;
               
                 .swiper-button-prev, .swiper-button-next {
-                  // background-color: rgba(255, 255, 255, 0.6);
                   background-color: transparent;
                   border-radius: 50%;
                   border: 2px solid $backgroundColor3;
@@ -1045,7 +914,6 @@ html {
                   background-repeat: no-repeat;
                   background-size: 13% 50%;
                   background-position: center;
-                  // bottom: calc(#{$paddingSwiperContainer} + (#{$cardHeight} / 2) - (#{$navButtonSize} / 2));
                   bottom: calc(#{$paddingSwiperContainer} + (var(--cardHeight) / 2) - (#{$navButtonSize} / 2));
                   top: auto;
                   visibility: hidden;
@@ -1093,20 +961,13 @@ html {
                     touch-action: none; // Pour enlever le warning (Swip issue 3728)
         
                     .flip-card {
-                      // height: $cardHeight;
                       height: var(--cardHeight);
                       background-color: transparent;
                       perspective: 1000px;
                       position: relative;
                       margin: 0 1.5rem;
-            
                       flex-grow: 1;
-                      // flex-shrink: 0;
                       flex-shrink: 1;
-            
-                      // &:hover .flip-card-inner {
-                      //   transform: rotateY(180deg);
-                      // }
             
                       .flip-card-inner {
                         width: 100%;
@@ -1120,7 +981,6 @@ html {
                           border-radius: $generalBorderRadius;
                           width: 100%;
                           height: 100%;
-                          // box-shadow: 2px 2px 13px 0 rgba(35, 33, 33, 0.2);
                           box-shadow: 2px 2px 2px 0 rgba(35, 33, 33, 0.1);
                           -webkit-backface-visibility: hidden;
                           backface-visibility: hidden;
@@ -1130,17 +990,13 @@ html {
                           display: flex;
                           justify-content: center;
                           align-items: center;
-                          // background-color: $mainColor;
                           background-color: $backgroundColor3;
                           border: 2px solid $mainColor;
                           padding: 4rem;
                           box-sizing: border-box;
-
-                          // transition: background 1s ease;
                           transition: background $skillsInViewAnimDurationBack ease;
             
                           & > div {
-                            // visibility: hidden;
                             transition: opacity $skillsInViewAnimDurationBack ease;
                             opacity: 0;
                             width: 85%;
@@ -1152,7 +1008,6 @@ html {
                           flex-direction: column;
                           justify-content: center;
                           align-items: center;
-                          // background-color: $backgroundColor2;
                           
                           transform: rotateY(180deg);
                           &.blue { background-color: $cardColor1; color: $color2; }
@@ -1238,8 +1093,6 @@ html {
     
                 div {
                   display: inline-block;  
-                  // font-style: italic;
-                  // font-weight: $blackBold;
                   font-weight: $semiBold;
                   color: $color2;
                   transform: translateX(-200%);
@@ -1267,12 +1120,8 @@ html {
                   }
     
                   &.empty {
-                    // color: $color4;
                     color: $mainColor;
                     -webkit-text-stroke: 1px $color2;
-                    @include phoneLandAndLarger {
-                      // -webkit-text-stroke: 2px $color2;
-                    }
                   }
     
                 }
@@ -1317,11 +1166,7 @@ html {
       }
 
       &.skills-in-view {
-        // transition: background 2s ease;
         transition: background $skillsInViewAnimDuration ease;
-        // background: $backgroundColor4;
-        // background: linear-gradient(360deg, $mainColor, $backgroundColor4, $backgroundColor1);
-        // background: linear-gradient(141deg, $backgroundColor4 50%, $backgroundColor1 21%, #2cb5e8 75%);
 
         &.first-background {
           background: $backgroundColor4;
@@ -1359,13 +1204,11 @@ html {
           
                       .flip-card-inner {
                         .flip-card-front {
-                          // transition: background 2s ease;
                           transition: background $skillsInViewAnimDuration ease;
                           background-color: $mainColor;
                           border: none;
             
                           & > div {
-                            // transition: opacity 1s ease;
                             opacity: 1;
                           }
                         }
@@ -1392,8 +1235,6 @@ html {
             justify-content: center;
             align-items: center;
             width: 100%;
-            // border: 1px #ddd solid;
-            // box-sizing: content-box;
 
             .row {
               width: 80%;
@@ -1403,11 +1244,9 @@ html {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                // height: 120px;
                 height: 18vh;
                 width: 100%;
                 border: 1px $backgroundColor5 solid;
-                // border: 1px black solid;
                 border-bottom-width: 0 !important;
                 transition: border $skillsInViewAnimDurationBack ease;
 
@@ -1439,9 +1278,7 @@ html {
             @include tabletPortAndLarger {
               flex-direction: row;
               .row {
-                // box-sizing: content-box;
                 .box {
-                  // height: 220px;
                   height: 30vh;
                   min-height: 200px;
                   max-height: 300px;
@@ -1453,17 +1290,12 @@ html {
                     border-bottom-width: 0 !important;
                   }
                 }
-                &:first-child {
-                  // margin-right: 2px;
-                }
               }
             }
 
             @include laptopsAndLarger {
               .row {
-                .box {
-                  // height: 250px;
-                  
+                .box {              
                   min-height: 220px;
                   & > div {
                     width: 30%;
@@ -1475,8 +1307,6 @@ html {
             @include desktopsAndLarger {
               .row {
                 .box {
-                  // height: 300px;
-                  // height: 30vh;
                   min-height: 250px;
                   & > div {
                     width: 25%;
@@ -1490,7 +1320,6 @@ html {
                 .box {
                   border: 1px $color3 solid;
                   transition: border $skillsInViewAnimDuration ease;
-                  // border: 1px black solid;
                 }
               }
             }
@@ -1502,82 +1331,48 @@ html {
     }
 
     #contact {
-      // display: none;
       background-color: $backgroundColor3;
-      // position: fixed;
       position: fixed;
       bottom: 0;
       width: 100%;
       height: 100vh;
       box-sizing: border-box;
-      // z-index: -1;
-      // position: relative;
       padding-bottom: 40px;
 
       .section-content {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        align-items: center;
         height: 100%;
-        // max-width: $mawWidthContent;
+
+        @include tabletPortAndLarger {
+          align-items: flex-start;
+        }
 
         .title {
+          display: flex;
+          align-items: center;
+          flex-grow: 1.5;
 
           h1 {
             color: $mainColor;
             text-align: center;
-
-            &:first-child {
-              font-weight: $semiBold;
-              font-size: 2.8rem;
-              padding-bottom: 0;
-            }
-            &:last-child {
-              font-weight: $regularBold;
-              font-size: 3.5rem;
-              padding-bottom: 0;
-              // color: transparent;
-              // -webkit-text-stroke: 1px $mainColor;
-              // padding-bottom: 3rem;
-            }
+            font-weight: $regularBold;
+            font-size: 3.5rem;
+            padding-bottom: 0;
 
             @include phoneLandAndLarger {
-              // text-align: left;
-              &:first-child {
-                font-size: 4.2rem;
-              }
-              &:last-child {
-                font-size: 4.8rem;
-                // padding-bottom: 3.5rem;
-              }
+              font-size: 4.8rem;
             }
             @include tabletPortAndLarger {
-              text-align: left;
-              &:first-child {
-                font-size: 5rem;
-              }
-              &:last-child {
-                font-size: 5.8rem;
-                // padding-bottom: 4rem;
-              }
+              font-size: 5.8rem;
             }
             @include tabletLandAndLarger {
-              &:first-child {
-                font-weight: $mediumBold;
-                font-size: 5.7rem;
-              }
-              &:last-child {
-                font-size: 6.7rem;
-                // padding-bottom: 8rem;
-              }
+              font-size: 6.7rem;
             }
             @include laptopsAndLarger {
-              &:first-child {
-                font-size: 6.5rem;
-              }
-              &:last-child {
-                font-size: 7.3rem;
-              }
+              font-size: 7.3rem;
             }
   
           }
@@ -1587,18 +1382,13 @@ html {
         .contact-me {
           display: flex;
           justify-content: space-between;
-          align-items: center;
           flex-direction: column;
+          flex-grow: 1;
+          width: 100%;
 
           .mail {
-            // display: flex;
-            // flex-direction: column;
-            // align-items: stretch;
-            // justify-content: space-between;
-            height: 100%;
             text-align: center;
-            margin-bottom: 1rem;
-
+            flex-grow: 1;
             a {
               color: $color4;
               font-weight: $mediumBold;
@@ -1615,21 +1405,24 @@ html {
             display: flex;
             flex-direction: column;
             align-items: center;
-            a {
-              color: $color4;
-              font-size: 1.7rem;
-              text-decoration: none;
-              &:first-child {
-                margin-bottom: 2rem;
+            flex-grow: 1;
+
+            .links-wrapper {
+              display: flex;
+              flex-direction: column;
+              a {
+                color: $color4;
+                font-size: 1.7rem;
+                text-decoration: none;
+                &:first-child {
+                  margin-bottom: 2rem;
+                }
               }
             }
           }
 
           @include phoneLandAndLarger {
-            // flex-direction: row;
             .mail {
-              // text-align: left;
-              margin-bottom: 3rem;
               a {
                 font-size: 2.6rem;
               }
@@ -1638,20 +1431,20 @@ html {
               }
             }
             .social-networks {
-              a {
-                font-size: 2.2rem;
-                &:first-child {
-                  margin-bottom: 2.5rem;
+              .links-wrapper {
+                a {
+                  font-size: 2.2rem;
+                  &:first-child {
+                    margin-bottom: 2.5rem;
+                  }
                 }
               }
             }
           }
           @include tabletPortAndLarger {
             flex-direction: row;
-            // justify-content: flex-start;
             .mail {
               text-align: left;
-              margin-bottom: 0;
               a {
                 font-size: 2.6rem;
               }
@@ -1661,11 +1454,13 @@ html {
               }
             }
             .social-networks {
-              align-items: flex-start;
-              a {
-                font-size: 2.3rem;
-                &:first-child {
-                  margin-bottom: 2.9rem;
+              align-items: flex-end;
+              .links-wrapper {
+                a {
+                  font-size: 2.3rem;
+                  &:first-child {
+                    margin-bottom: 2.9rem;
+                  }
                 }
               }
             }
@@ -1680,11 +1475,12 @@ html {
               }
             }
             .social-networks {
-              a {
-                // font-size: 3.2rem;
-                font-size: 2.8rem;
-                &:first-child {
-                  margin-bottom: 3.4rem;
+              .links-wrapper {
+                a {
+                  font-size: 2.8rem;
+                  &:first-child {
+                    margin-bottom: 3.4rem;
+                  }
                 }
               }
             }
@@ -1698,26 +1494,23 @@ html {
 
           span {
             text-align: center;
-            // margin-top: 3rem;
             font-size: 1.3rem;
             font-weight: $mediumBold;
           }
 
           @include phoneLandAndLarger {
             span {
-              // margin-top: 3.5rem;
               font-size: 1.7rem;
             }
           }
           @include tabletPortAndLarger {
+            width: 100%;
             span {
-              // margin-top: 5.5rem;
               font-size: 1.8rem;
             }
           }
           @include tabletLandAndLarger {
             span {
-              // margin-top: 6.5rem;
               font-size: 2rem;
             }
           }
@@ -1727,8 +1520,6 @@ html {
       }
 
     }
-
-    // }
 
   }
 }

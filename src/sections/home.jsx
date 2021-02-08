@@ -36,9 +36,10 @@ const Home = ({ /*adaptCursorColor,*/ display }) => {
 
     return (
         <section id="home" ref={homeSectionRef}>
-            <div className="background-anim">
+            {/* <div className="background-anim">
                 {getCubes()}
-            </div>
+            </div> */}
+            <div className="background-anim" />
             <div className="introduction">
                 <div className="fadeInUp-wrapper">
                     <div id="home-title-1" className="hoverFadeInUp animate__animated animate__fadeInUp">

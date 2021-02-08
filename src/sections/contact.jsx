@@ -7,18 +7,20 @@ const Contact = () => {
             <div className="section-content">
                 <div className="title">
                     <h1>Let&apos;s get in touch</h1>
-                    <h1>Contact</h1>
+                    {/* <h1>Contact</h1> */}
                 </div>
                 <div className="contact-me">
                     <div className="mail">
-                        <div className="underlineEffect-wrapper">
+                        <span className="underlineEffect-wrapper">
                             <a href="mailto:robin.cronert@gmail.com">robin.cronert@gmail.com</a>
-                        </div>
+                        </span>
                         <p>Based in Paris</p>
                     </div>
                     <div className="social-networks">
-                        <a href="https://www.linkedin.com/in/robin-crönert" rel="noreferrer" target="_blank">Linkedin</a>
-                        <a href="https://github.com/rcronert/" rel="noreferrer" target="_blank">GitHub</a>
+                        <div className="links-wrapper">
+                            <a href="https://www.linkedin.com/in/robin-crönert" rel="noreferrer" target="_blank">Linkedin</a>
+                            <a href="https://github.com/rcronert/" rel="noreferrer" target="_blank">GitHub</a>
+                        </div>
                     </div>
                 </div>
                 <div className="footer">

@@ -34,7 +34,7 @@ const AboutMe = () => {
                                 <Image src="cv_photo.jpg" alt="photo image" />
                             </div>
                         </div>
-                        <div className="img-box" data-scroll data-scroll-speed="1" />
+                        {/* <div className="img-box" data-scroll data-scroll-speed="1" /> */}
                     </div>
                     <div className="description" data-scroll data-scroll-speed="1">
                         <p>
