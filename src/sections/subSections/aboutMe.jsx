@@ -3,26 +3,26 @@ import Image from "../../components/image"
 
 const AboutMe = () => {
 
-    const divRef = React.useRef(undefined);
+    // const divRef = React.useRef(undefined);
 
-    const setImgBoxDivSize = React.useCallback(() => {
-        const imageBox = document.querySelector('#about-me .img-box');
-        if (imageBox) {
-            imageBox.style.height = `${divRef.current.clientHeight}px`;
-            imageBox.style.width = `${divRef.current.clientWidth}px`;
-        }
-    }, [divRef]); // eslint-disable-line
+    // const setImgBoxDivSize = React.useCallback(() => {
+    //     const imageBox = document.querySelector('#about-me .img-box');
+    //     if (imageBox) {
+    //         imageBox.style.height = `${divRef.current.clientHeight}px`;
+    //         imageBox.style.width = `${divRef.current.clientWidth}px`;
+    //     }
+    // }, [divRef]); // eslint-disable-line
 
-    React.useEffect(() => {
-        setImgBoxDivSize();
-    }, []); // eslint-disable-line
+    // React.useEffect(() => {
+    //     setImgBoxDivSize();
+    // }, []); // eslint-disable-line
 
-    React.useEffect(() => {
-        window.addEventListener('resize', setImgBoxDivSize);
-        return () => {
-            window.removeEventListener('resize', setImgBoxDivSize);
-        }
-    }, []); // eslint-disable-line
+    // React.useEffect(() => {
+    //     window.addEventListener('resize', setImgBoxDivSize);
+    //     return () => {
+    //         window.removeEventListener('resize', setImgBoxDivSize);
+    //     }
+    // }, []); // eslint-disable-line
 
     return (
         <div id="about-me" data-scroll data-scroll-id="aboutMe">
@@ -30,7 +30,7 @@ const AboutMe = () => {
                 <div className="introduction">
                     <div className="photo-container">
                         <div className="img-wrapper-move" data-scroll data-scroll-speed="1">
-                            <div ref={divRef} className="img-wrapper" data-scroll data-scroll-speed="-1">
+                            <div /*ref={divRef}*/ className="img-wrapper" data-scroll data-scroll-speed="-1">
                                 <Image src="cv_photo.jpg" alt="photo image" />
                             </div>
                         </div>

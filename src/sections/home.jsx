@@ -8,13 +8,13 @@ const Home = ({ /*adaptCursorColor,*/ display }) => {
 
     const homeSectionRef = React.useRef();
 
-    const getCubes = React.useCallback(() => {
-        let cubes = [];
-        for (let i = 0; i < 6; i++) {
-            cubes.push(<div key={`cube_${i}`} className="cube" />);
-        }
-        return cubes;
-    }, []);
+    // const getCubes = React.useCallback(() => {
+    //     let cubes = [];
+    //     for (let i = 0; i < 6; i++) {
+    //         cubes.push(<div key={`cube_${i}`} className="cube" />);
+    //     }
+    //     return cubes;
+    // }, []);
 
     React.useEffect(() => {
         if (display === false) {
