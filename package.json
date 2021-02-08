@@ -1,8 +1,8 @@
 {
-  "name": "my-website",
+  "name": "robincronert",
   "private": true,
-  "description": "My website",
-  "version": "0.2.1",
+  "description": "Robin Crönert",
+  "version": "0.2.2",
   "author": "Robin Crönert",
   "dependencies": {
     "animate.css": "^4.1.1",
