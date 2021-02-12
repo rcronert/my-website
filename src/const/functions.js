@@ -5,6 +5,7 @@ const functions = {
     isMobile: () => {
         const ua = navigator.userAgent;
         return /Android|Mobi/i.test(ua);
+        // return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
     },
 
     isLightOrDark: (color) => {

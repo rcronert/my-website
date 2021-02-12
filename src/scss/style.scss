@@ -46,7 +46,8 @@ html {
   font-family: "montserrat";
 
   // Mobile port default
-  --globalPaddingLeftRight: 15vw;
+  // --globalPaddingLeftRight: 15vw;
+  --globalPaddingLeftRight: 14vw;
   --sectionPaddingTopBott: 7rem;
   --paddingBottomH1: 3rem;
 
@@ -94,13 +95,125 @@ html {
     // CURSOR
     cursor: none;
     
-    @include phonePort {
-      .outer-cursor {
-        display: none;
+    // @include phonePort {
+    //   .inner-cursor {
+    //     display: none;
+    //   }
+    //   .outer-cursor {
+    //     display: none;
+    //   }
+    // }
+
+    $innerCursorSize: 40px;
+    // $outerCursorSize: 100px;
+    $startScaleInnerCursor: 0.2;
+    // $innerCursorSize: 6px;
+    $outerCursorSize: 70px;
+    // $startScaleInnerCursor: 1.1;
+    $startScaleOuterCursor: 0.29;
+    $innerCursorActiveScale: 0.15;
+    // $outerCursorActiveScale: 0.7;
+    // $innerCursorActiveScale: 1;
+    $outerCursorActiveScale: 1;
+    $borderCursor: 2px;
+
+    .inner-cursor, .outer-cursor {
+      position: fixed;
+      contain: layout style size;
+      pointer-events: none;
+      will-change: transform;
+      z-index: 1000;
+      &::before {
+        box-sizing: border-box;
+        content: "";
+        position: absolute;
+        display: block;
+        border-radius: 50%;
+        // transform: scale($startScaleInnerCursor);
+        // transform: scale($startScaleOuterCursor);
       }
-      .inner-cursor {
-        display: none;
+      
+      &.dark {
+        &::before {
+          background-color: $color2;
+        }
       }
+      &.light {
+        &::before {
+          background-color: $mainColor;
+        }
+      }
+    }
+
+    .inner-cursor {
+      &::before {
+        width: $innerCursorSize;
+        height: $innerCursorSize;
+        top: calc(-#{$innerCursorSize} / 2);
+        left: calc(-#{$innerCursorSize} / 2);
+        transition: background-color 0.3s ease-in-out, transform 0.25s ease-in-out;
+        transform: scale($startScaleInnerCursor);
+      }
+      &.active {
+        &::before {
+          transform: scale($innerCursorActiveScale);
+        }
+      }
+      &.hidden {
+        &::before {
+          transform: scale(0);
+        }
+      }
+      &.clicked {
+        &::before {
+          transform: scale($innerCursorActiveScale * 1.2);
+        }
+      }
+    }
+
+    .outer-cursor {
+      &::before {    
+        width: $outerCursorSize;
+        height: $outerCursorSize;
+        opacity: 0.4;
+        top: calc(-#{$outerCursorSize} / 2);
+        left: calc(-#{$outerCursorSize} / 2);        
+        transition: background-color 0.3s ease-in-out, transform 0.25s ease-in-out;
+        transform: scale($startScaleOuterCursor);
+      }
+      &.active {
+        &::before {
+          opacity: 1;
+          transform: scale($outerCursorActiveScale);
+          background-color: transparent;
+        }
+      }
+      &.hidden {
+        &::before {
+          transform: scale(0);
+        }
+      }
+      &.clicked {
+        &::before {
+          opacity: 1;
+          transform: scale($outerCursorActiveScale * 1.4);
+        }
+      }
+      &.dark {
+        &.active {
+          &::before {
+            border: $borderCursor solid $color2;
+          }
+        }
+      }
+      &.light {
+        &.active {
+          &::before {
+            border: $borderCursor solid $mainColor;
+          }
+        }
+      }
+      
     }
 
     .c-scrollbar {
@@ -146,11 +259,25 @@ html {
 
     }
 
+    --headerBlockMarginBottom: 4.5rem;
+    @include phoneLandAndLarger {
+      --headerBlockMarginBottom: 5.5rem;
+    }
+    @include tabletPortAndLarger {
+      --headerBlockMarginBottom: 8rem;
+    }
+    @include tabletLandAndLarger {
+      --headerBlockMarginBottom: 9rem;
+    }
+    @include laptopsAndLarger {
+      --headerBlockMarginBottom: 10rem;
+    }
+
     .header-block {
       color: $color2;
-      margin-bottom: 10rem;
-
-      margin-bottom: 4.5rem;
+      // margin-bottom: 10rem;
+      // margin-bottom: 4.5rem;
+      margin-bottom: var(--headerBlockMarginBottom);
       .header {
         h3 {
           font-size: 2rem;
@@ -167,7 +294,7 @@ html {
       }
 
       @include phoneLandAndLarger {
-        margin-bottom: 5.5rem;
+        // margin-bottom: 5.5rem;
         .header {
           h3 {
             font-size: 2rem;
@@ -179,7 +306,7 @@ html {
         }
       }
       @include tabletPortAndLarger {
-        margin-bottom: 8rem;
+        // margin-bottom: 8rem;
         .header {
           h3 {
             margin-bottom: 1.2rem;
@@ -190,7 +317,7 @@ html {
         }
       }
       @include tabletLandAndLarger {
-        margin-bottom: 9rem;
+        // margin-bottom: 9rem;
         .header {
           h3 {
             margin-bottom: 1.5rem;
@@ -201,7 +328,7 @@ html {
         }
       }
       @include laptopsAndLarger {
-        margin-bottom: 10rem;
+        // margin-bottom: 10rem;
         .text {
           font-size: 3.5rem;
         }
@@ -296,7 +423,13 @@ html {
           position: absolute;
           width: 100%;
           height: 2px;
-          bottom: -5px;
+          bottom: -1px;
+          @include phoneLandAndLarger {
+            bottom: -3px;
+          }
+          @include tabletPortAndLarger {
+            bottom: -5px;
+          }
           left: 0;
           border-radius: 5px;
         }
@@ -322,6 +455,7 @@ html {
 
     .nav-bar {
       height: 15.8vh;
+      height: calc(var(--vh, 1vh) * 15.8);
       min-height: 100px;
       box-sizing: border-box;
       top: 0;
@@ -350,6 +484,7 @@ html {
 
         span {
           font-size: 1.7rem;
+          font-weight: $mediumBold;
           &::before, &::after {
             color: $mainColor;
           }
@@ -359,18 +494,17 @@ html {
           display: block;
           pointer-events: auto;
           span {
-            font-size: 1.9rem;
-          }
-        }
-        @include tabletLandAndLarger {
-          span {
-            font-size: 2rem;
+            font-size: 1.6rem;
           }
         }
         @include laptopsAndLarger {
-          font-size: 2.1rem;
           span {
-            font-size: 2.1rem;
+            font-size: 1.7rem;
+          }
+        }
+        @include desktopsAndLarger {
+          span {
+            font-size: 1.8rem;
           }
         }
       }
@@ -380,16 +514,13 @@ html {
 
         @include tabletPortAndLarger {
           display: flex;
-          font-size: 1.9rem;
-        }
-        @include tabletLandAndLarger {
-          font-size: 2rem;
+          font-size: 1.6rem;
         }
         @include laptopsAndLarger {
-          font-size: 2.1rem;
+          font-size: 1.7rem;
         }
         @include desktopsAndLarger {
-          font-size: 2.2rem;
+          font-size: 1.8rem;
         }
 
         .links-wrap {
@@ -406,13 +537,14 @@ html {
               padding-left: 6rem;
             }
             @include laptopsAndLarger {
-              padding-left: 7rem;
+              padding-left: 6.5rem;
             }
             @include desktopsAndLarger {
-              padding-left: 8rem;
+              padding-left: 7.3rem;
             }
 
             span {
+              font-weight: $mediumBold;
               &::before, &::after {
                 color: $mainColor;
               }
@@ -436,7 +568,7 @@ html {
       &.dark {
         .logo {
           span {
-            font-weight: $mediumBold;
+            // font-weight: $mediumBold;
             &::before, &::after {
               color: $color2;
             }
@@ -446,7 +578,7 @@ html {
           .links-wrap {
             .page-link {
               span {
-                font-weight: $mediumBold;
+                // font-weight: $mediumBold;
                 &::before, &::after {
                   color: $color2;
                 }
@@ -463,6 +595,7 @@ html {
 
     .nav-menu-phone {
       height: 100vh;
+      height: calc(var(--vh, 1vh) * 100);
       width: 0;
       position: fixed;
       right: 0;
@@ -523,7 +656,8 @@ html {
     }
 
     #home {
-      min-height: 100vh;
+      min-height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+      min-height: calc(var(--vh, 1vh) * 100);
       width: 100%;
       z-index: 1;
       box-sizing: border-box;
@@ -576,7 +710,8 @@ html {
         background-size: 400% 400%;
         animation: gradient 15s ease infinite;
         position: relative;
-        height: 100vh;
+        height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+        height: calc(var(--vh, 1vh) * 100);
         width: 100%;
         overflow: hidden;
 
@@ -713,15 +848,19 @@ html {
 
       position: relative;
       z-index: 1;
+
       margin-top: 100vh;
+      margin-top: calc(var(--vh, 1vh) * 100);
       margin-bottom: 100vh;
+      margin-bottom: calc(var(--vh, 1vh) * 100);
 
       #about-me {
         margin-top: 2rem;
         margin-bottom: calc(var(--sectionPaddingTopBott) * 1.1);
-        opacity: 1;
-        transition: opacity $skillsInViewAnimDurationBack ease;
 
+        // opacity: 1;
+        // transition: opacity $skillsInViewAnimDurationBack ease;
+        
         @include tabletPortAndLarger {
           margin-bottom: calc(var(--sectionPaddingTopBott) * 1.3);
         }
@@ -741,6 +880,11 @@ html {
   
           .introduction {
             display: flex;
+
+            .photo-container, .description {
+              opacity: 1;
+              transition: opacity $skillsInViewAnimDurationBack ease;
+            }
   
             .photo-container {
               position: relative;
@@ -751,11 +895,11 @@ html {
 
               @include tabletLandAndLarger {
                 display: block;
-                padding-top: 1.6rem;
-              }
-              @include laptopsAndLarger {
                 padding-top: 1.2rem;
               }
+              // @include laptopsAndLarger {
+              //   // padding-top: 1rem;
+              // }
               @include desktopsAndLarger {
                 align-self: center;
                 padding-top: 0;
@@ -769,7 +913,7 @@ html {
                   position: relative;
 
                   & > div {
-                    transform: scale(1.2);  
+                    transform: scale(1.2);
                   }
 
                   
@@ -833,6 +977,8 @@ html {
         @include tabletPortAndLarger {
           --cardHeight: 320px;
         }
+
+        --paddingForSwippingCard: 3rem;
   
         $navButtonSize: 9rem;
   
@@ -849,14 +995,18 @@ html {
           justify-content: center;
 
           .header-block {
-            color: $mainColor;   
+            color: $mainColor;
           }
   
           .skills-container {
-            margin-bottom: calc(var(--sectionPaddingTopBott) * 1.1);
+            margin-bottom: calc((var(--sectionPaddingTopBott) * 1.1) - var(--paddingForSwippingCard));
 
             @include tabletPortAndLarger {
               margin-bottom: calc(var(--sectionPaddingTopBott) * 1.3);
+            }
+
+            .header-block {
+              margin-bottom: calc(var(--headerBlockMarginBottom) - var(--paddingForSwippingCard));
             }
   
             #cards-container {
@@ -899,12 +1049,16 @@ html {
               }
     
               .swiper-container {
-                position: relative;
                 $paddingSwiperContainer: 1rem;
                 padding: $paddingSwiperContainer 0 $paddingSwiperContainer 0;
                 position: static;
               
                 .swiper-button-prev, .swiper-button-next {
+                  // -webkit-backface-visibility: hidden;
+                  // backface-visibility: hidden;
+                  // -webkit-transform: translate3d(0, 0, 0);
+                  transform: translate3d(0, 0, 0);
+
                   background-color: transparent;
                   border-radius: 50%;
                   border: 2px solid $backgroundColor3;
@@ -914,7 +1068,7 @@ html {
                   background-repeat: no-repeat;
                   background-size: 13% 50%;
                   background-position: center;
-                  bottom: calc(#{$paddingSwiperContainer} + (var(--cardHeight) / 2) - (#{$navButtonSize} / 2));
+                  bottom: calc(#{$paddingSwiperContainer} + (var(--cardHeight) / 2) - (#{$navButtonSize} / 2) + var(--paddingForSwippingCard));
                   top: auto;
                   visibility: hidden;
                   &.hidden {
@@ -937,10 +1091,10 @@ html {
                 }
       
                 .swiper-pagination {
-                  bottom: -2rem;
+                  // bottom: -2rem;
   
                   @include tabletPortAndLarger {
-                    bottom: -4rem;
+                    bottom: -1rem;
                   }
     
                   .swiper-pagination-bullet {
@@ -954,7 +1108,7 @@ html {
                 }
       
                 .swiper-wrapper {
-    
+                  padding: var(--paddingForSwippingCard) 0 var(--paddingForSwippingCard) 0;
                   .swiper-slide {
                     display: flex;
                     justify-content: center;
@@ -977,16 +1131,17 @@ html {
                         transform-style: preserve-3d;
             
                         .flip-card-front, .flip-card-back {
-                          position: absolute;
+                          // position: absolute;
                           border-radius: $generalBorderRadius;
                           width: 100%;
                           height: 100%;
                           box-shadow: 2px 2px 2px 0 rgba(35, 33, 33, 0.1);
-                          -webkit-backface-visibility: hidden;
                           backface-visibility: hidden;
+                          -webkit-backface-visibility: hidden;
                         }
             
                         .flip-card-front {
+                          position: relative;
                           display: flex;
                           justify-content: center;
                           align-items: center;
@@ -995,20 +1150,43 @@ html {
                           padding: 4rem;
                           box-sizing: border-box;
                           transition: background $skillsInViewAnimDurationBack ease;
+                          // transition: opacity $skillsInViewAnimDurationBack ease;
+                          // opacity: 0;
             
                           & > div {
                             transition: opacity $skillsInViewAnimDurationBack ease;
                             opacity: 0;
                             width: 85%;
                           }
+
+                          .tap-icon {
+                            transition: opacity $skillsInViewAnimDurationBack ease;
+                            opacity: 0;
+                            position: absolute;
+                            bottom: 25px;
+                            // background-color: red;
+                            height: 4rem;
+                            width: 4rem;
+                            filter: invert(8%) sepia(16%) saturate(182%) hue-rotate(314deg) brightness(97%) contrast(88%);
+                            background-repeat: no-repeat;
+                            background-size: 100% 100%;
+                            background-position: center;
+                            background-image: url(../assets/svg-icons/tap-icon.svg);
+
+                            @include tabletPortAndLarger {
+                              display: none;
+                            }
+                          }
                         }
             
                         .flip-card-back {
+                          position: absolute;
+                          top: 0;
+
                           display: flex;
                           flex-direction: column;
                           justify-content: center;
                           align-items: center;
-                          
                           transform: rotateY(180deg);
                           &.blue { background-color: $cardColor1; color: $color2; }
                           &.orange { background-color: $cardColor2; color: $mainColor; }
@@ -1031,7 +1209,6 @@ html {
                             font-weight: $mediumBold;
                           }
                         }
-            
                       }
             
                     }
@@ -1179,8 +1356,12 @@ html {
         }
 
         #about-me {
-          opacity: 0;
-          transition: opacity $skillsInViewAnimDuration ease;
+          .introduction {
+            .photo-container, .description {
+              opacity: 0;
+              transition: opacity $skillsInViewAnimDuration ease;
+            }
+          }
         }
 
         #skills {
@@ -1197,21 +1378,21 @@ html {
                 .swiper-wrapper {
                   .swiper-slide {
                     .flip-card {
-
-                      &:hover .flip-card-inner {
-                        transform: rotateY(180deg);
-                      }
-          
                       .flip-card-inner {
                         .flip-card-front {
                           transition: background $skillsInViewAnimDuration ease;
                           background-color: $mainColor;
                           border: none;
-            
                           & > div {
                             opacity: 1;
                           }
+                          .tap-icon {
+                            opacity: 1;
+                          }
                         }
+                      }
+                      &:hover .flip-card-inner {
+                        transform: rotateY(180deg);
                       }
                     }
                   }
@@ -1245,6 +1426,7 @@ html {
                 justify-content: center;
                 align-items: center;
                 height: 18vh;
+                height: calc(var(--vh, 1vh) * 18);
                 width: 100%;
                 border: 1px $backgroundColor5 solid;
                 border-bottom-width: 0 !important;
@@ -1280,6 +1462,7 @@ html {
               .row {
                 .box {
                   height: 30vh;
+                  height: calc(var(--vh, 1vh) * 30);
                   min-height: 200px;
                   max-height: 300px;
                   border-bottom-width: 1px !important;
@@ -1336,6 +1519,7 @@ html {
       bottom: 0;
       width: 100%;
       height: 100vh;
+      height: calc(var(--vh, 1vh) * 100);
       box-sizing: border-box;
       padding-bottom: 40px;
 
@@ -1392,7 +1576,8 @@ html {
             a {
               color: $color4;
               font-weight: $mediumBold;
-              font-size: 1.8rem;
+              // font-size: 1.8rem;
+              font-size: 1.6rem;
             } 
             p {
               margin-top: 0.8rem;

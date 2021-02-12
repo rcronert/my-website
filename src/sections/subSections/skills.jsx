@@ -5,11 +5,12 @@ import Card from "../../components/card"
 import HeaderBlock from "../../components/headerBlock"
 import TranslationWords from "../../components/translationWords"
 import constants from "../../const/constants"
+// import 'swiper/swiper.scss'
+// import 'swiper/swiper-bundle.css'
 
-import 'swiper/swiper.scss'
-import 'swiper/components/navigation/navigation.scss'
-import 'swiper/components/pagination/pagination.scss'
-import "animate.css/animate.min.css"
+// import 'swiper/components/navigation/navigation.scss'
+// import 'swiper/components/pagination/pagination.scss'
+// import "animate.css/animate.min.css"
 import functions from "../../const/functions"
 
 SwiperCore.use([Navigation, Pagination]);

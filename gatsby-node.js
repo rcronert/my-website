@@ -13,5 +13,17 @@ exports.onCreateWebpackConfig = ({ getConfig, stage, loaders, actions }) => {
             ...config.resolve.alias,
             'react-dom': '@hot-loader/react-dom'
         }
+    } 
+    if (stage === 'build-html' || stage === 'develop-html') {
+        actions.setWebpackConfig({
+            module: {
+                rules: [
+                    {
+                        test: /locomotive-scroll/,
+                        use: loaders.null(),
+                    },
+                ],
+            },
+        })
     }
 }

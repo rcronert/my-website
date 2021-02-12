@@ -34,13 +34,13 @@ const NavBar = ({ scrollInstance, navBarRef }) => {
     }, [scrollInstance, navBarRef]); // eslint-disable-line
 
     const setDarkPhoneMenu = React.useCallback(() => {
-        if (phoneNavMenuRef.current.classList.contains("light")) {
-            phoneNavMenuRef.current.classList.remove("light");
+        if (phoneNavMenuRef.current.classList.contains(constants.lightClass)) {
+            phoneNavMenuRef.current.classList.remove(constants.lightClass);
         }
     }, []); // eslint-disable-line
 
     const setLightPhoneMenu = React.useCallback(() => {
-        phoneNavMenuRef.current.classList.add("light");
+        phoneNavMenuRef.current.classList.add(constants.lightClass);
     }, []); // eslint-disable-line
 
     const openPhoneMenu = React.useCallback(() => {

@@ -1,42 +1,49 @@
 import React from "react"
 import PropTypes from "prop-types"
 import functions from "../const/functions";
+import constants from "../const/constants";
 
 const positionStart = -20;
-const innerCursorSize = 8;
-const outerCursorSize = 20;
-const outerCursorBackgroundOpacity = 0.4;
-const outerScale = 3;
-const innerScale = 0.7;
+// const positionStart = 500;
+// const innerCursorSize = 8;
+// const outerCursorSize = 20;
+// const innerCursorSize = 40;
+// const outerCursorSize = 100;
+// const outerCursorBackgroundOpacity = 0.4;
+// const startScale = 0.2;
+// const outerScale = 3;
+// const innerScale = 0.7;
+// const outerScale = 0.6;
+// const innerScale = 0.15;
 
 const styles = {
     cursorInner: {
-        position: 'fixed',
+        // position: 'fixed',
         top: positionStart,
         left: positionStart,
-        borderRadius: '50%',
-        width: innerCursorSize,
-        height: innerCursorSize,
-        transition: 'background-color 0.3s ease-in-out, transform 0.25s ease-in-out',
-        zIndex: 1000,
-        pointerEvents: 'none',
+        // borderRadius: '50%',
+        // width: innerCursorSize,
+        // height: innerCursorSize,
+        // transition: 'background-color 0.3s ease-in-out, transform 0.25s ease-in-out',
+        // zIndex: 1000,
+        // pointerEvents: 'none',
         // visibility: typeof navigator !== 'undefined' && functions.isMobile() ? 'hidden' : 'visible'
     },
     cursorOuter: {
-        position: 'fixed',
+        // position: 'fixed',
         top: positionStart,
         left: positionStart,
-        borderRadius: '50%',
-        width: outerCursorSize,
-        height: outerCursorSize,
-        transition: 'background-color 0.3s ease-in-out, transform 0.15s ease-in-out',
-        zIndex: 1000,
-        pointerEvents: 'none',
+        // borderRadius: '50%',
+        // width: outerCursorSize,
+        // height: outerCursorSize,
+        // transition: 'background-color 0.3s ease-in-out, transform 0.15s ease-in-out',
+        // zIndex: 1000,
+        // pointerEvents: 'none',
         // visibility: typeof navigator !== 'undefined' && functions.isMobile() ? 'hidden' : 'visible'
     }
 };
 
-function useEventListener(eventName, handler, element = document) {
+function useEventListener(eventName, handler) {
     const savedHandler = React.useRef();
 
     React.useEffect(() => {
@@ -44,20 +51,17 @@ function useEventListener(eventName, handler, element = document) {
     }, [handler]);
 
     React.useEffect(() => {
-        const isSupported = element && element.addEventListener;
-        if (!isSupported) return;
-
         const eventListener = (event) => savedHandler.current(event);
 
-        element.addEventListener(eventName, eventListener);
+        document.addEventListener(eventName, eventListener);
 
         return () => {
-            element.removeEventListener(eventName, eventListener);
+            document.removeEventListener(eventName, eventListener);
         }
-    }, [eventName, element]);
+    }, [eventName]);
 }
 
-const CustomCursor = ({ adaptCursorColor, cursorColor }) => {
+const CustomCursor = ({ adaptCursorColor, colorClass }) => {
     const cursorOuterRef = React.useRef();
     const cursorInnerRef = React.useRef();
     const requestRef = React.useRef();
@@ -66,33 +70,39 @@ const CustomCursor = ({ adaptCursorColor, cursorColor }) => {
     const [isVisible, setIsVisible] = React.useState(true);
     const [isActive, setIsActive] = React.useState(false);
     const [isActiveClickable, setIsActiveClickable] = React.useState(false);
-    const [visibilityProp, setVisibility] = React.useState(typeof navigator !== 'undefined' && functions.isMobile() ? 'hidden' : 'visible');
+    // const [visibilityProp, setVisibility] = React.useState(typeof navigator !== 'undefined' && functions.isMobile() ? 'hidden' : 'visible');
     let endX = React.useRef(positionStart);
     let endY = React.useRef(positionStart);
 
-    React.useEffect(() => {
-        window.addEventListener('resize', () => setVisibility(typeof navigator !== 'undefined' && functions.isMobile() ? 'hidden' : 'visible'));
-    }, []);
+    // React.useEffect(() => {
+    //     window.addEventListener('resize', () => setVisibility(typeof navigator !== 'undefined' && functions.isMobile() ? 'hidden' : 'visible'));
+    // }, []);
 
     const onMouseMove = React.useCallback(({ clientX, clientY }) => {
         adaptCursorColor();
         setCoords({ x: clientX, y: clientY });
-        cursorInnerRef.current.style.top = (clientY - innerCursorSize / 2) + 'px';
-        cursorInnerRef.current.style.left = (clientX - innerCursorSize / 2) + 'px';
+        // cursorInnerRef.current.style.top = (clientY - innerCursorSize / 2) + 'px';
+        // cursorInnerRef.current.style.left = (clientX - innerCursorSize / 2) + 'px';
+        cursorInnerRef.current.style.top = clientY + 'px';
+        cursorInnerRef.current.style.left = clientX + 'px';
         endX.current = clientX;
         endY.current = clientY;
     }, []); // eslint-disable-line
 
     const animateOuterCursor = React.useCallback((/*time*/) => {
         // if (previousTimeRef.current !== undefined) {
+        if (cursorOuterRef && cursorOuterRef.current) {
             coords.x += (endX.current - coords.x) / 8;
             coords.y += (endY.current - coords.y) / 8;
-            cursorOuterRef.current.style.top = (coords.y - outerCursorSize / 2) + 'px';
-            cursorOuterRef.current.style.left = (coords.x - outerCursorSize / 2) + 'px';
+            // cursorOuterRef.current.style.top = (coords.y - outerCursorSize / 2) + 'px';
+            // cursorOuterRef.current.style.left = (coords.x - outerCursorSize / 2) + 'px';
+            cursorOuterRef.current.style.top = coords.y + 'px';
+            cursorOuterRef.current.style.left = coords.x + 'px';
+        }
         // }
         // previousTimeRef.current = time;
         requestRef.current = requestAnimationFrame(animateOuterCursor);
-    }, [requestRef]); // eslint-disable-line
+    }, [requestRef, cursorOuterRef]); // eslint-disable-line
 
     React.useEffect(() => requestRef.current = requestAnimationFrame(animateOuterCursor), [animateOuterCursor]);
 
@@ -108,33 +118,46 @@ const CustomCursor = ({ adaptCursorColor, cursorColor }) => {
     useEventListener('mouseleave', onMouseLeave);
 
     React.useEffect(() => {
-        if (isActive) {
-            cursorInnerRef.current.style.transform = `scale(${innerScale})`;
-            cursorOuterRef.current.style.transform = `scale(${outerScale})`;
-            cursorOuterRef.current.style.border = `1px solid rgb(${cursorColor})`;
-            cursorOuterRef.current.style.backgroundColor = `transparent`;
-        } else {
-            cursorInnerRef.current.style.transform = 'scale(1)';
-            cursorOuterRef.current.style.transform = 'scale(1)';
-            cursorOuterRef.current.style.border = `none`;
-            cursorOuterRef.current.style.backgroundColor = `rgba(${cursorColor}, ${outerCursorBackgroundOpacity})`;
+        if (colorClass === constants.lightClass) {
+            functions.unsetClass(cursorInnerRef.current, constants.darkClass);
+            functions.unsetClass(cursorOuterRef.current, constants.darkClass);
+        } else if (colorClass === constants.darkClass) {    
+            functions.unsetClass(cursorInnerRef.current, constants.lightClass);
+            functions.unsetClass(cursorOuterRef.current, constants.lightClass);
         }
-    }, [isActive, cursorColor]);
+        functions.setClass(cursorInnerRef.current, colorClass);
+        functions.setClass(cursorOuterRef.current, colorClass);
+    }, [colorClass]);
+
+    React.useEffect(() => {
+        if (isActive) {
+            functions.setClass(cursorInnerRef.current, 'active');
+            functions.setClass(cursorOuterRef.current, 'active');
+        } else {
+            functions.unsetClass(cursorInnerRef.current, 'active');
+            functions.unsetClass(cursorOuterRef.current, 'active');
+        }
+    }, [isActive/*, colorClass*/]);
 
     React.useEffect(() => {
         if (isActiveClickable) {
-            cursorInnerRef.current.style.transform = `scale(${innerScale * 1.2})`;
-            cursorOuterRef.current.style.transform = `scale(${outerScale * 1.4})`;
+            functions.setClass(cursorInnerRef.current, 'clicked');
+            functions.setClass(cursorOuterRef.current, 'clicked');
+        } else {
+            functions.unsetClass(cursorInnerRef.current, 'clicked');
+            functions.unsetClass(cursorOuterRef.current, 'clicked');
         }
     }, [isActiveClickable]);
 
     React.useEffect(() => {
         if (isVisible) {
-            cursorInnerRef.current.style.transform = `scale(1)`;
-            cursorOuterRef.current.style.transform = `scale(1)`;
+            functions.unsetClass(cursorInnerRef.current, 'hidden');
+            functions.unsetClass(cursorOuterRef.current, 'hidden');
+            // cursorInnerRef.current.style.transform = `scale(${startScale})`;
+            // cursorOuterRef.current.style.transform = `scale(${startScale})`;
         } else {
-            cursorInnerRef.current.style.transform = `scale(0)`;
-            cursorOuterRef.current.style.transform = `scale(0)`;
+            functions.setClass(cursorInnerRef.current, 'hidden');
+            functions.setClass(cursorOuterRef.current, 'hidden');
         }
     }, [isVisible]);
 
@@ -200,10 +223,10 @@ const CustomCursor = ({ adaptCursorColor, cursorColor }) => {
     return (
         <React.Fragment>
             <div className="outer-cursor" ref={cursorOuterRef}
-                style={{...styles.cursorOuter, visibility: visibilityProp, backgroundColor: `rgba(${cursorColor}, ${outerCursorBackgroundOpacity})`}}
+                style={{...styles.cursorOuter/*, visibility: visibilityProp, backgroundColor: `rgba(${colorClass}, ${outerCursorBackgroundOpacity})`*/}}
             />
             <div className="inner-cursor" ref={cursorInnerRef}
-                style={{...styles.cursorInner, visibility: visibilityProp, backgroundColor: `rgb(${cursorColor})`}}
+                style={{...styles.cursorInner/*, visibility: visibilityProp, backgroundColor: `rgb(${colorClass})`*/}}
             />
         </React.Fragment>
     );
@@ -211,7 +234,7 @@ const CustomCursor = ({ adaptCursorColor, cursorColor }) => {
 }
 
 CustomCursor.propTypes = {
-    cursorColor: PropTypes.string.isRequired,
+    colorClass: PropTypes.string.isRequired,
     adaptCursorColor: PropTypes.func,
 }
 

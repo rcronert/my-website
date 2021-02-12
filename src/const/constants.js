@@ -1,8 +1,8 @@
 const constants = {
     backgroundChangeDelay: 2000,
     backgroundChangeDuration: 2000,
-    rgbWhiteColor: '255, 255, 255',
-    rgbBlackColor: '35, 33, 33',
+    lightClass: 'light',
+    darkClass: 'dark',
     mobilePortBpMax: 479, // Mobile-portrait / default breakpoint
     mobileLandBpMin: 480, // Mobile landscape (and larger)
     tabletPortBpMin: 768, // Tablet portrait (and larger)

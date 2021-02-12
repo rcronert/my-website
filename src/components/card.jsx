@@ -12,6 +12,7 @@ const Card = props => {
             <div className="flip-card-inner">
                 <div className="flip-card-front">
                     <Image src={props.img} alt={props.altImg} />
+                    <div className="tap-icon" />
                 </div>
                 <div className={className2}>
                     <h3> {props.backContent.title} </h3>

@@ -9,18 +9,40 @@ import NavBar from "../components/navBar"
 import constants from "../const/constants"
 import functions from "../const/functions"
 import "typeface-montserrat"
+// import "typeface-roboto-slab"
 import "animate.css/animate.min.css"
 import "locomotive-scroll/dist/locomotive-scroll.css"
+import 'swiper/swiper-bundle.min.css'
 import "../scss/style.scss"
 
 const IndexPage = () => {
 
   const hoveredSectionBackgroundC = React.useRef(undefined);
   const navBarRef = React.useRef();
+  const [isMobile, setIsMobile] = React.useState(typeof navigator !== 'undefined' && functions.isMobile());
 
   const [locoScroll, setLocoScroll] = React.useState(undefined);
   const [displayHome, setDisplayHome] = React.useState(true);
-  const [cursorColor, setCursorColor] = React.useState(constants.rgbBlackColor);
+  const [colorClass, setColorClass] = React.useState(constants.darkClass);
+
+  React.useEffect(() => {
+    window.addEventListener('resize', () => setIsMobile(typeof navigator !== 'undefined' && functions.isMobile()));
+  }, []);
+
+  // To handle vh on mobile devices
+  const setVhProperty = React.useCallback(() => {
+    let vh = window.innerHeight * 0.01;
+    // Then we set the value in the --vh custom property to the root of the document
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  }, []);
+
+  React.useEffect(() => {
+    setVhProperty();
+  }, []); // eslint-disable-line
+
+  React.useEffect(() => {
+    window.addEventListener('resize', () => setVhProperty());
+  }, []); // eslint-disable-line
 
   const adaptCursorColor = React.useCallback(() => {
     const hoveredSection = document.querySelector("section:hover");
@@ -30,9 +52,9 @@ const IndexPage = () => {
         hoveredSectionBackgroundC.current = newSectionBackgroundC;
         const colorType = functions.isLightOrDark(newSectionBackgroundC);
         if (colorType === "dark") {
-          setCursorColor(constants.rgbWhiteColor);
+          setColorClass(constants.lightClass);
         } else {
-          setCursorColor(constants.rgbBlackColor);
+          setColorClass(constants.darkClass);
         }
       }
     }
@@ -45,18 +67,22 @@ const IndexPage = () => {
       inertia: 0.75,
       useKeyboard: true,
       getDirection: true,
+      touchMultiplier: 2.5,
       smartphone: {
-        smooth: true
+        smooth: true,
       },
       tablet: {
-        smooth: true
+        smooth: true,
       },
     });
     setLocoScroll(myLocoScroll);
+  }, []); // eslint-disable-line
+
+  React.useEffect(() => {
     return () => {
       if (locoScroll) locoScroll.destroy();
     }
-  }, []); // eslint-disable-line
+  }, [locoScroll]);
 
   React.useEffect(() => {
 
@@ -102,7 +128,7 @@ const IndexPage = () => {
         navBarBorderDistance = navBarRef.current.clientHeight / 2;
 
         // To handle Hide of Home section (to let appear contact section)
-        if (scrollEvent.scroll.y > window.innerHeight) { // If we scrolled more than Home section height (viewport height)
+        if (scrollEvent.scroll.y > window.innerHeight + navBarBorderDistance) { // If we scrolled more than Home section height (viewport height) => - navbar to be sure (on some mobiles)
           if (localDisplayHome === true) {
             localDisplayHome = false;
             setDisplayHome(false);
@@ -119,7 +145,7 @@ const IndexPage = () => {
           if (scrollEvent.currentElements.aboutMe.progress > thresholdSkillsInView) { // We skipped about me section
             if (aboutSection) {
               functions.setClass(aboutSection, "skills-in-view");
-              functions.setClass(aboutSection, "pink");
+              functions.setClass(aboutSection, "first-background");
               functions.setDarkNavBarColor(navBarRef);
             }
           } else { // If we are before the skills section
@@ -216,9 +242,11 @@ const IndexPage = () => {
 
   return (
     <>
-      <CustomCursor adaptCursorColor={adaptCursorColor} cursorColor={cursorColor} />
+      {isMobile === false &&
+        <CustomCursor adaptCursorColor={adaptCursorColor} colorClass={colorClass} />
+      }
       <main data-scroll-container>
-        <SEO title="Home" />
+        <SEO title="Developer" />
         <NavBar navBarRef={navBarRef} scrollInstance={locoScroll} />
         <Home adaptCursorColor={adaptCursorColor} display={displayHome} />
         <About />
