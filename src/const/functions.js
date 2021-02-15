@@ -101,6 +101,12 @@ const functions = {
         }
     },
 
+    setAnimDirection: (anim, direction) => {
+        anim.effect.updateTiming({ direction });
+        const ct = anim.effect.getComputedTiming();
+        anim.currentTime = ct.currentIteration * ct.duration + (ct.duration - ct.localTime % ct.duration);
+    },
+
 }
 
 export default functions

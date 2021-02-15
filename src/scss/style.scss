@@ -1150,6 +1150,7 @@ html {
                           padding: 4rem;
                           box-sizing: border-box;
                           transition: background $skillsInViewAnimDurationBack ease;
+                          transform: rotateY(0deg);
                           // transition: opacity $skillsInViewAnimDurationBack ease;
                           // opacity: 0;
             
@@ -1231,18 +1232,6 @@ html {
               margin-bottom: calc(var(--sectionPaddingTopBott) * 1.2);
             }
   
-            @keyframes translationDown {
-              100% {
-                transform: translateX(-400%);
-              }
-            }
-
-            @keyframes translationUp {
-              100% {
-                transform: translateX(400%);
-              }
-            }
-  
             .words-container {
               
               .word-container {
@@ -1305,7 +1294,7 @@ html {
 
                 // FAST
                 &:nth-child(1) {
-                  div {
+                  div {                    
                     width: calc(100vw / 2);
                     @include phoneLandAndLarger {
                       width: calc(100vw / 3.5);

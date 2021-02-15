@@ -52,7 +52,7 @@ const Home = ({ /*adaptCursorColor,*/ display }) => {
                     </div>
                 </div>
             </div>
-            <div className="scroll-lottie animate__animated animate__fadeIn animate__delay-3s" />
+            <div className="scroll-lottie animate__animated animate__fadeIn animate__delay-2s" />
         </section>
     );
 

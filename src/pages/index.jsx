@@ -93,42 +93,42 @@ const IndexPage = () => {
     const homeTitle1 = document.querySelector('#home-title-1');
     const homeTitle2 = document.querySelector('#home-title-2');
     const aboutSection = document.querySelector('#about');
-    let lastScrollDirection = "down";
+    // let lastScrollDirection = "down";
     const thresholdSkillsInView = 0.9;
     let thresholdHomeTitles = 0;
     const clientsGrid = document.querySelector('#clients-grid');
 
     if (locoScroll) {
 
-      const skillWordsContainer = document.querySelectorAll('#words-container > div');
-      const wordsAnimsList = [];
+      // const skillWordsContainer = document.querySelectorAll('#words-container > div');
+      // const wordsAnimsList = [];
 
       // To handle #skills word-container animation
-      if (skillWordsContainer) {
-        skillWordsContainer.forEach(parent => {
-          for (let i = 0; i < parent.children.length; i++) {
-            wordsAnimsList.push(
-              parent.children[i].animate(
-                [
-                  { transform: 'translateX(-400%)' }
-                ], {
-                // timing options
-                duration: functions.getAnimWordDuration(parent.getAttribute("name")),
-                iterations: Infinity,
-                easing: "linear"
-              }
-              )
-            );
-          }
-        });
-      }
+      // if (skillWordsContainer) {
+      //   skillWordsContainer.forEach((parent, index) => {
+      //     if (index === 0) {
+      //       wordsAnimsList.push(
+      //         parent.animate(
+      //           [
+      //             { transform: `translateX(-${33.33 * 2}%)` }, { transform: `translateX(-${33.33 * 4}%)` }
+      //           ], {
+      //           // timing options
+      //           duration: functions.getAnimWordDuration(parent.getAttribute("name")),
+      //           // duration: 6000,
+      //           iterations: Infinity,
+      //           easing: "linear"
+      //         })
+      //       );
+      //     }
+      //   });
+      // }
 
       locoScroll.on("scroll", (scrollEvent) => {
 
         navBarBorderDistance = navBarRef.current.clientHeight / 2;
 
         // To handle Hide of Home section (to let appear contact section)
-        if (scrollEvent.scroll.y > window.innerHeight + navBarBorderDistance) { // If we scrolled more than Home section height (viewport height) => - navbar to be sure (on some mobiles)
+        if (scrollEvent.scroll.y > window.innerHeight + navBarBorderDistance) { // If we scrolled more than Home section height (viewport height) => + navbar for security (on some mobiles)
           if (localDisplayHome === true) {
             localDisplayHome = false;
             setDisplayHome(false);
@@ -191,12 +191,18 @@ const IndexPage = () => {
         }
 
         // To handle direction of words translating in section assuredQuality
-        if (scrollEvent.currentElements.assuredQuality && scrollEvent.direction !== lastScrollDirection) {
-          lastScrollDirection = scrollEvent.direction;
-          wordsAnimsList.forEach(anim => {
-            anim.reverse();
-          });
-        }
+        // if (scrollEvent.currentElements.assuredQuality && scrollEvent.direction !== lastScrollDirection) {
+        //   lastScrollDirection = scrollEvent.direction;
+        //   if (lastScrollDirection === "up") {
+        //     wordsAnimsList.forEach(anim => {
+        //       functions.setAnimDirection(anim, "reverse");
+        //     });
+        //   } else {
+        //     wordsAnimsList.forEach(anim => {
+        //       functions.setAnimDirection(anim, "normal");
+        //     });
+        //   }
+        // }
 
         // To hande backgrounds color variations between #SKILLS ; #ASSUREDQUALITY ; #CLIENTS
         if (aboutSection) {
